@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ForeignExchangeViewController.swift
 //  Baluchon
 //
 //  Created by Fabrice Etiennette on 30/09/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ForeignExchangeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

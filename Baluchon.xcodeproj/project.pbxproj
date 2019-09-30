@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D023426B4A00329697 /* AppDelegate.swift */; };
 		2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D223426B4A00329697 /* SceneDelegate.swift */; };
-		2CD489D523426B4A00329697 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D423426B4A00329697 /* FirstViewController.swift */; };
-		2CD489D723426B4A00329697 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D623426B4A00329697 /* SecondViewController.swift */; };
+		2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D423426B4A00329697 /* TodayViewController.swift */; };
+		2CD489D723426B4A00329697 /* ForeignExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */; };
 		2CD489DA23426B4A00329697 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489D823426B4A00329697 /* Main.storyboard */; };
 		2CD489DC23426B4B00329697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489DB23426B4B00329697 /* Assets.xcassets */; };
 		2CD489DF23426B4B00329697 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */; };
 		2CD489EA23426B4C00329697 /* BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489E923426B4C00329697 /* BaluchonTests.swift */; };
 		2CD489F523426B4C00329697 /* BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489F423426B4C00329697 /* BaluchonUITests.swift */; };
+		2CD48A062342721F00329697 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD48A052342721F00329697 /* WeatherViewController.swift */; };
+		2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD48A072342723A00329697 /* TranslateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +41,8 @@
 		2CD489CD23426B4A00329697 /* Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489D023426B4A00329697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD489D223426B4A00329697 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2CD489D423426B4A00329697 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		2CD489D623426B4A00329697 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		2CD489D423426B4A00329697 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignExchangeViewController.swift; sourceTree = "<group>"; };
 		2CD489D923426B4A00329697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CD489DB23426B4B00329697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CD489DE23426B4B00329697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		2CD489F023426B4C00329697 /* BaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaluchonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489F423426B4C00329697 /* BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaluchonUITests.swift; sourceTree = "<group>"; };
 		2CD489F623426B4C00329697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CD48A052342721F00329697 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		2CD48A072342723A00329697 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +105,9 @@
 		2CD489CF23426B4A00329697 /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
-				2CD489D023426B4A00329697 /* AppDelegate.swift */,
-				2CD489D223426B4A00329697 /* SceneDelegate.swift */,
-				2CD489D423426B4A00329697 /* FirstViewController.swift */,
-				2CD489D623426B4A00329697 /* SecondViewController.swift */,
-				2CD489D823426B4A00329697 /* Main.storyboard */,
-				2CD489DB23426B4B00329697 /* Assets.xcassets */,
-				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
+				2CD48A042342706B00329697 /* Supporting Files */,
+				2CD48A032342706500329697 /* View */,
+				2CD48A022342705600329697 /* Controller */,
 				2CD489E023426B4B00329697 /* Info.plist */,
 			);
 			path = Baluchon;
@@ -129,6 +129,36 @@
 				2CD489F623426B4C00329697 /* Info.plist */,
 			);
 			path = BaluchonUITests;
+			sourceTree = "<group>";
+		};
+		2CD48A022342705600329697 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2CD489D423426B4A00329697 /* TodayViewController.swift */,
+				2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */,
+				2CD48A052342721F00329697 /* WeatherViewController.swift */,
+				2CD48A072342723A00329697 /* TranslateViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2CD48A032342706500329697 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CD489D823426B4A00329697 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2CD48A042342706B00329697 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2CD489D023426B4A00329697 /* AppDelegate.swift */,
+				2CD489D223426B4A00329697 /* SceneDelegate.swift */,
+				2CD489DB23426B4B00329697 /* Assets.xcassets */,
+				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +292,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD489D723426B4A00329697 /* SecondViewController.swift in Sources */,
-				2CD489D523426B4A00329697 /* FirstViewController.swift in Sources */,
+				2CD489D723426B4A00329697 /* ForeignExchangeViewController.swift in Sources */,
+				2CD48A062342721F00329697 /* WeatherViewController.swift in Sources */,
+				2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */,
 				2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,
+				2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

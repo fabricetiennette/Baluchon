@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  TodayViewController.swift
 //  Baluchon
 //
 //  Created by Fabrice Etiennette on 30/09/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class TodayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
