@@ -105,6 +105,8 @@
 		2CD489CF23426B4A00329697 /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				2CF9565B23438DFC00094BAD /* ViewModel */,
+				2CF9565A23438DE900094BAD /* Model */,
 				2CD48A042342706B00329697 /* Supporting Files */,
 				2CD48A032342706500329697 /* View */,
 				2CD48A022342705600329697 /* Controller */,
@@ -159,6 +161,20 @@
 				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CF9565A23438DE900094BAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2CF9565B23438DFC00094BAD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
