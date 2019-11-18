@@ -18,6 +18,7 @@
 		2CD489F523426B4C00329697 /* BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489F423426B4C00329697 /* BaluchonUITests.swift */; };
 		2CD48A062342721F00329697 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD48A052342721F00329697 /* WeatherViewController.swift */; };
 		2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD48A072342723A00329697 /* TranslateViewController.swift */; };
+		2CFA7DA323833234002BB0B6 /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFA7DA223833234002BB0B6 /* Today.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		2CD489F623426B4C00329697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD48A052342721F00329697 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		2CD48A072342723A00329697 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		2CFA7DA223833234002BB0B6 /* Today.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Today.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +107,9 @@
 		2CD489CF23426B4A00329697 /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
-				2CF9565B23438DFC00094BAD /* ViewModel */,
+				2CFA7D9D23832F90002BB0B6 /* scene */,
 				2CF9565A23438DE900094BAD /* Model */,
 				2CD48A042342706B00329697 /* Supporting Files */,
-				2CD48A032342706500329697 /* View */,
-				2CD48A022342705600329697 /* Controller */,
 				2CD489E023426B4B00329697 /* Info.plist */,
 			);
 			path = Baluchon;
@@ -133,25 +133,6 @@
 			path = BaluchonUITests;
 			sourceTree = "<group>";
 		};
-		2CD48A022342705600329697 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				2CD489D423426B4A00329697 /* TodayViewController.swift */,
-				2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */,
-				2CD48A052342721F00329697 /* WeatherViewController.swift */,
-				2CD48A072342723A00329697 /* TranslateViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		2CD48A032342706500329697 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2CD489D823426B4A00329697 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2CD48A042342706B00329697 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,11 +151,49 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2CF9565B23438DFC00094BAD /* ViewModel */ = {
+		2CFA7D9D23832F90002BB0B6 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				2CFA7DA123833033002BB0B6 /* Today */,
+				2CFA7DA023833023002BB0B6 /* Translate */,
+				2CFA7D9F23833019002BB0B6 /* Weather */,
+				2CFA7D9E2383300B002BB0B6 /* Foreign */,
+				2CD489D823426B4A00329697 /* Main.storyboard */,
 			);
-			path = ViewModel;
+			path = scene;
+			sourceTree = "<group>";
+		};
+		2CFA7D9E2383300B002BB0B6 /* Foreign */ = {
+			isa = PBXGroup;
+			children = (
+				2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */,
+			);
+			path = Foreign;
+			sourceTree = "<group>";
+		};
+		2CFA7D9F23833019002BB0B6 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				2CD48A052342721F00329697 /* WeatherViewController.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		2CFA7DA023833023002BB0B6 /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				2CD48A072342723A00329697 /* TranslateViewController.swift */,
+			);
+			path = Translate;
+			sourceTree = "<group>";
+		};
+		2CFA7DA123833033002BB0B6 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				2CD489D423426B4A00329697 /* TodayViewController.swift */,
+				2CFA7DA223833234002BB0B6 /* Today.storyboard */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CFA7DA323833234002BB0B6 /* Today.storyboard in Resources */,
 				2CD489DF23426B4B00329697 /* LaunchScreen.storyboard in Resources */,
 				2CD489DC23426B4B00329697 /* Assets.xcassets in Resources */,
 				2CD489DA23426B4A00329697 /* Main.storyboard in Resources */,
