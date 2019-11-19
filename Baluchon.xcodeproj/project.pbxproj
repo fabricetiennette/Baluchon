@@ -10,6 +10,7 @@
 		2C18E34B238366B0008B9BD6 /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34A238366B0008B9BD6 /* Translate.storyboard */; };
 		2C18E34D23836744008B9BD6 /* weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34C23836744008B9BD6 /* weather.storyboard */; };
 		2C18E34F23836785008B9BD6 /* Foreign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34E23836785008B9BD6 /* Foreign.storyboard */; };
+		2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3ED7E8238464DF001554BC /* TabBarViewController.swift */; };
 		2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D023426B4A00329697 /* AppDelegate.swift */; };
 		2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D223426B4A00329697 /* SceneDelegate.swift */; };
 		2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D423426B4A00329697 /* TodayViewController.swift */; };
@@ -49,6 +50,7 @@
 		2C18E34A238366B0008B9BD6 /* Translate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 		2C18E34C23836744008B9BD6 /* weather.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = weather.storyboard; sourceTree = "<group>"; };
 		2C18E34E23836785008B9BD6 /* Foreign.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Foreign.storyboard; sourceTree = "<group>"; };
+		2C3ED7E8238464DF001554BC /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2CD489CD23426B4A00329697 /* Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489D023426B4A00329697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD489D223426B4A00329697 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C3ED7E72384648E001554BC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2C3ED7E8238464DF001554BC /* TabBarViewController.swift */,
+				2CD489D823426B4A00329697 /* Main.storyboard */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		2CD489C423426B4A00329697 = {
 			isa = PBXGroup;
 			children = (
@@ -177,11 +188,11 @@
 		2CFA7D9D23832F90002BB0B6 /* scene */ = {
 			isa = PBXGroup;
 			children = (
+				2C3ED7E72384648E001554BC /* TabBar */,
 				2CFA7DA123833033002BB0B6 /* Today */,
 				2CFA7DA023833023002BB0B6 /* Translate */,
 				2CFA7D9F23833019002BB0B6 /* Weather */,
 				2CFA7D9E2383300B002BB0B6 /* Foreign */,
-				2CD489D823426B4A00329697 /* Main.storyboard */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -475,6 +486,7 @@
 				2CD48A062342721F00329697 /* WeatherViewController.swift in Sources */,
 				2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */,
 				2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */,
+				2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,
 				2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */,
 			);
