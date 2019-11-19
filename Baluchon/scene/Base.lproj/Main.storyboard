@@ -3,61 +3,38 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Foreign Exchange-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" userLabel="Foreign Exchange" customClass="ForeignExchangeViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Foreign Exchange" image="dollarsign.circle.fill" catalog="system" id="cPa-gy-q4n"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="838"/>
-        </scene>
         <!--Translate-->
-        <scene sceneID="WKJ-lU-eh3">
+        <scene sceneID="cgn-Ml-2lL">
             <objects>
-                <viewController id="Al7-Rp-sMh" userLabel="Translate" customClass="TranslateViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5MZ-Gc-lWa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="8bv-5d-WET"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Translate" image="t.bubble.fill" catalog="system" id="gNV-Vj-vxY">
-                        <color key="badgeColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UcF-a3-aUC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Translate" id="trr-cR-w6K" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Tvc-cl-AMg"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wbj-pV-X96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="843" y="838"/>
+            <point key="canvasLocation" x="532" y="553"/>
         </scene>
-        <!--Weather-->
-        <scene sceneID="qAV-2N-hui">
+        <!--weather-->
+        <scene sceneID="Ehz-QH-jox">
             <objects>
-                <viewController id="s9b-l5-dML" userLabel="Weather" customClass="WeatherViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="28K-fm-jvO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="5FU-Ug-Wgt"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun.fill" catalog="system" id="zDI-9S-hPU">
-                        <color key="badgeColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wnh-CA-xxm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="weather" id="K4C-6C-LyY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Hsp-GC-9o0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eXy-hB-Qf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1626" y="841"/>
+            <point key="canvasLocation" x="758" y="552"/>
+        </scene>
+        <!--Foreign-->
+        <scene sceneID="Oly-pE-AZb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Foreign" id="FdU-Ma-eAL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="toi-sw-4bR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IpQ-eF-Ktd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="283" y="551"/>
         </scene>
         <!--Today-->
         <scene sceneID="7xD-jg-Y6h">
@@ -67,7 +44,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LpA-XO-zAd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-729" y="551"/>
+            <point key="canvasLocation" x="60" y="552"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -79,10 +56,10 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="Al7-Rp-sMh" kind="relationship" relationship="viewControllers" id="dM3-mK-z7z"/>
-                        <segue destination="s9b-l5-dML" kind="relationship" relationship="viewControllers" id="fzi-xX-6O8"/>
                         <segue destination="DMJ-KW-jX2" kind="relationship" relationship="viewControllers" id="2h1-98-31G"/>
+                        <segue destination="trr-cR-w6K" kind="relationship" relationship="viewControllers" id="XhV-NQ-4rj"/>
+                        <segue destination="K4C-6C-LyY" kind="relationship" relationship="viewControllers" id="yZO-LH-qkt"/>
+                        <segue destination="FdU-Ma-eAL" kind="relationship" relationship="viewControllers" id="JOX-C3-5Ay"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -90,9 +67,4 @@
             <point key="canvasLocation" x="410" y="5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
-        <image name="dollarsign.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="t.bubble.fill" catalog="system" width="64" height="54"/>
-    </resources>
 </document>
