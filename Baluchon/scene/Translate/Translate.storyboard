@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6zU-TU-73M">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,7 +12,7 @@
             <objects>
                 <navigationController id="6zU-TU-73M" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qEV-vu-wOD">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -28,22 +28,103 @@
             <objects>
                 <viewController id="6e9-ZJ-OzE" userLabel="Translate" customClass="TranslateViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h2A-HK-rTA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjq-2i-mIH">
+                                <rect key="frame" x="100" y="84" width="15.5" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wo-g6-WTa">
+                                <rect key="frame" x="176" y="84" width="23" height="22"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="normal" image="repeat" catalog="system"/>
+                                <connections>
+                                    <action selector="changeLanguage:" destination="6e9-ZJ-OzE" eventType="touchUpInside" id="Alo-sH-gBp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="En" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBN-Hp-Wdh">
+                                <rect key="frame" x="255.5" y="84" width="19.5" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2e-Qy-ol5" userLabel="ToTranslate">
+                                <rect key="frame" x="16" y="136" width="343" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="bBA-PG-a4S"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOb-et-p5X" userLabel="TranslationResultText">
+                                <rect key="frame" x="16" y="326" width="343" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pL-Gv-GJi">
+                                <rect key="frame" x="147.5" y="256" width="80" height="30"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="CMZ-51-hSo"/>
+                                </constraints>
+                                <state key="normal" title="Translate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapeTranslateButton:" destination="6e9-ZJ-OzE" eventType="touchUpInside" id="8xc-W6-vBh"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9Wo-g6-WTa" firstAttribute="top" secondItem="zjq-2i-mIH" secondAttribute="top" id="5uf-iG-6Gs"/>
+                            <constraint firstItem="9Wo-g6-WTa" firstAttribute="bottom" secondItem="zjq-2i-mIH" secondAttribute="bottom" id="BZK-VN-3LB"/>
+                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="trailing" secondItem="c2e-Qy-ol5" secondAttribute="trailing" constant="16" id="BjB-S8-8Os"/>
+                            <constraint firstItem="c2e-Qy-ol5" firstAttribute="leading" secondItem="LBQ-kp-N5p" secondAttribute="leading" constant="16" id="C9q-31-7j9"/>
+                            <constraint firstItem="zjq-2i-mIH" firstAttribute="leading" secondItem="LBQ-kp-N5p" secondAttribute="leading" constant="100" id="Cow-XS-dKO"/>
+                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="trailing" secondItem="gBN-Hp-Wdh" secondAttribute="trailing" constant="100" id="FMm-H9-fDB"/>
+                            <constraint firstItem="gBN-Hp-Wdh" firstAttribute="top" secondItem="zjq-2i-mIH" secondAttribute="top" id="Hpq-qr-ICE"/>
+                            <constraint firstItem="gBN-Hp-Wdh" firstAttribute="bottom" secondItem="zjq-2i-mIH" secondAttribute="bottom" id="TPq-lD-fZ3"/>
+                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="trailing" secondItem="HOb-et-p5X" secondAttribute="trailing" constant="16" id="Wn0-W8-5cV"/>
+                            <constraint firstItem="7pL-Gv-GJi" firstAttribute="centerX" secondItem="h2A-HK-rTA" secondAttribute="centerX" id="YdS-44-nUi"/>
+                            <constraint firstItem="7pL-Gv-GJi" firstAttribute="top" secondItem="c2e-Qy-ol5" secondAttribute="bottom" constant="20" id="ZgF-BM-o91"/>
+                            <constraint firstItem="c2e-Qy-ol5" firstAttribute="top" secondItem="9Wo-g6-WTa" secondAttribute="bottom" constant="30" id="asW-rr-2XY"/>
+                            <constraint firstItem="HOb-et-p5X" firstAttribute="leading" secondItem="LBQ-kp-N5p" secondAttribute="leading" constant="16" id="bzA-xz-ZJ8"/>
+                            <constraint firstItem="zjq-2i-mIH" firstAttribute="top" secondItem="LBQ-kp-N5p" secondAttribute="top" constant="40" id="eZt-oi-nji"/>
+                            <constraint firstItem="HOb-et-p5X" firstAttribute="top" secondItem="7pL-Gv-GJi" secondAttribute="bottom" constant="40" id="fiL-Fu-mDL"/>
+                            <constraint firstItem="9Wo-g6-WTa" firstAttribute="centerX" secondItem="h2A-HK-rTA" secondAttribute="centerX" id="gVo-1c-SqB"/>
+                            <constraint firstItem="gBN-Hp-Wdh" firstAttribute="top" secondItem="LBQ-kp-N5p" secondAttribute="top" constant="40" id="r5h-5C-a7A"/>
+                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="bottom" secondItem="HOb-et-p5X" secondAttribute="bottom" constant="241" id="zWj-kf-KtO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LBQ-kp-N5p"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Translate" image="t.bubble.fill" catalog="system" id="wkh-TS-w96">
                         <color key="badgeColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" id="Z8r-Ux-2u9"/>
+                    <navigationItem key="navigationItem" title="Translate" id="Z8r-Ux-2u9"/>
+                    <connections>
+                        <outlet property="enLanguage" destination="gBN-Hp-Wdh" id="iOo-2F-yeM"/>
+                        <outlet property="exchangeLanguage" destination="9Wo-g6-WTa" id="qRN-x5-7Kt"/>
+                        <outlet property="frLanguage" destination="zjq-2i-mIH" id="dcC-s1-29n"/>
+                        <outlet property="toTranslateTextField" destination="c2e-Qy-ol5" id="pAC-uJ-99v"/>
+                        <outlet property="translateButton" destination="7pL-Gv-GJi" id="Ug7-Do-FiO"/>
+                        <outlet property="translationResultTextView" destination="HOb-et-p5X" id="3XI-lO-14F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sop-uO-u12" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="843" y="838"/>
+            <point key="canvasLocation" x="840.79999999999995" y="837.03148425787117"/>
         </scene>
     </scenes>
     <resources>
+        <image name="repeat" catalog="system" width="64" height="48"/>
         <image name="t.bubble.fill" catalog="system" width="64" height="54"/>
     </resources>
 </document>
