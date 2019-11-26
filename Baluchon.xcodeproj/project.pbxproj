@@ -11,6 +11,13 @@
 		2C18E34D23836744008B9BD6 /* weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34C23836744008B9BD6 /* weather.storyboard */; };
 		2C18E34F23836785008B9BD6 /* Foreign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34E23836785008B9BD6 /* Foreign.storyboard */; };
 		2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3ED7E8238464DF001554BC /* TabBarViewController.swift */; };
+		2C451B93238D343B008E64B8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B92238D343B008E64B8 /* UIView+.swift */; };
+		2C451B95238D3BDD008E64B8 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B94238D3BDD008E64B8 /* Translate.swift */; };
+		2C451B98238D4160008E64B8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B97238D4160008E64B8 /* UIViewController+.swift */; };
+		2C60F0542387CD1E00E4DE33 /* StoryboardScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0502387CD1E00E4DE33 /* StoryboardScenes.swift */; };
+		2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */; };
+		2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0522387CD1E00E4DE33 /* Assets.swift */; };
+		2C60F0572387CD1E00E4DE33 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0532387CD1E00E4DE33 /* Strings.swift */; };
 		2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D023426B4A00329697 /* AppDelegate.swift */; };
 		2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D223426B4A00329697 /* SceneDelegate.swift */; };
 		2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D423426B4A00329697 /* TodayViewController.swift */; };
@@ -51,6 +58,13 @@
 		2C18E34C23836744008B9BD6 /* weather.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = weather.storyboard; sourceTree = "<group>"; };
 		2C18E34E23836785008B9BD6 /* Foreign.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Foreign.storyboard; sourceTree = "<group>"; };
 		2C3ED7E8238464DF001554BC /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		2C451B92238D343B008E64B8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		2C451B94238D3BDD008E64B8 /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
+		2C451B97238D4160008E64B8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		2C60F0502387CD1E00E4DE33 /* StoryboardScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardScenes.swift; sourceTree = "<group>"; };
+		2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
+		2C60F0522387CD1E00E4DE33 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		2C60F0532387CD1E00E4DE33 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		2CD489CD23426B4A00329697 /* Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489D023426B4A00329697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD489D223426B4A00329697 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +130,33 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		2C451B96238D413D008E64B8 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2C451B97238D4160008E64B8 /* UIViewController+.swift */,
+				2C451B92238D343B008E64B8 /* UIView+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2C60F04D2387C85800E4DE33 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				2C60F0522387CD1E00E4DE33 /* Assets.swift */,
+				2C60F0502387CD1E00E4DE33 /* StoryboardScenes.swift */,
+				2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */,
+				2C60F0532387CD1E00E4DE33 /* Strings.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		2C60F04E2387C87A00E4DE33 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2CD489C423426B4A00329697 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +182,9 @@
 		2CD489CF23426B4A00329697 /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				2C451B96238D413D008E64B8 /* Extension */,
+				2C60F04E2387C87A00E4DE33 /* Resources */,
+				2C60F04D2387C85800E4DE33 /* Generated */,
 				2CFA7D9D23832F90002BB0B6 /* scene */,
 				2CF9565A23438DE900094BAD /* Model */,
 				2CD48A042342706B00329697 /* Supporting Files */,
@@ -181,6 +225,7 @@
 		2CF9565A23438DE900094BAD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C451B94238D3BDD008E64B8 /* Translate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -482,12 +527,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C451B98238D4160008E64B8 /* UIViewController+.swift in Sources */,
+				2C451B93238D343B008E64B8 /* UIView+.swift in Sources */,
 				2CD489D723426B4A00329697 /* ForeignExchangeViewController.swift in Sources */,
+				2C60F0572387CD1E00E4DE33 /* Strings.swift in Sources */,
+				2C451B95238D3BDD008E64B8 /* Translate.swift in Sources */,
 				2CD48A062342721F00329697 /* WeatherViewController.swift in Sources */,
 				2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */,
+				2C60F0542387CD1E00E4DE33 /* StoryboardScenes.swift in Sources */,
 				2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */,
 				2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */,
+				2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,
+				2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */,
 				2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
