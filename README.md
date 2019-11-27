@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.com/fabricetiennette/Baluchon.svg?branch=master)](https://travis-ci.com/fabricetiennette/Baluchon)
