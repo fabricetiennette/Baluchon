@@ -10,9 +10,32 @@ import UIKit
 
 class TodayTableViewController: UITableViewController {
 
+//    private let forexRates = Exchange()
+
+    @IBOutlet weak var dateUILabel: UILabel!
+    @IBOutlet weak var weatherView: UIView!
+    @IBOutlet weak var forexView: UIView!
+    @IBOutlet weak var weatherImageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        print("hello")
+//        forexRates.getExchangeRate()
+        currentDate()
+        configureView()
+    }
+
+    private func currentDate() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE dd MMMM"
+        let date = formatter.string(from: Date())
+        dateUILabel.text = date
+    }
+}
+
+private extension TodayTableViewController {
+    func configureView() {
+        weatherImageView.layer.cornerRadius = 10
+        weatherView.layer.cornerRadius = 10
+        forexView.layer.cornerRadius = 10
     }
 }

@@ -16,9 +16,4 @@ extension UIViewController {
         alert.addAction(isOk)
         present(alert, animated: true, completion: nil)
     }
-
-    // Applies the text received to a UITextView
-    func refreshScreen(text: String, textView: UITextView) {
-        textView.text = text
-    }
 }

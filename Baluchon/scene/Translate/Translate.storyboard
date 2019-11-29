@@ -59,14 +59,7 @@
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOb-et-p5X" userLabel="TranslationResultText">
-                                <rect key="frame" x="16" y="326" width="343" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pL-Gv-GJi">
                                 <rect key="frame" x="147.5" y="256" width="80" height="30"/>
@@ -76,11 +69,21 @@
                                 </constraints>
                                 <state key="normal" title="Translate">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapeTranslateButton:" destination="6e9-ZJ-OzE" eventType="touchUpInside" id="8xc-W6-vBh"/>
+                                    <action selector="didTapTranslateButton:" destination="6e9-ZJ-OzE" eventType="touchUpInside" id="8xc-W6-vBh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3o-E0-mg5" userLabel="TextResultLabel">
+                                <rect key="frame" x="16" y="311" width="343" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="QWk-sG-bRe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -92,16 +95,15 @@
                             <constraint firstItem="LBQ-kp-N5p" firstAttribute="trailing" secondItem="gBN-Hp-Wdh" secondAttribute="trailing" constant="100" id="FMm-H9-fDB"/>
                             <constraint firstItem="gBN-Hp-Wdh" firstAttribute="top" secondItem="zjq-2i-mIH" secondAttribute="top" id="Hpq-qr-ICE"/>
                             <constraint firstItem="gBN-Hp-Wdh" firstAttribute="bottom" secondItem="zjq-2i-mIH" secondAttribute="bottom" id="TPq-lD-fZ3"/>
-                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="trailing" secondItem="HOb-et-p5X" secondAttribute="trailing" constant="16" id="Wn0-W8-5cV"/>
+                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="trailing" secondItem="u3o-E0-mg5" secondAttribute="trailing" constant="16" id="YSF-10-YZW"/>
                             <constraint firstItem="7pL-Gv-GJi" firstAttribute="centerX" secondItem="h2A-HK-rTA" secondAttribute="centerX" id="YdS-44-nUi"/>
                             <constraint firstItem="7pL-Gv-GJi" firstAttribute="top" secondItem="c2e-Qy-ol5" secondAttribute="bottom" constant="20" id="ZgF-BM-o91"/>
                             <constraint firstItem="c2e-Qy-ol5" firstAttribute="top" secondItem="9Wo-g6-WTa" secondAttribute="bottom" constant="30" id="asW-rr-2XY"/>
-                            <constraint firstItem="HOb-et-p5X" firstAttribute="leading" secondItem="LBQ-kp-N5p" secondAttribute="leading" constant="16" id="bzA-xz-ZJ8"/>
                             <constraint firstItem="zjq-2i-mIH" firstAttribute="top" secondItem="LBQ-kp-N5p" secondAttribute="top" constant="40" id="eZt-oi-nji"/>
-                            <constraint firstItem="HOb-et-p5X" firstAttribute="top" secondItem="7pL-Gv-GJi" secondAttribute="bottom" constant="40" id="fiL-Fu-mDL"/>
                             <constraint firstItem="9Wo-g6-WTa" firstAttribute="centerX" secondItem="h2A-HK-rTA" secondAttribute="centerX" id="gVo-1c-SqB"/>
+                            <constraint firstItem="u3o-E0-mg5" firstAttribute="leading" secondItem="LBQ-kp-N5p" secondAttribute="leading" constant="16" id="kMr-FK-Nxn"/>
                             <constraint firstItem="gBN-Hp-Wdh" firstAttribute="top" secondItem="LBQ-kp-N5p" secondAttribute="top" constant="40" id="r5h-5C-a7A"/>
-                            <constraint firstItem="LBQ-kp-N5p" firstAttribute="bottom" secondItem="HOb-et-p5X" secondAttribute="bottom" constant="241" id="zWj-kf-KtO"/>
+                            <constraint firstItem="u3o-E0-mg5" firstAttribute="top" secondItem="7pL-Gv-GJi" secondAttribute="bottom" constant="25" id="xTQ-an-1aR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LBQ-kp-N5p"/>
                     </view>
@@ -113,9 +115,9 @@
                         <outlet property="enLanguage" destination="gBN-Hp-Wdh" id="iOo-2F-yeM"/>
                         <outlet property="exchangeLanguage" destination="9Wo-g6-WTa" id="qRN-x5-7Kt"/>
                         <outlet property="frLanguage" destination="zjq-2i-mIH" id="dcC-s1-29n"/>
-                        <outlet property="toTranslateTextField" destination="c2e-Qy-ol5" id="pAC-uJ-99v"/>
+                        <outlet property="toTranslateTextView" destination="c2e-Qy-ol5" id="pAC-uJ-99v"/>
                         <outlet property="translateButton" destination="7pL-Gv-GJi" id="Ug7-Do-FiO"/>
-                        <outlet property="translationResultTextView" destination="HOb-et-p5X" id="3XI-lO-14F"/>
+                        <outlet property="translateResultLabel" destination="u3o-E0-mg5" id="fYl-69-9LF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sop-uO-u12" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

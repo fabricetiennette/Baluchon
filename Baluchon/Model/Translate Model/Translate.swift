@@ -9,12 +9,13 @@
 import Foundation
 
 class Translate {
-    var url = URL(string: "https://translation.googleapis.com/language/translate/v2")!
-    var translateSession: URLSession
-    var task: URLSessionDataTask?
+    private let url = URL(string: "https://translation.googleapis.com/language/translate/v2?")!
+    private var translateSession: URLSession
+    private var task: URLSessionDataTask?
+    private let googleTranslateApiKey = valueForAPIKey(named: "googleApiKey")
 
-    var source: String = "fr"
-    var target: String = "en"
+    private var source: String = "fr"
+    private var target: String = "en"
 
     init(translateSession: URLSession = URLSession(configuration: .default)) {
         self.translateSession = translateSession
@@ -40,17 +41,10 @@ class Translate {
         let query: String = text
         selectedLanguage(language: language)
 
-        let body = "q=\(query)" + "&\(source)" + "&target=\(target)" + "&format=text" + "&key=AIzaSyD55gn_Y-YrP0-vKtVbGrQFUqjNyl44Sh4"
+        let body = "q=\(query)" + "&\(source)" + "&target=\(target)" + "&format=text" + "&key=\(googleTranslateApiKey)"
         request.httpBody = body.data(using: .utf8)
 
         return request
-    }
-
-    // Send a notification
-    private func notification(message: String) {
-        let name = Notification.Name(message)
-        let notification = Notification(name: name)
-        NotificationCenter.default.post(notification)
     }
 
     // Send a request to the Google Translate API and return this response
@@ -61,18 +55,15 @@ class Translate {
             DispatchQueue.main.async {
                 guard let data = data, error == nil else {
                     callback(false, nil)
-                    self.notification(message: "Erreur réseau!")
                     return
                 }
                 guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                     callback(false, nil)
-                    self.notification(message: "Réponse serveur incorrect!")
                     return
                 }
                 guard let responseJSON = try? JSONDecoder().decode(Translation.self, from: data),
                     let textTranslated = responseJSON.data.translations[0].translatedText else {
                         callback(false, nil)
-                        self.notification(message: "Data illisible!")
                         return
                 }
                 callback(true, textTranslated)
@@ -80,16 +71,4 @@ class Translate {
         }
         task?.resume()
     }
-}
-
-struct Translation: Decodable {
-    let data: TranslationData
-}
-
-struct TranslationData: Decodable {
-    let translations: [TranslationText]
-}
-
-struct TranslationText: Decodable {
-    let translatedText: String?
 }
