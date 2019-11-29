@@ -1,0 +1,18 @@
+ib:
+  inputs: Baluchon
+  outputs:
+    - templateName: scenes-swift4
+      output: Baluchon/Generated/StoryboardScenes.swift
+    - templateName: segues-swift4
+      output: Baluchon/Generated/StoryboardSegues.swift
+xcassets:
+  inputs: Baluchon
+  outputs:
+    templateName: swift4
+    output: Baluchon/Generated/Assets.swift
+strings:
+  inputs: Baluchon/Resources
+  outputs:
+    templateName: structured-swift4
+    output: Baluchon/Generated/Strings.swift
+
