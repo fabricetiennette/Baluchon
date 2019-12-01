@@ -351,6 +351,7 @@
 			buildConfigurationList = 2CD489F923426B4C00329697 /* Build configuration list for PBXNativeTarget "Baluchon" */;
 			buildPhases = (
 				64A43BD5708E5EF9DF871259 /* [CP] Check Pods Manifest.lock */,
+				2C99431623948158008D122C /* SwiftGen */,
 				2CD489C923426B4A00329697 /* Sources */,
 				2CD489CA23426B4A00329697 /* Frameworks */,
 				2CD489CB23426B4A00329697 /* Resources */,
@@ -479,6 +480,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2C99431623948158008D122C /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftgen config lint\n";
+		};
 		2C9F00AC238455E000F9526B /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
