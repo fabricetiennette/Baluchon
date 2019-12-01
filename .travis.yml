@@ -2,7 +2,7 @@ language: swift
 osx_image: xcode11.2
 xcode_workspace: Baluchon.xcworkspace
 xcode_scheme: Baluchon
-xcode_destination: platform=iOS Simulator,OS=13.2,name=iPhone 8
+xcode_destination: platform=iOS Simulator,OS=13.2.2,name=iPhone 8
 before_install:
   - xcrun simctl list 
   - pod repo update
