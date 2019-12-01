@@ -30,7 +30,6 @@ class Weather {
         self.summary = summary
         self.icon = icon
         self.temperature = temperature
-
     }
 
     static func forecast(withLocation location: CLLocationCoordinate2D, completion: @escaping ([Weather]?) -> Void) {
@@ -42,25 +41,24 @@ class Weather {
         let task = URLSession.shared.dataTask(with: request) { (data: Data?, _: URLResponse?, error: Error?) in
 
             var forecastArray: [Weather] = []
-
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        if let dailyForecasts = json["daily"] as? [String: Any] {
-                            if let dailyData = dailyForecasts["data"] as? [[String: Any]] {
-                                for dataPoint in dailyData {
-                                    if let weatherObject = try? Weather(json: dataPoint) {
-                                        forecastArray.append(weatherObject)
+                if let data = data {
+                    do {
+                        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                            if let dailyForecasts = json["daily"] as? [String: Any] {
+                                if let dailyData = dailyForecasts["data"] as? [[String: Any]] {
+                                    for dataPoint in dailyData {
+                                        if let weatherObject = try? Weather(json: dataPoint) {
+                                            forecastArray.append(weatherObject)
+                                        }
                                     }
                                 }
                             }
                         }
+                    } catch {
+                        print(error.localizedDescription)
                     }
-                } catch {
-                    print(error.localizedDescription)
+                    completion(forecastArray)
                 }
-                completion(forecastArray)
-            }
         }
         task.resume()
     }
