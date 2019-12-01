@@ -4,6 +4,7 @@ xcode_workspace: Baluchon.xcworkspace
 xcode_scheme: Baluchon
 xcode_destination: platform=iOS Simulator,OS=13.2,name=iPhone X
 before_install:
+  - xcrun simctl list 
   - pod repo update
 after_success:
   - bash <(curl -s https://codecov.io/bash) -J 'Baluchon'
