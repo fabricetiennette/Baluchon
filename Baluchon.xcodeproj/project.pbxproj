@@ -496,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen config lint \n";
+			shellScript = "swiftgen config run\n";
 		};
 		2C9F00AC238455E000F9526B /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
