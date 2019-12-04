@@ -23,7 +23,7 @@
 		2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */; };
 		2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0522387CD1E00E4DE33 /* Assets.swift */; };
 		2C60F0572387CD1E00E4DE33 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0532387CD1E00E4DE33 /* Strings.swift */; };
-		2CBCF3CD238F2B5C008B4206 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCF3CC238F2B5C008B4206 /* ApiKey.swift */; };
+		2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */; };
 		2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D023426B4A00329697 /* AppDelegate.swift */; };
 		2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D223426B4A00329697 /* SceneDelegate.swift */; };
 		2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D423426B4A00329697 /* TodayViewController.swift */; };
@@ -76,7 +76,7 @@
 		2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		2C60F0522387CD1E00E4DE33 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		2C60F0532387CD1E00E4DE33 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		2CBCF3CC238F2B5C008B4206 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
+		2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		2CD489CD23426B4A00329697 /* Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489D023426B4A00329697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD489D223426B4A00329697 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 				2CD489D223426B4A00329697 /* SceneDelegate.swift */,
 				2CD489DB23426B4B00329697 /* Assets.xcassets */,
 				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
-				2CBCF3CC238F2B5C008B4206 /* ApiKey.swift */,
+				2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */,
 				2C0F8D2A23917ECC00AB33CE /* ApiKeys.plist */,
 			);
 			path = "Supporting Files";
@@ -496,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftgen\necho \"swiftGen file generated\"\n";
+			shellScript = "swiftgen config lint \n";
 		};
 		2C9F00AC238455E000F9526B /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -602,7 +602,7 @@
 				2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */,
 				2C03FE39239002250092B06D /* Translation Encoder.swift in Sources */,
 				2C0B993E239112F100F98BD1 /* Foreign Encoder.swift in Sources */,
-				2CBCF3CD238F2B5C008B4206 /* ApiKey.swift in Sources */,
+				2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */,
 				2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */,
 				2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,

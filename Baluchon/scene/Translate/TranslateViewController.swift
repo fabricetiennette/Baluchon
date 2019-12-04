@@ -43,8 +43,9 @@ class TranslateViewController: UIViewController {
 
     @IBAction func didTapTranslateButton(_ sender: Any) {
         toTranslateTextView.resignFirstResponder()
-        guard let text = toTranslateTextView.text, text != "" else {
-            alert(title: "Error", message: "Text Missing")
+        let text = toTranslateTextView.text.trimmingCharacters(in: .whitespaces)
+        guard !text.isEmpty else {
+            alert(title: "Erreur", message: "Le texte à traduire est manquant.")
             return
         }
 
