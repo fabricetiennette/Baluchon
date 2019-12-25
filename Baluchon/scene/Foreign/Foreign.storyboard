@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qBs-JW-4wE">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qBs-JW-4wE">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
             <objects>
                 <navigationController id="qBs-JW-4wE" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="is1-5e-EfQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -26,39 +26,36 @@
         <!--Foreign Exchange-->
         <scene sceneID="LYm-V9-4Pt">
             <objects>
-                <viewController id="Ubb-T6-gOK" userLabel="Foreign Exchange" customClass="ForeignExchangeViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ubb-T6-gOK" userLabel="Foreign Exchange" customClass="CurrencyExchangeViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DV0-6n-sEy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EUR" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ICu-Cs-6aD">
-                                <rect key="frame" x="40" y="261" width="219" height="34"/>
+                                <rect key="frame" x="75" y="235" width="225" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="225" id="KGo-bY-PLV"/>
+                                    <constraint firstAttribute="width" constant="225" id="eik-LG-ZHb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZwY-F9-24Q" userLabel="Currency Picker View">
-                                <rect key="frame" x="47" y="340" width="320" height="216"/>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJV-gs-Fgf" userLabel="Result Label">
-                                <rect key="frame" x="57" y="606" width="300" height="24"/>
+                                <rect key="frame" x="75" y="435" width="225" height="44"/>
                                 <color key="backgroundColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="0.2735177654109589" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="7ax-oI-4e0"/>
-                                    <constraint firstAttribute="width" constant="300" id="eRl-Xj-ZOf"/>
+                                    <constraint firstAttribute="height" constant="44" id="7ax-oI-4e0"/>
+                                    <constraint firstAttribute="width" constant="225" id="lA1-O0-3Cd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfy-Np-LQN">
-                                <rect key="frame" x="274" y="261" width="100" height="34"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfy-Np-LQN">
+                                <rect key="frame" x="112.5" y="335" width="150" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Mdf-wa-d8t"/>
-                                    <constraint firstAttribute="height" constant="34" id="z63-BG-qbI"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="k2h-ia-qV6"/>
+                                    <constraint firstAttribute="height" constant="50" id="z63-BG-qbI"/>
                                 </constraints>
                                 <state key="normal" title="Convert">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,19 +64,37 @@
                                     <action selector="action:" destination="Ubb-T6-gOK" eventType="touchUpInside" id="hYh-bx-CEx"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmK-wu-p6J">
+                                <rect key="frame" x="27.5" y="60" width="320" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="AlZ-h7-9Ge"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a currency" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dg6-L8-8qg">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="VLp-S9-r02"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ICu-Cs-6aD" firstAttribute="leading" secondItem="ZWF-Xn-85v" secondAttribute="leading" constant="40" id="5Y2-El-zKf"/>
-                            <constraint firstItem="ZWF-Xn-85v" firstAttribute="trailing" secondItem="Jfy-Np-LQN" secondAttribute="trailing" constant="40" id="6WL-0I-Bgx"/>
-                            <constraint firstItem="SJV-gs-Fgf" firstAttribute="top" secondItem="ZwY-F9-24Q" secondAttribute="bottom" constant="50" id="AZz-xX-bCS"/>
-                            <constraint firstItem="Jfy-Np-LQN" firstAttribute="leading" relation="lessThanOrEqual" secondItem="ICu-Cs-6aD" secondAttribute="trailing" constant="15" id="BLW-RM-N1F"/>
-                            <constraint firstItem="Jfy-Np-LQN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ZWF-Xn-85v" secondAttribute="top" constant="9" id="EQL-r9-2N8"/>
+                            <constraint firstItem="Jfy-Np-LQN" firstAttribute="centerX" secondItem="DV0-6n-sEy" secondAttribute="centerX" id="7gF-Vh-pxH"/>
+                            <constraint firstItem="dg6-L8-8qg" firstAttribute="trailing" secondItem="ZWF-Xn-85v" secondAttribute="trailing" id="B4q-79-b41"/>
+                            <constraint firstItem="ICu-Cs-6aD" firstAttribute="top" secondItem="tmK-wu-p6J" secondAttribute="bottom" constant="25" id="D1h-uP-zBC"/>
+                            <constraint firstItem="SJV-gs-Fgf" firstAttribute="centerX" secondItem="DV0-6n-sEy" secondAttribute="centerX" id="G8c-Wg-FUq"/>
+                            <constraint firstItem="dg6-L8-8qg" firstAttribute="leading" secondItem="ZWF-Xn-85v" secondAttribute="leading" id="GjJ-sv-kmg"/>
+                            <constraint firstItem="tmK-wu-p6J" firstAttribute="centerX" secondItem="DV0-6n-sEy" secondAttribute="centerX" id="Jcw-3U-ZvE"/>
                             <constraint firstItem="SJV-gs-Fgf" firstAttribute="centerX" secondItem="DV0-6n-sEy" secondAttribute="centerX" id="UW3-PY-IvH"/>
-                            <constraint firstItem="ZwY-F9-24Q" firstAttribute="top" secondItem="ICu-Cs-6aD" secondAttribute="bottom" constant="45" id="cYr-mu-jGD"/>
-                            <constraint firstItem="ZwY-F9-24Q" firstAttribute="centerX" secondItem="DV0-6n-sEy" secondAttribute="centerX" id="f5w-SB-oVY"/>
-                            <constraint firstItem="ZwY-F9-24Q" firstAttribute="centerY" secondItem="DV0-6n-sEy" secondAttribute="centerY" id="gDQ-nP-h13"/>
-                            <constraint firstItem="Jfy-Np-LQN" firstAttribute="centerY" secondItem="ICu-Cs-6aD" secondAttribute="centerY" id="gvd-ly-CBl"/>
+                            <constraint firstItem="tmK-wu-p6J" firstAttribute="top" secondItem="dg6-L8-8qg" secondAttribute="bottomMargin" constant="-20" id="Ymc-5j-a1Q"/>
+                            <constraint firstItem="dg6-L8-8qg" firstAttribute="top" secondItem="ZWF-Xn-85v" secondAttribute="top" id="mkH-95-OQ9"/>
+                            <constraint firstItem="ICu-Cs-6aD" firstAttribute="centerX" secondItem="DV0-6n-sEy" secondAttribute="centerX" id="oyv-26-2eW"/>
+                            <constraint firstItem="Jfy-Np-LQN" firstAttribute="top" secondItem="ICu-Cs-6aD" secondAttribute="bottom" constant="50" id="pzn-4X-vLU"/>
+                            <constraint firstItem="SJV-gs-Fgf" firstAttribute="top" secondItem="Jfy-Np-LQN" secondAttribute="bottom" constant="50" id="q1a-KZ-1kx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWF-Xn-85v"/>
                     </view>
@@ -88,13 +103,14 @@
                     <connections>
                         <outlet property="convertButton" destination="Jfy-Np-LQN" id="7My-zC-ue5"/>
                         <outlet property="currencyInputTextField" destination="ICu-Cs-6aD" id="Pi7-Nz-2xw"/>
-                        <outlet property="currencyPickerView" destination="ZwY-F9-24Q" id="y26-OZ-cmc"/>
+                        <outlet property="currencyPickerView" destination="tmK-wu-p6J" id="IpC-k5-g08"/>
                         <outlet property="resultLabel" destination="SJV-gs-Fgf" id="9Hh-XB-pwX"/>
+                        <outlet property="selectLabel" destination="dg6-L8-8qg" id="nfm-qK-Fjd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="STG-Gw-gFZ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530.43478260869574" y="837.72321428571422"/>
+            <point key="canvasLocation" x="-532" y="837.03148425787117"/>
         </scene>
     </scenes>
     <resources>

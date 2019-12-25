@@ -1,3 +1,4 @@
+// swiftlint:disable force_cast
 //
 //  WeatherTableViewController.swift
 //  Baluchon
@@ -8,74 +9,145 @@
 
 import UIKit
 import CoreLocation
+import Moya
 
-class WeatherTableViewController: UITableViewController {
+class WeatherTableViewController: UITableViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var forcastData = [Weather]()
+    private let manager = CLLocationManager()
+
+    private var forcastData: [DayData] = []
+    private var currentForcast: [Currently] = [] {
+        didSet {
+            if let icon = currentForcast.first?.icon {
+                tableView.backgroundView = backgroundView(currentIcon: icon)
+            }
+        }
+    }
+
+    private let weatherRest = WeatherClient()
+    private var currentPlace: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        updateWeatherForLocation(location: "Curepipe, Mauritius")
+        manager.delegate = self
+        manager.requestAlwaysAuthorization()
+        manager.requestLocation()
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
+            if error != nil {
+                print("Some errors: \(String(describing: error?.localizedDescription))")
+            } else {
+                if let place = placemark?.first?.locality {
+                    self.currentPlace = place
+                    self.updateWeatherForLocation(location: place )
+                }
+            }
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
+            self.currentPlace = locationString
             updateWeatherForLocation(location: locationString)
         }
     }
 
-    func updateWeatherForLocation(location: String) {
+    private func updateWeatherForLocation(location: String) {
         CLGeocoder().geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    Weather.forecast(withLocation: location.coordinate, completion: { (results: [Weather]?) in
+                    self.weatherRest.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude) { (forcastData, currentForcast, error) in
 
-                        if let weatherData = results {
-                            self.forcastData = weatherData
-
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
+                        self.forcastData = forcastData
+                        self.currentForcast = currentForcast
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
                         }
-                    })
+                        if let error = error {
+                            print(error)
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private enum Icon: String {
+        case clearDay = "clear-day"
+        case cloudy = "cloudy"
+        case partlyCloudyDay = "partly-cloudy-day"
+        var imageView: UIImageView {
+            switch self {
+            case .clearDay:
+                return UIImageView(image: Asset.clearD.image)
+            case .cloudy:
+                return UIImageView(image: Asset.cloudyCloudy.image)
+            case .partlyCloudyDay:
+                return UIImageView(image: Asset.partlyCloudyD.image)
+            }
+        }
+    }
+
+    private func backgroundView(currentIcon: String) -> UIImageView? {
+        if currentIcon == Icon.clearDay.rawValue {
+            return Icon.clearDay.imageView
+        } else if currentIcon == Icon.cloudy.rawValue {
+            return Icon.cloudy.imageView
+        } else if currentIcon == Icon.partlyCloudyDay.rawValue {
+            return Icon.partlyCloudyDay.imageView
+        }
+        return nil
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return forcastData.count
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        if section == 0 {
+            return currentForcast.count
+        } else {
+            return forcastData.count
+        }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = Calendar.current.date(byAdding: .day, value: section, to: Date())
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-
-        return dateFormatter.string(from: date!)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 220
+        } else {
+            return 50
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let weatherObject = forcastData[indexPath.section]
-
-        cell.textLabel?.text = weatherObject.summary
-        cell.detailTextLabel?.text = "\(Int(weatherObject.temperature)) °C"
-        cell.imageView?.image = UIImage(named: weatherObject.icon)
-        return cell
+        let currentData = currentForcast[0]
+        let dayData = forcastData[indexPath.item]
+        if indexPath.section == 0 {
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: currentPlace)
+            return headerCell
+        } else {
+            let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
+        weatherCell.configureCell(dayData: dayData, indexPath: indexPath)
+        return weatherCell
+        }
     }
 }
 

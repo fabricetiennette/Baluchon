@@ -3,19 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C03FE39239002250092B06D /* Translation Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C03FE38239002250092B06D /* Translation Encoder.swift */; };
-		2C0B993E239112F100F98BD1 /* Foreign Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B993D239112F100F98BD1 /* Foreign Encoder.swift */; };
+		2C03FE39239002250092B06D /* TranslateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C03FE38239002250092B06D /* TranslateData.swift */; };
+		2C0B993E239112F100F98BD1 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B993D239112F100F98BD1 /* Currency.swift */; };
 		2C0F8D2B23917ECC00AB33CE /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F8D2A23917ECC00AB33CE /* ApiKeys.plist */; };
 		2C18E34B238366B0008B9BD6 /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34A238366B0008B9BD6 /* Translate.storyboard */; };
 		2C18E34D23836744008B9BD6 /* weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34C23836744008B9BD6 /* weather.storyboard */; };
 		2C18E34F23836785008B9BD6 /* Foreign.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C18E34E23836785008B9BD6 /* Foreign.storyboard */; };
+		2C1E029923A5009D00F23E5F /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E029823A5009D00F23E5F /* WeatherData.swift */; };
+		2C1E029B23A501E400F23E5F /* WeatherClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E029A23A501E400F23E5F /* WeatherClient.swift */; };
 		2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3ED7E8238464DF001554BC /* TabBarViewController.swift */; };
 		2C451B93238D343B008E64B8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B92238D343B008E64B8 /* UIView+.swift */; };
-		2C451B95238D3BDD008E64B8 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B94238D3BDD008E64B8 /* Translate.swift */; };
+		2C451B95238D3BDD008E64B8 /* TranslateClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B94238D3BDD008E64B8 /* TranslateClient.swift */; };
 		2C451B98238D4160008E64B8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B97238D4160008E64B8 /* UIViewController+.swift */; };
 		2C451B9A238E6D73008E64B8 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B99238E6D73008E64B8 /* Weather.swift */; };
 		2C451B9E238EE75C008E64B8 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C451B9D238EE75C008E64B8 /* WeatherTableViewController.swift */; };
@@ -23,18 +25,26 @@
 		2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */; };
 		2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0522387CD1E00E4DE33 /* Assets.swift */; };
 		2C60F0572387CD1E00E4DE33 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0532387CD1E00E4DE33 /* Strings.swift */; };
+		2C83370F239CF317008B3EF7 /* CurrencyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */; };
+		2C842D1923AB5FA6005381C5 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C842D1823AB5FA6005381C5 /* WeatherCell.swift */; };
+		2C842D1B23ABA603005381C5 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C842D1A23ABA603005381C5 /* HeaderCell.swift */; };
+		2C9B260823A2245F001C8A10 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B260723A2245F001C8A10 /* Translate.swift */; };
+		2C9B260A23A22C12001C8A10 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B260923A22C12001C8A10 /* Language.swift */; };
 		2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */; };
 		2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D023426B4A00329697 /* AppDelegate.swift */; };
 		2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D223426B4A00329697 /* SceneDelegate.swift */; };
 		2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D423426B4A00329697 /* TodayViewController.swift */; };
-		2CD489D723426B4A00329697 /* ForeignExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */; };
+		2CD489D723426B4A00329697 /* CurrencyExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489D623426B4A00329697 /* CurrencyExchangeViewController.swift */; };
 		2CD489DA23426B4A00329697 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489D823426B4A00329697 /* Main.storyboard */; };
 		2CD489DC23426B4B00329697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489DB23426B4B00329697 /* Assets.xcassets */; };
 		2CD489DF23426B4B00329697 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */; };
 		2CD489EA23426B4C00329697 /* BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489E923426B4C00329697 /* BaluchonTests.swift */; };
 		2CD489F523426B4C00329697 /* BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489F423426B4C00329697 /* BaluchonUITests.swift */; };
 		2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD48A072342723A00329697 /* TranslateViewController.swift */; };
-		2CE85F11238FCA610047B88F /* Foreign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE85F10238FCA610047B88F /* Foreign.swift */; };
+		2CE7C13023B381EE003E4281 /* TranslateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */; };
+		2CE7C13223B38230003E4281 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C13123B38230003E4281 /* WeatherAPI.swift */; };
+		2CE7C13423B38298003E4281 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C13323B38298003E4281 /* URL+.swift */; };
+		2CE85F11238FCA610047B88F /* CurrencyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE85F10238FCA610047B88F /* CurrencyClient.swift */; };
 		2CFA7DA323833234002BB0B6 /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFA7DA223833234002BB0B6 /* Today.storyboard */; };
 		4659F3DBCF37D1349B6656CA /* Pods_Baluchon_BaluchonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0850EDF963E09FCA0F34A2 /* Pods_Baluchon_BaluchonUITests.framework */; };
 		7458F749D40310050BAE3A7A /* Pods_Baluchon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B059788D6670C4A0B01030 /* Pods_Baluchon.framework */; };
@@ -60,15 +70,17 @@
 
 /* Begin PBXFileReference section */
 		15E492B9D397103A994E39ED /* Pods-BaluchonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaluchonTests.debug.xcconfig"; path = "Target Support Files/Pods-BaluchonTests/Pods-BaluchonTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2C03FE38239002250092B06D /* Translation Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translation Encoder.swift"; sourceTree = "<group>"; };
-		2C0B993D239112F100F98BD1 /* Foreign Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foreign Encoder.swift"; sourceTree = "<group>"; };
+		2C03FE38239002250092B06D /* TranslateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateData.swift; sourceTree = "<group>"; };
+		2C0B993D239112F100F98BD1 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		2C0F8D2A23917ECC00AB33CE /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		2C18E34A238366B0008B9BD6 /* Translate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 		2C18E34C23836744008B9BD6 /* weather.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = weather.storyboard; sourceTree = "<group>"; };
 		2C18E34E23836785008B9BD6 /* Foreign.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Foreign.storyboard; sourceTree = "<group>"; };
+		2C1E029823A5009D00F23E5F /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		2C1E029A23A501E400F23E5F /* WeatherClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherClient.swift; sourceTree = "<group>"; };
 		2C3ED7E8238464DF001554BC /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2C451B92238D343B008E64B8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		2C451B94238D3BDD008E64B8 /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
+		2C451B94238D3BDD008E64B8 /* TranslateClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateClient.swift; sourceTree = "<group>"; };
 		2C451B97238D4160008E64B8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		2C451B99238E6D73008E64B8 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		2C451B9D238EE75C008E64B8 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
@@ -76,12 +88,17 @@
 		2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		2C60F0522387CD1E00E4DE33 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		2C60F0532387CD1E00E4DE33 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPI.swift; sourceTree = "<group>"; };
+		2C842D1823AB5FA6005381C5 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		2C842D1A23ABA603005381C5 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		2C9B260723A2245F001C8A10 /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
+		2C9B260923A22C12001C8A10 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		2CD489CD23426B4A00329697 /* Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489D023426B4A00329697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD489D223426B4A00329697 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2CD489D423426B4A00329697 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForeignExchangeViewController.swift; sourceTree = "<group>"; };
+		2CD489D623426B4A00329697 /* CurrencyExchangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangeViewController.swift; sourceTree = "<group>"; };
 		2CD489D923426B4A00329697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CD489DB23426B4B00329697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2CD489DE23426B4B00329697 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -93,7 +110,10 @@
 		2CD489F423426B4C00329697 /* BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaluchonUITests.swift; sourceTree = "<group>"; };
 		2CD489F623426B4C00329697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD48A072342723A00329697 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
-		2CE85F10238FCA610047B88F /* Foreign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foreign.swift; sourceTree = "<group>"; };
+		2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateAPI.swift; sourceTree = "<group>"; };
+		2CE7C13123B38230003E4281 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		2CE7C13323B38298003E4281 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		2CE85F10238FCA610047B88F /* CurrencyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyClient.swift; sourceTree = "<group>"; };
 		2CFA7DA223833234002BB0B6 /* Today.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Today.storyboard; sourceTree = "<group>"; };
 		42B059788D6670C4A0B01030 /* Pods_Baluchon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Baluchon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D385B1E96DEB69AAE136D /* Pods-Baluchon-BaluchonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baluchon-BaluchonUITests.debug.xcconfig"; path = "Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,8 +156,10 @@
 		2C03FE35239001BF0092B06D /* Translate Model */ = {
 			isa = PBXGroup;
 			children = (
-				2C451B94238D3BDD008E64B8 /* Translate.swift */,
-				2C03FE38239002250092B06D /* Translation Encoder.swift */,
+				2C451B94238D3BDD008E64B8 /* TranslateClient.swift */,
+				2C03FE38239002250092B06D /* TranslateData.swift */,
+				2C9B260723A2245F001C8A10 /* Translate.swift */,
+				2C9B260923A22C12001C8A10 /* Language.swift */,
 			);
 			path = "Translate Model";
 			sourceTree = "<group>";
@@ -146,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				2C451B99238E6D73008E64B8 /* Weather.swift */,
+				2C1E029823A5009D00F23E5F /* WeatherData.swift */,
+				2C1E029A23A501E400F23E5F /* WeatherClient.swift */,
 			);
 			path = "Weather Model";
 			sourceTree = "<group>";
@@ -153,8 +177,8 @@
 		2C03FE37239001E90092B06D /* Foreign Model */ = {
 			isa = PBXGroup;
 			children = (
-				2CE85F10238FCA610047B88F /* Foreign.swift */,
-				2C0B993D239112F100F98BD1 /* Foreign Encoder.swift */,
+				2CE85F10238FCA610047B88F /* CurrencyClient.swift */,
+				2C0B993D239112F100F98BD1 /* Currency.swift */,
 			);
 			path = "Foreign Model";
 			sourceTree = "<group>";
@@ -173,6 +197,7 @@
 			children = (
 				2C451B97238D4160008E64B8 /* UIViewController+.swift */,
 				2C451B92238D343B008E64B8 /* UIView+.swift */,
+				2CE7C13323B38298003E4281 /* URL+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -193,6 +218,16 @@
 			children = (
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2C83370D239CE7D0008B3EF7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */,
+				2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */,
+				2CE7C13123B38230003E4281 /* WeatherAPI.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		2CD489C423426B4A00329697 = {
@@ -220,6 +255,7 @@
 		2CD489CF23426B4A00329697 /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				2C83370D239CE7D0008B3EF7 /* Network */,
 				2C451B96238D413D008E64B8 /* Extension */,
 				2C60F04E2387C87A00E4DE33 /* Resources */,
 				2C60F04D2387C85800E4DE33 /* Generated */,
@@ -287,7 +323,7 @@
 		2CFA7D9E2383300B002BB0B6 /* Foreign */ = {
 			isa = PBXGroup;
 			children = (
-				2CD489D623426B4A00329697 /* ForeignExchangeViewController.swift */,
+				2CD489D623426B4A00329697 /* CurrencyExchangeViewController.swift */,
 				2C18E34E23836785008B9BD6 /* Foreign.storyboard */,
 			);
 			path = Foreign;
@@ -298,6 +334,8 @@
 			children = (
 				2C451B9D238EE75C008E64B8 /* WeatherTableViewController.swift */,
 				2C18E34C23836744008B9BD6 /* weather.storyboard */,
+				2C842D1823AB5FA6005381C5 /* WeatherCell.swift */,
+				2C842D1A23ABA603005381C5 /* HeaderCell.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -356,6 +394,7 @@
 				2CD489CA23426B4A00329697 /* Frameworks */,
 				2CD489CB23426B4A00329697 /* Resources */,
 				2C9F00AC238455E000F9526B /* Swiftlint */,
+				C4CCD52B8BEDAB1841BDC79C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,6 +432,7 @@
 				2CD489EC23426B4C00329697 /* Sources */,
 				2CD489ED23426B4C00329697 /* Frameworks */,
 				2CD489EE23426B4C00329697 /* Resources */,
+				06E0764E7805D573434BF728 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -480,6 +520,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06E0764E7805D573434BF728 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2C99431623948158008D122C /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -560,6 +617,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C4CCD52B8BEDAB1841BDC79C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Baluchon/Pods-Baluchon-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Baluchon/Pods-Baluchon-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Baluchon/Pods-Baluchon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D1EDE20F9DC41306A63C23AC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,25 +663,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE7C13423B38298003E4281 /* URL+.swift in Sources */,
 				2C451B98238D4160008E64B8 /* UIViewController+.swift in Sources */,
+				2CE7C13223B38230003E4281 /* WeatherAPI.swift in Sources */,
 				2C451B93238D343B008E64B8 /* UIView+.swift in Sources */,
-				2CE85F11238FCA610047B88F /* Foreign.swift in Sources */,
-				2CD489D723426B4A00329697 /* ForeignExchangeViewController.swift in Sources */,
+				2CE85F11238FCA610047B88F /* CurrencyClient.swift in Sources */,
+				2CD489D723426B4A00329697 /* CurrencyExchangeViewController.swift in Sources */,
+				2C842D1B23ABA603005381C5 /* HeaderCell.swift in Sources */,
 				2C60F0572387CD1E00E4DE33 /* Strings.swift in Sources */,
+				2C1E029B23A501E400F23E5F /* WeatherClient.swift in Sources */,
 				2C451B9E238EE75C008E64B8 /* WeatherTableViewController.swift in Sources */,
-				2C451B95238D3BDD008E64B8 /* Translate.swift in Sources */,
+				2C451B95238D3BDD008E64B8 /* TranslateClient.swift in Sources */,
 				2C451B9A238E6D73008E64B8 /* Weather.swift in Sources */,
 				2CD489D523426B4A00329697 /* TodayViewController.swift in Sources */,
 				2C60F0542387CD1E00E4DE33 /* StoryboardScenes.swift in Sources */,
 				2CD489D123426B4A00329697 /* AppDelegate.swift in Sources */,
-				2C03FE39239002250092B06D /* Translation Encoder.swift in Sources */,
-				2C0B993E239112F100F98BD1 /* Foreign Encoder.swift in Sources */,
+				2C03FE39239002250092B06D /* TranslateData.swift in Sources */,
+				2C1E029923A5009D00F23E5F /* WeatherData.swift in Sources */,
+				2C0B993E239112F100F98BD1 /* Currency.swift in Sources */,
 				2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */,
 				2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */,
 				2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,
+				2C9B260823A2245F001C8A10 /* Translate.swift in Sources */,
+				2CE7C13023B381EE003E4281 /* TranslateAPI.swift in Sources */,
 				2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */,
 				2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */,
+				2C842D1923AB5FA6005381C5 /* WeatherCell.swift in Sources */,
+				2C83370F239CF317008B3EF7 /* CurrencyAPI.swift in Sources */,
+				2C9B260A23A22C12001C8A10 /* Language.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

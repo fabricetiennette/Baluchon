@@ -20,7 +20,7 @@
         <scene sceneID="Ehz-QH-jox">
             <objects>
                 <viewControllerPlaceholder storyboardName="weather" id="K4C-6C-LyY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Hsp-GC-9o0"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="cloud.sun.fill" catalog="system" id="Hsp-GC-9o0"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXy-hB-Qf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -67,4 +67,7 @@
             <point key="canvasLocation" x="406" y="0.0"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cloud.sun.fill" catalog="system" width="64" height="44"/>
+    </resources>
 </document>

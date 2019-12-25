@@ -10,15 +10,16 @@ import UIKit
 
 class TranslateViewController: UIViewController {
 
-    @IBOutlet weak private var toTranslateTextView: UITextView!
-    @IBOutlet weak private var translateResultLabel: UILabel!
-    @IBOutlet weak private var translateButton: UIButton!
-    @IBOutlet weak private var exchangeLanguage: UIButton!
-    @IBOutlet weak private var frLanguage: UILabel!
-    @IBOutlet weak private var enLanguage: UILabel!
+    @IBOutlet weak var barView: UIView!
+    @IBOutlet private weak var toTranslateTextView: UITextView!
+    @IBOutlet private weak var translateResultLabel: UILabel!
+    @IBOutlet private weak var translateButton: UIButton!
+    @IBOutlet private weak var exchangeLanguage: UIButton!
+    @IBOutlet private weak var frLanguage: UILabel!
+    @IBOutlet private weak var enLanguage: UILabel!
 
-    private let translate = Translate()
-    var index: Int = 0
+    private let translate = TranslateClient()
+    private var sourceLanguage: Language = .fr
 
     // Called when the user click on the view (outside the UITextField).
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -34,11 +35,7 @@ class TranslateViewController: UIViewController {
         toTranslateTextView.resignFirstResponder()
         sender.rotateIt()
         (frLanguage.text, enLanguage.text) = (enLanguage.text, frLanguage.text)
-        if frLanguage.text == "Fr" {
-            self.index = 0
-        } else {
-            self.index = 1
-        }
+        sourceLanguage = (sourceLanguage == .fr) ? .en : .fr
     }
 
     @IBAction func didTapTranslateButton(_ sender: Any) {
@@ -49,11 +46,11 @@ class TranslateViewController: UIViewController {
             return
         }
 
-        translate.translate(index: index, text: text) { [weak self] (success, translatedText) in
-            if success {
-                self?.translateResultLabel.text = translatedText
-            } else {
-                self?.alert(title: "Error", message: "Web service problem")
+        let translationBody = Translate(source: sourceLanguage, text: text)
+        translate.getTranslatedText(translationBody ) { (translatedText, error) in
+            self.translateResultLabel.text = translatedText
+            if let error = error {
+                print(error)
             }
         }
     }
@@ -64,6 +61,7 @@ private extension TranslateViewController {
         toTranslateTextView.layer.borderColor = UIColor.lightGray.cgColor
         toTranslateTextView.layer.borderWidth = 2
         toTranslateTextView.layer.cornerRadius = 5
-        translateButton.layer.cornerRadius = 5
+        translateButton.layer.cornerRadius = 10
+        barView.roundCorners([.bottomLeft, .bottomRight], radius: 15)
     }
 }
