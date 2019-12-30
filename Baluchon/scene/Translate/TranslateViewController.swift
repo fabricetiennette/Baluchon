@@ -42,7 +42,7 @@ class TranslateViewController: UIViewController {
         toTranslateTextView.resignFirstResponder()
         let text = toTranslateTextView.text.trimmingCharacters(in: .whitespaces)
         guard !text.isEmpty else {
-            alert(title: "Erreur", message: "Le texte à traduire est manquant.")
+            showAlert(title: "Erreur", message: "Le texte à traduire est manquant.")
             return
         }
 
