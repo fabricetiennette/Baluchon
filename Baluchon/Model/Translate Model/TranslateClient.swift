@@ -14,8 +14,7 @@ class TranslateClient {
     private let provider = MoyaProvider<TranslateAPI>()
 
     func getTranslatedText(_ translationBody: Translate, callback: @escaping ( _ translatedText: String?, _ error: Error?) -> Void) {
-        provider.request(.translate(translationBody)) { [weak self] result in
-            guard self != nil else { return }
+        provider.request(.translate(translationBody)) { result in
 
           switch result {
           case .success(let response):

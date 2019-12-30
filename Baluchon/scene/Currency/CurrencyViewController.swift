@@ -1,5 +1,5 @@
 //
-//  ForeignExchangeViewController.swift
+//  CurrencyViewController.swift
 //  Baluchon
 //
 //  Created by Fabrice Etiennette on 30/09/2019.
@@ -8,19 +8,16 @@
 
 import UIKit
 
-class CurrencyExchangeViewController: UIViewController {
+class CurrencyViewController: UIViewController {
 
-    private let exchange = CurrencyClient()
+    private let viewModel = CurrencyViewModel()
+    private var activeCurrency: Double = 0
 
-    var myCurrency: [String] = []
-    var myValues: [Double] = []
-    var activeCurrency: Double = 0
-
-    @IBOutlet weak var selectLabel: UILabel!
-    @IBOutlet weak var currencyPickerView: UIPickerView!
-    @IBOutlet weak private var currencyInputTextField: UITextField!
-    @IBOutlet weak private var resultLabel: UILabel!
-    @IBOutlet weak private var convertButton: UIButton!
+    @IBOutlet private weak var selectLabel: UILabel!
+    @IBOutlet private weak var currencyPickerView: UIPickerView!
+    @IBOutlet private weak var currencyInputTextField: UITextField!
+    @IBOutlet private weak var resultLabel: UILabel!
+    @IBOutlet private weak var convertButton: UIButton!
 
     // Called when the user click on the view (outside the UITextField).
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -29,18 +26,10 @@ class CurrencyExchangeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectLabel.roundCorners([.bottomLeft, .bottomRight], radius: 15)
-        convertButton.layer.cornerRadius = 10
+        configureCurrency()
         currencyPickerView.delegate = self
         currencyPickerView.dataSource = self
-        exchange.getExchangeRate { (myCurrency, myValues, error) in
-            self.myCurrency = myCurrency
-            self.myValues = myValues
-            self.currencyPickerView.reloadAllComponents()
-            if let error = error {
-                print(error)
-            }
-        }
+        viewModel.getRate(currencyPickerView: currencyPickerView)
     }
 
     @IBAction func action(_ sender: AnyObject) {
@@ -54,25 +43,30 @@ class CurrencyExchangeViewController: UIViewController {
             resultLabel.text = ""
         }
     }
+
+    private func configureCurrency() {
+        selectLabel.roundCorners([.bottomLeft, .bottomRight], radius: 15)
+        convertButton.layer.cornerRadius = 10
+    }
 }
 
-extension CurrencyExchangeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return myCurrency.count
+        return viewModel.myCurrency.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return myCurrency[row]
+        return viewModel.myCurrency[row]
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        activeCurrency = myValues[row]
-        let choice = myCurrency[row]
+        activeCurrency = viewModel.myValues[row]
+        let choice = viewModel.myCurrency[row]
         convertButton.setTitle("Convert to \(choice)", for: .normal)
     }
 }

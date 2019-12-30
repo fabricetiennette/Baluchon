@@ -15,19 +15,13 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
 
     @IBOutlet weak var searchBar: UISearchBar!
 
+    let viewModel = WeatherViewModel()
     private let manager = CLLocationManager()
 
     private var forcastData: [DayData] = []
-    private var currentForcast: [Currently] = [] {
-        didSet {
-            if let icon = currentForcast.first?.icon {
-                tableView.backgroundView = backgroundView(currentIcon: icon)
-            }
-        }
-    }
-
-    private let weatherRest = WeatherClient()
+    private var currentForcast: [Currently] = []
     private var currentPlace: String!
+    private let weatherRest = WeatherClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +30,11 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         manager.requestAlwaysAuthorization()
         manager.requestLocation()
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        viewModel.backgroundViewHandler = { [weak self] currentIcon in
+            guard let me = self else { return }
+            let backgroundView = me.backgroundView(currentIcon: currentIcon)
+            me.tableView.backgroundView = backgroundView
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -44,16 +43,12 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             if error != nil {
                 print("Some errors: \(String(describing: error?.localizedDescription))")
             } else {
-                if let place = placemark?.first?.locality {
-                    self.currentPlace = place
-                    self.updateWeatherForLocation(location: place )
+                if let location = placemark?.first?.locality {
+                    self.currentPlace = location
+                    self.updateWeatherForLocation(location: location)
                 }
             }
         }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Failed to find user's location: \(error.localizedDescription)")
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -64,12 +59,15 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         }
     }
 
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // handle the error
+    }
+
     private func updateWeatherForLocation(location: String) {
         CLGeocoder().geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
                     self.weatherRest.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude) { (forcastData, currentForcast, error) in
-
                         self.forcastData = forcastData
                         self.currentForcast = currentForcast
                         DispatchQueue.main.async {
@@ -136,17 +134,17 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let currentData = currentForcast[0]
         let dayData = forcastData[indexPath.item]
-        if indexPath.section == 0 {
+        if indexPath.section == 0, let currentData = currentForcast.first {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
             headerCell.configureHeader(current: currentData, dayData: dayData, cityText: currentPlace)
             return headerCell
-        } else {
+        } else if indexPath.section > 0 {
             let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
-        weatherCell.configureCell(dayData: dayData, indexPath: indexPath)
-        return weatherCell
+            weatherCell.configureCell(dayData: dayData, indexPath: indexPath)
+            return weatherCell
+        } else {
+            return UITableViewCell()
         }
     }
 }

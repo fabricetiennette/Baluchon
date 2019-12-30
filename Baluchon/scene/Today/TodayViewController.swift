@@ -10,9 +10,6 @@ import UIKit
 
 class TodayTableViewController: UITableViewController {
 
-//    private let forexRates = Exchange()
-    private let weatherToday: [Currently] = []
-
     @IBOutlet weak var dateUILabel: UILabel!
     @IBOutlet weak var weatherView: UIView!
     @IBOutlet weak var forexView: UIView!
@@ -21,6 +18,10 @@ class TodayTableViewController: UITableViewController {
     @IBOutlet weak var localisationSummaryLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var minTempTodayLabel: UILabel!
+
+    @IBOutlet weak var euroLabel: UILabel!
+    @IBOutlet weak var dollarLabel: UILabel!
+    @IBOutlet weak var poundLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

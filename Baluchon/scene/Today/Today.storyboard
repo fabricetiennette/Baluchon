@@ -263,11 +263,14 @@
                     <connections>
                         <outlet property="dateUILabel" destination="tGE-wg-jFN" id="Ek1-di-c6Y"/>
                         <outlet property="dayLabel" destination="3RZ-m1-5Ak" id="bch-8x-JCy"/>
+                        <outlet property="dollarLabel" destination="vTW-Dj-c8m" id="SIg-Mu-N1I"/>
+                        <outlet property="euroLabel" destination="2Ac-JS-Zv6" id="hRS-Vd-F9O"/>
                         <outlet property="forexView" destination="s7x-51-dNR" id="1IZ-tG-uyo"/>
                         <outlet property="localisationLabel" destination="smw-TD-7OD" id="Yde-zk-Ylj"/>
                         <outlet property="localisationSummaryLabel" destination="dfZ-mj-NNs" id="Lpn-Fg-6vu"/>
                         <outlet property="localisationTempLabel" destination="8Qy-7K-Hgf" id="YEI-mM-yVe"/>
                         <outlet property="minTempTodayLabel" destination="zLg-WB-Ew6" id="5Ge-ek-7qS"/>
+                        <outlet property="poundLabel" destination="OTz-Yg-IVr" id="MY5-Op-3jL"/>
                         <outlet property="weatherView" destination="Qaj-JD-JQh" id="Yal-FA-OId"/>
                     </connections>
                 </tableViewController>

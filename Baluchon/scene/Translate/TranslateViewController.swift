@@ -18,7 +18,7 @@ class TranslateViewController: UIViewController {
     @IBOutlet private weak var frLanguage: UILabel!
     @IBOutlet private weak var enLanguage: UILabel!
 
-    private let translate = TranslateClient()
+    private let viewModel = TranslateViewModel()
     private var sourceLanguage: Language = .fr
 
     // Called when the user click on the view (outside the UITextField).
@@ -47,12 +47,7 @@ class TranslateViewController: UIViewController {
         }
 
         let translationBody = Translate(source: sourceLanguage, text: text)
-        translate.getTranslatedText(translationBody ) { (translatedText, error) in
-            self.translateResultLabel.text = translatedText
-            if let error = error {
-                print(error)
-            }
-        }
+        viewModel.doTranslation(translationBody: translationBody, text: translateResultLabel)
     }
 }
 

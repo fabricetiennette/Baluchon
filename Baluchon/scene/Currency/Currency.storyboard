@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-1572" y="838"/>
         </scene>
-        <!--Foreign Exchange-->
+        <!--Currency-->
         <scene sceneID="LYm-V9-4Pt">
             <objects>
-                <viewController id="Ubb-T6-gOK" userLabel="Foreign Exchange" customClass="CurrencyExchangeViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ubb-T6-gOK" userLabel="Currency" customClass="CurrencyViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DV0-6n-sEy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
