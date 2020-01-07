@@ -215,7 +215,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7nZ-ww-Spb">
                                                             <rect key="frame" x="0.0" y="157" width="311" height="20.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Euro" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ac-JS-Zv6">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ac-JS-Zv6">
                                                                     <rect key="frame" x="0.0" y="0.0" width="103.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -298,7 +298,6 @@
                         <outlet property="dateUILabel" destination="tGE-wg-jFN" id="Ek1-di-c6Y"/>
                         <outlet property="dayLabel" destination="3RZ-m1-5Ak" id="bch-8x-JCy"/>
                         <outlet property="dollarLabel" destination="vTW-Dj-c8m" id="SIg-Mu-N1I"/>
-                        <outlet property="euroLabel" destination="2Ac-JS-Zv6" id="hRS-Vd-F9O"/>
                         <outlet property="forexView" destination="s7x-51-dNR" id="1IZ-tG-uyo"/>
                         <outlet property="localisationLabel" destination="smw-TD-7OD" id="Yde-zk-Ylj"/>
                         <outlet property="localisationSummaryLabel" destination="dfZ-mj-NNs" id="Lpn-Fg-6vu"/>

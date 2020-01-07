@@ -25,8 +25,8 @@
         <!--Weather-->
         <scene sceneID="Mb7-LE-yQ8">
             <objects>
-                <tableViewController id="tMm-qg-l4k" userLabel="Weather" customClass="WeatherTableViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pDO-ve-Twp">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="tMm-qg-l4k" userLabel="Weather" customClass="WeatherTableViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pDO-ve-Twp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -34,7 +34,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" text="" placeholder="Search location" translucent="NO" id="rBz-Oj-EkE">
+                                <searchBar contentMode="redraw" searchBarStyle="prominent" text="" placeholder="Search location" translucent="NO" id="rBz-Oj-EkE">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -192,6 +192,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun.fill" catalog="system" id="OeB-Od-vma"/>
                     <navigationItem key="navigationItem" title="Weather" id="olW-AK-wQk"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="rBz-Oj-EkE" id="wfh-A4-FQk"/>

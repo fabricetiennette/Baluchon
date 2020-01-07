@@ -30,11 +30,6 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         manager.requestAlwaysAuthorization()
         manager.requestLocation()
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        viewModel.backgroundViewHandler = { [weak self] currentIcon in
-            guard let me = self else { return }
-            let backgroundView = me.backgroundView(currentIcon: currentIcon)
-            me.tableView.backgroundView = backgroundView
-        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -44,7 +39,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
                 print("Some errors: \(String(describing: error?.localizedDescription))")
             } else {
                 if let location = placemark?.first?.locality {
-                    self.currentPlace = location
+                    self.viewModel.currentPlace = location
                     self.updateWeatherForLocation(location: location)
                 }
             }
@@ -54,7 +49,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
-            self.currentPlace = locationString
+            viewModel.currentPlace = locationString
             updateWeatherForLocation(location: locationString)
         }
     }
@@ -67,46 +62,15 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         CLGeocoder().geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    self.weatherRest.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude) { (forcastData, currentForcast, error) in
-                        self.forcastData = forcastData
-                        self.currentForcast = currentForcast
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                        if let error = error {
-                            print(error)
-                        }
+                    self.viewModel.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, tableView: self.tableView)
+                    self.viewModel.backgroundViewHandler = { [weak self] currentIcon in
+                        guard let me = self else { return }
+                        let backgroundView = me.backgroundView(currentIcon: currentIcon, icon: Icon(rawValue: currentIcon))
+                        me.tableView.backgroundView = backgroundView
                     }
                 }
             }
         }
-    }
-
-    private enum Icon: String {
-        case clearDay = "clear-day"
-        case cloudy = "cloudy"
-        case partlyCloudyDay = "partly-cloudy-day"
-        var imageView: UIImageView {
-            switch self {
-            case .clearDay:
-                return UIImageView(image: Asset.clearD.image)
-            case .cloudy:
-                return UIImageView(image: Asset.cloudyCloudy.image)
-            case .partlyCloudyDay:
-                return UIImageView(image: Asset.partlyCloudyD.image)
-            }
-        }
-    }
-
-    private func backgroundView(currentIcon: String) -> UIImageView? {
-        if currentIcon == Icon.clearDay.rawValue {
-            return Icon.clearDay.imageView
-        } else if currentIcon == Icon.cloudy.rawValue {
-            return Icon.cloudy.imageView
-        } else if currentIcon == Icon.partlyCloudyDay.rawValue {
-            return Icon.partlyCloudyDay.imageView
-        }
-        return nil
     }
 
     // MARK: - Table view data source
@@ -119,9 +83,9 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return currentForcast.count
+            return viewModel.currentForcast.count
         } else {
-            return forcastData.count
+            return viewModel.forcastData.count
         }
     }
 
@@ -134,10 +98,10 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dayData = forcastData[indexPath.item]
-        if indexPath.section == 0, let currentData = currentForcast.first {
+        let dayData = viewModel.forcastData[indexPath.item]
+        if indexPath.section == 0, let currentData = viewModel.currentForcast.first {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: currentPlace)
+            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: viewModel.currentPlace)
             return headerCell
         } else if indexPath.section > 0 {
             let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
@@ -150,3 +114,41 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
 }
 
 extension WeatherTableViewController: UISearchBarDelegate {}
+
+private extension WeatherTableViewController {
+
+    enum Icon: String {
+        case clearDay = "clear-day"
+        case cloudy = "cloudy"
+        case partlyCloudyDay = "partly-cloudy-day"
+        case partlyCloudyNight = "partly-cloudy-night"
+        case clearNight = "clear-night"
+        case rain = "rain"
+        case wind = "wind"
+        var imageView: UIImageView {
+            switch self {
+            case .clearDay:
+                return UIImageView(image: Asset.clearD.image)
+            case .cloudy:
+                return UIImageView(image: Asset.cloudyCloudy.image)
+            case .partlyCloudyDay:
+                return UIImageView(image: Asset.partlyCloudyD.image)
+            case .clearNight:
+                return UIImageView(image: Asset.clearN.image)
+            case .rain:
+                return UIImageView(image: Asset.rainRain.image)
+            case .wind:
+                return UIImageView(image: Asset.wind.image)
+            case .partlyCloudyNight:
+                return UIImageView(image: Asset.partlyCloudyN.image)
+            }
+        }
+    }
+
+    func backgroundView(currentIcon: String, icon: Icon?) -> UIImageView? {
+        if currentIcon == icon?.rawValue {
+            return icon?.imageView
+        }
+        return nil
+    }
+}

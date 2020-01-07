@@ -31,6 +31,6 @@ class HeaderCell: UITableViewCell {
         cityLabel.text = cityText
         temperatureMaxLabel.text = String(Int(dayData.temperatureMax))
         temperatureMinLabel.text = String(Int(dayData.temperatureMin))
-        summaryLabel.text = current.summary
+        summaryLabel.text = current.icon
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class TodayTableViewController: UITableViewController {
+
     private let viewModel = TodayViewModel()
 
     @IBOutlet weak var dateUILabel: UILabel!
@@ -21,13 +22,13 @@ class TodayTableViewController: UITableViewController {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var minTempTodayLabel: UILabel!
 
-    @IBOutlet weak var euroLabel: UILabel!
     @IBOutlet weak var dollarLabel: UILabel!
     @IBOutlet weak var poundLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDateLabelsWithCurrentDate()
+        showRate()
     }
 }
 
@@ -35,5 +36,11 @@ private extension TodayTableViewController {
     func configureDateLabelsWithCurrentDate() {
         dayLabel.text = viewModel.todayDayLabelText
         dateUILabel.text = viewModel.todayDayLabelText
+    }
+
+    func showRate() {
+        viewModel.getRate()
+        dollarLabel.text = viewModel.dollar
+        poundLabel.text = viewModel.pound
     }
 }
