@@ -27,23 +27,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         super.viewDidLoad()
         searchBar.delegate = self
         manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        manager.requestLocation()
-        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
-            if error != nil {
-                print("Some errors: \(String(describing: error?.localizedDescription))")
-            } else {
-                if let location = placemark?.first?.locality {
-                    self.viewModel.currentPlace = location
-                    self.updateWeatherForLocation(location: location)
-                }
-            }
-        }
+        updateWeatherForLocation(location: TodayViewModel.currentPlace)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -101,7 +85,12 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         let dayData = viewModel.forcastData[indexPath.item]
         if indexPath.section == 0, let currentData = viewModel.currentForcast.first {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: viewModel.currentPlace)
+            if viewModel.currentPlace.isEmpty {
+                currentPlace = TodayViewModel.currentPlace
+            } else {
+                currentPlace = viewModel.currentPlace
+            }
+            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: currentPlace.capitalized)
             return headerCell
         } else if indexPath.section > 0 {
             let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell

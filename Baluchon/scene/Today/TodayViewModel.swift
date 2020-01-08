@@ -10,13 +10,15 @@ import Foundation
 import UIKit
 
 class TodayViewModel {
-    private let currencyClient = CurrencyClient()
-
-    var myCurrency: [String] = []
-    var myValues: [Double] = []
+    var currencyValues: [Double] = []
+    var currentForcast: [Currently] = []
+    var rateHandler: (_ dollarLabelText: String?, _ poundLabelText: String?) -> Void = { _, _ in }
+    var weatherHandler: (_ minTempLabelText: String?, _ maxTempLabelText: String?, _ temperatureLabelText: String?, _ summaryLabelText: String?) -> Void = { _, _, _, _  in }
     private let todayDate = Date()
     private let shortDateFormat = "EEEE"
     private let longDateFormat = "EEEE dd MMMM"
+
+    static var currentPlace: String!
 }
 
 extension TodayViewModel {
@@ -29,28 +31,36 @@ extension TodayViewModel {
     }
 
     func getRate() {
-        currencyClient.getExchangeRate { [weak self] (myCurrency, myValues, error) in
+        let currencyClient = CurrencyClient()
+        currencyClient.getExchangeRate { [weak self] ( _, currencyValues, error) in
             guard let me = self else { return }
-            me.myCurrency = myCurrency
-            me.myValues = myValues
-            print(me.myValues)
+            me.currencyValues = currencyValues
+            let dollar = currencyValues.first
+            let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
+            let pound = currencyValues.last
+            let poundLabelText = pound?.roundToDecimalAndConvertToString(2)
+            me.rateHandler(dollarLabelText, poundLabelText)
             if let error = error {
                 print(error)
             }
         }
     }
 
-    var dollar: String {
-//        print("dollar :\(myValues.first as Any)")
-        guard let dollar = myValues.first else { return "" }
-        let rate = String(format: "%.2f", dollar)
-        return rate
-    }
-
-    var pound: String {
-//        print("pound :\(myValues[1] as Any)")
-        guard let pound = myValues.last else { return "" }
-        let rate = String(format: "%.2f", pound)
-        return rate
+    func getCurrentWeather(latitude: Double, longitude: Double) {
+        let weatherRest = WeatherClient()
+        weatherRest.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self]( forcastData, currentForcast, error) in
+            guard let me = self else { return }
+            guard let tempForcast = currentForcast.first?.temperature else { return }
+            let temperature = String("\(Int(tempForcast))°")
+            let iconSummary = currentForcast.first?.icon
+            guard let minTemp = forcastData.first?.temperatureMin else { return }
+            guard let maxTemp = forcastData.first?.temperatureMax else { return }
+            let minTemperature = String(Int(minTemp))
+            let maxTemperature = String(Int(maxTemp))
+            me.weatherHandler(minTemperature, maxTemperature, temperature, iconSummary)
+            if let error = error {
+                print(error)
+            }
+        }
     }
 }
