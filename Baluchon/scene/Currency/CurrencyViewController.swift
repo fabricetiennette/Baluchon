@@ -65,13 +65,13 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         convertButton.setTitle("Convert to \(choice)", for: .normal)
     }
 }
- 
+
 private extension CurrencyViewController {
     func configureCurrency() {
         selectLabel.roundCorners([.bottomLeft, .bottomRight], radius: 15)
         convertButton.layer.cornerRadius = 10
     }
-    
+
     func configureRate() {
         viewModel.getRate { [weak self] in
             guard let me = self else { return }

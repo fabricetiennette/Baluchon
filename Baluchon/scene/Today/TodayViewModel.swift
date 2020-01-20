@@ -28,11 +28,11 @@ class TodayViewModel {
 
 extension TodayViewModel {
     var todayDayLabelText: String {
-        return todayDate.formatted(dateFormat: shortDateFormat)
+        return todayDate.formatted(dateFormat: shortDateFormat).capitalized
     }
 
     var dateUILabelText: String {
-        return todayDate.formatted(dateFormat: longDateFormat)
+        return todayDate.formatted(dateFormat: longDateFormat).capitalized
     }
 
     func updateweather() {
@@ -75,7 +75,7 @@ extension TodayViewModel {
                 else { return }
 
             let temperature = "\(Int(tempForcast))°"
-            let iconSummary = currentForcast.first?.icon
+            let iconSummary = currentForcast.first?.icon.capitalized
             let minTemperature = "\(Int(minTemp))"
             let maxTemperature = "\(Int(maxTemp))"
             let weather = Weather(minTemperature: minTemperature, maxTemperature: maxTemperature, temperature: temperature, iconSummary: iconSummary)

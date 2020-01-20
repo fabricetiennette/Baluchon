@@ -56,7 +56,7 @@ class TodayTableViewController: UITableViewController {
 private extension TodayTableViewController {
     func configureDateLabelsWithCurrentDate() {
         dayLabel.text = "\(viewModel.todayDayLabelText)  Today"
-        dateUILabel.text = viewModel.todayDayLabelText
+        dateUILabel.text = viewModel.dateUILabelText
     }
 
     func showRate() {
