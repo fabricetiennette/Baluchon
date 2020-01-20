@@ -11,7 +11,6 @@ import UIKit
 
 class CurrencyViewModel {
     private let currencyClient: CurrencyClient
-
     var myCurrency: [String] = []
     var myValues: [Double] = []
 
@@ -19,12 +18,12 @@ class CurrencyViewModel {
         self.currencyClient = currencyClient
     }
 
-    func getRate(currencyPickerView: UIPickerView) {
+    func getRate(callback: @escaping () -> Void) {
         currencyClient.getExchangeRate { [weak self] (myCurrency, myValues, error) in
             guard let me = self else { return }
             me.myCurrency = myCurrency
             me.myValues = myValues
-            currencyPickerView.reloadAllComponents()
+            callback()
             if let error = error {
                 print(error)
             }

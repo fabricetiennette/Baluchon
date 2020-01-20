@@ -27,9 +27,9 @@ class CurrencyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCurrency()
+        configureRate()
         currencyPickerView.delegate = self
         currencyPickerView.dataSource = self
-        viewModel.getRate(currencyPickerView: currencyPickerView)
     }
 
     @IBAction func action(_ sender: AnyObject) {
@@ -42,11 +42,6 @@ class CurrencyViewController: UIViewController {
         } else {
             resultLabel.text = ""
         }
-    }
-
-    private func configureCurrency() {
-        selectLabel.roundCorners([.bottomLeft, .bottomRight], radius: 15)
-        convertButton.layer.cornerRadius = 10
     }
 }
 
@@ -68,5 +63,19 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         activeCurrency = viewModel.myValues[row]
         let choice = viewModel.myCurrency[row]
         convertButton.setTitle("Convert to \(choice)", for: .normal)
+    }
+}
+ 
+private extension CurrencyViewController {
+    func configureCurrency() {
+        selectLabel.roundCorners([.bottomLeft, .bottomRight], radius: 15)
+        convertButton.layer.cornerRadius = 10
+    }
+    
+    func configureRate() {
+        viewModel.getRate { [weak self] in
+            guard let me = self else { return }
+            me.currencyPickerView.reloadAllComponents()
+        }
     }
 }

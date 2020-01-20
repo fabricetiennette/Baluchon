@@ -67,7 +67,7 @@ extension TodayViewModel {
 
     func getCurrentWeather(latitude: Double, longitude: Double) {
         let weatherRest = WeatherClient()
-        weatherRest.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self]( forcastData, currentForcast, error) in
+        weatherRest.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self] ( forcastData, currentForcast, error) in
             guard let me = self,
                 let tempForcast = currentForcast.first?.temperature,
                 let minTemp = forcastData.first?.temperatureMin,
