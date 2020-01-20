@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 class CurrencyViewModel {
-    private let currencyClient = CurrencyClient()
+    private let currencyClient: CurrencyClient
 
     var myCurrency: [String] = []
     var myValues: [Double] = []
+
+    init(currencyClient: CurrencyClient = .init()) {
+        self.currencyClient = currencyClient
+    }
 
     func getRate(currencyPickerView: UIPickerView) {
         currencyClient.getExchangeRate { [weak self] (myCurrency, myValues, error) in

@@ -12,6 +12,7 @@ import UIKit
 class WeatherViewModel {
 
     private let weatherRest = WeatherClient()
+    private let geolocationService: GeolocationService
 
     var currentPlace = ""
     var backgroundViewHandler: (_ currentIcon: String) -> Void = {_ in }
@@ -23,9 +24,32 @@ class WeatherViewModel {
             }
         }
     }
+
+    init(geolocationService: GeolocationService = .init()) {
+        self.geolocationService = geolocationService
+    }
 }
 
 extension WeatherViewModel {
+    var location: String {
+        if currentPlace.isEmpty {
+            let currentLocation = GeolocationService.currentLocation
+            return currentLocation
+        } else {
+            return currentPlace
+        }
+    }
+
+    func updateWeather(_ location: String, _ tableView: UITableView) {
+        geolocationService.updateWeatherForLocation(location) { (placemark, error) in
+            self.currentPlace = location
+            if error == nil {
+                if let location = placemark?.first?.location {
+                    self.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, tableView: tableView)
+                }
+            }
+        }
+    }
 
     func getCurrentWeather(latitude: Double, longitude: Double, tableView: UITableView) {
         weatherRest.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self] (forcastData, currentForcast, error) in

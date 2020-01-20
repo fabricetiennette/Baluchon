@@ -29,6 +29,7 @@ class TranslateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTextView()
+        configureViewModel()
     }
 
     @IBAction private func changeLanguage(_ sender: UIButton) {
@@ -47,7 +48,7 @@ class TranslateViewController: UIViewController {
         }
 
         let translationBody = Translate(source: sourceLanguage, text: text)
-        viewModel.doTranslation(translationBody: translationBody, text: translateResultLabel)
+        viewModel.doTranslation(translationBody: translationBody)
     }
 }
 
@@ -58,5 +59,12 @@ private extension TranslateViewController {
         toTranslateTextView.layer.cornerRadius = 5
         translateButton.layer.cornerRadius = 10
         barView.roundCorners([.bottomLeft, .bottomRight], radius: 15)
+    }
+
+    func configureViewModel() {
+        viewModel.translatedTextHandler = { [weak self] translatedText in
+            guard let me = self else { return }
+            me.translateResultLabel.text = translatedText
+        }
     }
 }

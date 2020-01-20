@@ -35,7 +35,7 @@ struct DayData: Decodable {
     let temperatureLow: Double
     let time: Double
     let precipIntensity: Double
-    let precipProbability: Double // must be Double not Int
+    let precipProbability: Double
     let dewPoint, humidity, pressure, windSpeed: Double
     let sunriseTime, sunsetTime: Double
     let windGust, windBearing, cloudCover, uvIndex, visibility: Double

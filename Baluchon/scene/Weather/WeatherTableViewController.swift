@@ -8,53 +8,16 @@
 //
 
 import UIKit
-import CoreLocation
-import Moya
 
-class WeatherTableViewController: UITableViewController, CLLocationManagerDelegate {
+class WeatherTableViewController: UITableViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-
-    let viewModel = WeatherViewModel()
-    private let manager = CLLocationManager()
-
-    private var forcastData: [DayData] = []
-    private var currentForcast: [Currently] = []
-    private var currentPlace: String!
+    private let viewModel = WeatherViewModel()
     private let weatherRest = WeatherClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        manager.delegate = self
-        updateWeatherForLocation(location: TodayViewModel.currentPlace)
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if let locationString = searchBar.text, !locationString.isEmpty {
-            viewModel.currentPlace = locationString
-            updateWeatherForLocation(location: locationString)
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // handle the error
-    }
-
-    private func updateWeatherForLocation(location: String) {
-        CLGeocoder().geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: Error?) in
-            if error == nil {
-                if let location = placemarks?.first?.location {
-                    self.viewModel.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, tableView: self.tableView)
-                    self.viewModel.backgroundViewHandler = { [weak self] currentIcon in
-                        guard let me = self else { return }
-                        let backgroundView = me.backgroundView(currentIcon: currentIcon, icon: Icon(rawValue: currentIcon))
-                        me.tableView.backgroundView = backgroundView
-                    }
-                }
-            }
-        }
+        setupSearchBar()
+        getWeatherFromLocation(location: viewModel.location)
     }
 
     // MARK: - Table view data source
@@ -85,12 +48,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         let dayData = viewModel.forcastData[indexPath.item]
         if indexPath.section == 0, let currentData = viewModel.currentForcast.first {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-            if viewModel.currentPlace.isEmpty {
-                currentPlace = TodayViewModel.currentPlace
-            } else {
-                currentPlace = viewModel.currentPlace
-            }
-            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: currentPlace.capitalized)
+            headerCell.configureHeader(current: currentData, dayData: dayData, cityText: viewModel.location.capitalized)
             return headerCell
         } else if indexPath.section > 0 {
             let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
@@ -102,7 +60,28 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     }
 }
 
-extension WeatherTableViewController: UISearchBarDelegate {}
+extension WeatherTableViewController: UISearchBarDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        searchController.searchBar.placeholder = "Recherche..."
+    }
+
+    func setupSearchBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "Recherche..."
+        searchController.searchBar.delegate = self
+        searchController.searchBar.searchTextField.backgroundColor = .white
+        definesPresentationContext = true
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let locationString = searchBar.text, !locationString.isEmpty {
+            getWeatherFromLocation(location: locationString)
+        }
+    }
+}
 
 private extension WeatherTableViewController {
 
@@ -139,5 +118,14 @@ private extension WeatherTableViewController {
             return icon?.imageView
         }
         return nil
+    }
+
+    func getWeatherFromLocation(location: String) {
+        viewModel.updateWeather(location, self.tableView)
+        self.viewModel.backgroundViewHandler = { [weak self] currentIcon in
+            guard let me = self else { return }
+            let backgroundView = me.backgroundView(currentIcon: currentIcon, icon: Icon(rawValue: currentIcon))
+            me.tableView.backgroundView = backgroundView
+        }
     }
 }

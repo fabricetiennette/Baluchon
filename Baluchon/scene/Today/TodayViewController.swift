@@ -9,10 +9,9 @@
 import UIKit
 import CoreLocation
 
-class TodayTableViewController: UITableViewController, CLLocationManagerDelegate {
+class TodayTableViewController: UITableViewController {
 
     private let viewModel = TodayViewModel()
-    private let manager = CLLocationManager()
 
     @IBOutlet private weak var dateUILabel: UILabel!
 
@@ -30,44 +29,25 @@ class TodayTableViewController: UITableViewController, CLLocationManagerDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
         configureDateLabelsWithCurrentDate()
         showRate()
-        manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        manager.requestLocation()
-        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        configureViewModel()
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {}
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
-            if error != nil {
-                print("Some errors: \(String(describing: error?.localizedDescription))")
-            } else {
-                if let location = placemark?.first?.locality {
-                    TodayViewModel.currentPlace = location
-                    self.updateWeatherForLocation(location: location)
-                }
-            }
-        }
-    }
-
-    private func updateWeatherForLocation(location: String) {
-        CLGeocoder().geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: Error?) in
-            if error == nil {
-                if let location = placemarks?.first?.location {
-                    self.viewModel.weatherHandler = { [weak self] minTemperature, maxTemperature, temperature, iconSummary  in
-                        guard let me = self else { return }
-                        me.minTempLabel.text = minTemperature
-                        me.maxTempLabel.text = maxTemperature
-                        me.currentTempLabel.text = temperature
-                        me.summaryLabel.text = iconSummary
-                        me.currentCityLabel.text = TodayViewModel.currentPlace
-                    }
-                    self.viewModel.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                }
+    @objc private func checkNotificationStatus() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.showCurrentWeather()
+            case .notDetermined:
+                print("notDetermined")
+            case .denied:
+                print("denied")
+            case .provisional:
+                print("provisional")
+            @unknown default:
+                fatalError()
             }
         }
     }
@@ -86,5 +66,23 @@ private extension TodayTableViewController {
             me.poundLabel.text = poundLabelText
         }
         viewModel.getRate()
+    }
+
+    func showCurrentWeather() {
+        viewModel.updateweather()
+    }
+
+    func configureViewModel() {
+        viewModel.weatherHandler = { [weak self] weather in
+            guard let me = self else { return }
+            me.minTempLabel.text = weather.minTemperature
+            me.maxTempLabel.text = weather.maxTemperature
+            me.currentTempLabel.text = weather.temperature
+            me.summaryLabel.text = weather.iconSummary
+        }
+        viewModel.locationHandler = { [weak self] location in
+            guard let me = self else { return }
+            me.currentCityLabel.text = location
+        }
     }
 }

@@ -32,7 +32,7 @@
 		2C9B260823A2245F001C8A10 /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B260723A2245F001C8A10 /* Translate.swift */; };
 		2C9B260A23A22C12001C8A10 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9B260923A22C12001C8A10 /* Language.swift */; };
 		2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */; };
-		2CBD544B23C463DA00ADCD64 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD544D23C463DA00ADCD64 /* Localizable.strings */; };
+		2CBD544B23C463DA00ADCD64 /* Localizables.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD544D23C463DA00ADCD64 /* Localizables.strings */; };
 		2CBD544F23C4735F00ADCD64 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD544E23C4735F00ADCD64 /* Double+.swift */; };
 		2CC8737023B5CCF2006F7BC8 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8736F23B5CCF2006F7BC8 /* TodayViewModel.swift */; };
 		2CC8737223B5CEFE006F7BC8 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8737123B5CEFE006F7BC8 /* CurrencyViewModel.swift */; };
@@ -49,6 +49,7 @@
 		2CD5F7CD23B4A19900DC831B /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */; };
 		2CE4FE1623BA310300ECCFEC /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE4FE1523BA310300ECCFEC /* Date+Formatting.swift */; };
 		2CE4FE1B23BA319B00ECCFEC /* ShadowCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE4FE1A23BA319B00ECCFEC /* ShadowCardView.swift */; };
+		2CE684AD23CC530B00792FCB /* GeolocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE684AC23CC530B00792FCB /* GeolocationService.swift */; };
 		2CE7C13023B381EE003E4281 /* TranslateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */; };
 		2CE7C13223B38230003E4281 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C13123B38230003E4281 /* WeatherAPI.swift */; };
 		2CE7C13423B38298003E4281 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE7C13323B38298003E4281 /* URL+.swift */; };
@@ -105,7 +106,7 @@
 		2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		2CBD544723C4620D00ADCD64 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		2CBD544823C4620D00ADCD64 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		2CBD544C23C463DA00ADCD64 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CBD544C23C463DA00ADCD64 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizables.strings; sourceTree = "<group>"; };
 		2CBD544E23C4735F00ADCD64 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		2CC8736F23B5CCF2006F7BC8 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		2CC8737123B5CEFE006F7BC8 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 		2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		2CE4FE1523BA310300ECCFEC /* Date+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
 		2CE4FE1A23BA319B00ECCFEC /* ShadowCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowCardView.swift; sourceTree = "<group>"; };
+		2CE684AC23CC530B00792FCB /* GeolocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationService.swift; sourceTree = "<group>"; };
 		2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateAPI.swift; sourceTree = "<group>"; };
 		2CE7C13123B38230003E4281 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		2CE7C13323B38298003E4281 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
@@ -174,7 +176,6 @@
 		2C03FE35239001BF0092B06D /* Translate Model */ = {
 			isa = PBXGroup;
 			children = (
-				2C451B94238D3BDD008E64B8 /* TranslateClient.swift */,
 				2C03FE38239002250092B06D /* TranslateData.swift */,
 				2C9B260723A2245F001C8A10 /* Translate.swift */,
 				2C9B260923A22C12001C8A10 /* Language.swift */,
@@ -187,7 +188,6 @@
 			children = (
 				2C451B99238E6D73008E64B8 /* Weather.swift */,
 				2C1E029823A5009D00F23E5F /* WeatherData.swift */,
-				2C1E029A23A501E400F23E5F /* WeatherClient.swift */,
 			);
 			path = "Weather Model";
 			sourceTree = "<group>";
@@ -195,7 +195,6 @@
 		2C03FE37239001E90092B06D /* Foreign Model */ = {
 			isa = PBXGroup;
 			children = (
-				2CE85F10238FCA610047B88F /* CurrencyClient.swift */,
 				2C0B993D239112F100F98BD1 /* Currency.swift */,
 			);
 			path = "Foreign Model";
@@ -241,12 +240,64 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		2C79932B23CF1DD000646EC9 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				2C1E029A23A501E400F23E5F /* WeatherClient.swift */,
+				2CE7C13123B38230003E4281 /* WeatherAPI.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		2C79932D23CF1EB500646EC9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C79932E23CF1ED200646EC9 /* Today */,
+				2C79932F23CF1EDA00646EC9 /* Translate */,
+				2C79933023CF1EE600646EC9 /* Weather */,
+				2C79933123CF1EEE00646EC9 /* Currency */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2C79932E23CF1ED200646EC9 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				2CC8736F23B5CCF2006F7BC8 /* TodayViewModel.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		2C79932F23CF1EDA00646EC9 /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				2C09DF4A23B6951900F92774 /* TranslateViewModel.swift */,
+			);
+			path = Translate;
+			sourceTree = "<group>";
+		};
+		2C79933023CF1EE600646EC9 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		2C79933123CF1EEE00646EC9 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				2CC8737123B5CEFE006F7BC8 /* CurrencyViewModel.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
 		2C83370D239CE7D0008B3EF7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */,
-				2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */,
-				2CE7C13123B38230003E4281 /* WeatherAPI.swift */,
+				2C79932B23CF1DD000646EC9 /* Weather */,
+				2CE684AF23CC55A300792FCB /* Translate */,
+				2CE684AE23CC558A00792FCB /* Currency */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -276,11 +327,13 @@
 		2CD489CF23426B4A00329697 /* Baluchon */ = {
 			isa = PBXGroup;
 			children = (
+				2CE684AB23CC52F000792FCB /* Helper */,
 				2C60F04D2387C85800E4DE33 /* Generated */,
 				2CE4FE1923BA318C00ECCFEC /* Components */,
 				2C83370D239CE7D0008B3EF7 /* Network */,
 				2C451B96238D413D008E64B8 /* Extension */,
 				2C60F04E2387C87A00E4DE33 /* Resources */,
+				2C79932D23CF1EB500646EC9 /* ViewModel */,
 				2CFA7D9D23832F90002BB0B6 /* scene */,
 				2CF9565A23438DE900094BAD /* Model */,
 				2CD48A042342706B00329697 /* Supporting Files */,
@@ -310,7 +363,7 @@
 		2CD48A042342706B00329697 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2CBD544D23C463DA00ADCD64 /* Localizable.strings */,
+				2CBD544D23C463DA00ADCD64 /* Localizables.strings */,
 				2CD489D023426B4A00329697 /* AppDelegate.swift */,
 				2CD489D223426B4A00329697 /* SceneDelegate.swift */,
 				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
@@ -326,6 +379,32 @@
 				2CE4FE1A23BA319B00ECCFEC /* ShadowCardView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		2CE684AB23CC52F000792FCB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				2CE684AC23CC530B00792FCB /* GeolocationService.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		2CE684AE23CC558A00792FCB /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				2CE85F10238FCA610047B88F /* CurrencyClient.swift */,
+				2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		2CE684AF23CC55A300792FCB /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				2CE7C12F23B381EE003E4281 /* TranslateAPI.swift */,
+				2C451B94238D3BDD008E64B8 /* TranslateClient.swift */,
+			);
+			path = Translate;
 			sourceTree = "<group>";
 		};
 		2CF9565A23438DE900094BAD /* Model */ = {
@@ -355,7 +434,6 @@
 			children = (
 				2CD489D623426B4A00329697 /* CurrencyViewController.swift */,
 				2C18E34E23836785008B9BD6 /* Currency.storyboard */,
-				2CC8737123B5CEFE006F7BC8 /* CurrencyViewModel.swift */,
 			);
 			path = Currency;
 			sourceTree = "<group>";
@@ -367,7 +445,6 @@
 				2C18E34C23836744008B9BD6 /* weather.storyboard */,
 				2C842D1823AB5FA6005381C5 /* WeatherCell.swift */,
 				2C842D1A23ABA603005381C5 /* HeaderCell.swift */,
-				2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -377,7 +454,6 @@
 			children = (
 				2CD48A072342723A00329697 /* TranslateViewController.swift */,
 				2C18E34A238366B0008B9BD6 /* Translate.storyboard */,
-				2C09DF4A23B6951900F92774 /* TranslateViewModel.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -387,7 +463,6 @@
 			children = (
 				2CD489D423426B4A00329697 /* TodayViewController.swift */,
 				2CFA7DA223833234002BB0B6 /* Today.storyboard */,
-				2CC8736F23B5CCF2006F7BC8 /* TodayViewModel.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -531,7 +606,7 @@
 				2C18E34D23836744008B9BD6 /* weather.storyboard in Resources */,
 				2C18E34F23836785008B9BD6 /* Currency.storyboard in Resources */,
 				2CD489DF23426B4B00329697 /* LaunchScreen.storyboard in Resources */,
-				2CBD544B23C463DA00ADCD64 /* Localizable.strings in Resources */,
+				2CBD544B23C463DA00ADCD64 /* Localizables.strings in Resources */,
 				2C18E34B238366B0008B9BD6 /* Translate.storyboard in Resources */,
 				2C0F8D2B23917ECC00AB33CE /* ApiKeys.plist in Resources */,
 				2CD489DC23426B4B00329697 /* Assets.xcassets in Resources */,
@@ -726,6 +801,7 @@
 				2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,
 				2C9B260823A2245F001C8A10 /* Translate.swift in Sources */,
+				2CE684AD23CC530B00792FCB /* GeolocationService.swift in Sources */,
 				2CE7C13023B381EE003E4281 /* TranslateAPI.swift in Sources */,
 				2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */,
 				2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */,
@@ -770,12 +846,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2CBD544D23C463DA00ADCD64 /* Localizable.strings */ = {
+		2CBD544D23C463DA00ADCD64 /* Localizables.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2CBD544C23C463DA00ADCD64 /* fr */,
 			);
-			name = Localizable.strings;
+			name = Localizables.strings;
 			sourceTree = "<group>";
 		};
 		2CD489D823426B4A00329697 /* Main.storyboard */ = {
