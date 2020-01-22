@@ -9,11 +9,16 @@
         <!--Navigation Controller-->
         <scene sceneID="GL9-jW-ELo">
             <objects>
-                <navigationController hidesBarsOnTap="YES" id="zAy-16-j45" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uwh-5H-y0V">
+                <navigationController id="zAy-16-j45" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" alpha="0.29999999999999999" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="uwh-5H-y0V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6oo-LC-hH3">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="tMm-qg-l4k" kind="relationship" relationship="rootViewController" id="46k-jv-pxq"/>
                     </connections>
@@ -25,10 +30,11 @@
         <!--Weather-->
         <scene sceneID="Mb7-LE-yQ8">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="tMm-qg-l4k" userLabel="Weather" customClass="WeatherTableViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pDO-ve-Twp">
+                <tableViewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" clearsSelectionOnViewWillAppear="NO" id="tMm-qg-l4k" userLabel="Weather" customClass="WeatherTableViewController" customModule="Baluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pDO-ve-Twp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="220" id="aK1-2c-aYK" customClass="HeaderCell" customModule="Baluchon" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="220"/>
@@ -177,10 +183,11 @@
                             <outlet property="delegate" destination="tMm-qg-l4k" id="G2m-Ed-Onm"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun.fill" catalog="system" id="OeB-Od-vma"/>
+                    <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun.fill" catalog="system" id="OeB-Od-vma">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Weather" id="olW-AK-wQk"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CkF-eO-qRe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

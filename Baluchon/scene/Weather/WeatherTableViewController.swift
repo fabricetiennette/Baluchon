@@ -67,13 +67,16 @@ extension WeatherTableViewController: UISearchBarDelegate, UISearchResultsUpdati
 
     func setupSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.obscuresBackgroundDuringPresentation = false
+        let appearance = UINavigationBarAppearance()
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "Recherche..."
-        searchController.searchBar.delegate = self
         searchController.searchBar.searchTextField.backgroundColor = .white
+        navigationController?.navigationBar.isTranslucent = false
         definesPresentationContext = true
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
