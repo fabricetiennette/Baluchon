@@ -31,6 +31,7 @@ class HeaderCell: UITableViewCell {
         cityLabel.text = cityText
         temperatureMaxLabel.text = "\(Int(dayData.temperatureMax))"
         temperatureMinLabel.text = "\(Int(dayData.temperatureMin))"
-        summaryLabel.text = current.icon.capitalized
+        let summary = current.icon.capitalized
+        summaryLabel.text = summary.replacingOccurrences(of: "-", with: " ")
     }
 }

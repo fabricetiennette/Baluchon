@@ -78,7 +78,8 @@ private extension TodayTableViewController {
             me.minTempLabel.text = weather.minTemperature
             me.maxTempLabel.text = weather.maxTemperature
             me.currentTempLabel.text = weather.temperature
-            me.summaryLabel.text = weather.iconSummary
+            let summary = weather.iconSummary
+            me.summaryLabel.text = summary?.replacingOccurrences(of: "-", with: " ")
         }
         viewModel.locationHandler = { [weak self] location in
             guard let me = self else { return }

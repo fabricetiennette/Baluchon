@@ -26,6 +26,7 @@
 		2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */; };
 		2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0522387CD1E00E4DE33 /* Assets.swift */; };
 		2C60F0572387CD1E00E4DE33 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60F0532387CD1E00E4DE33 /* Strings.swift */; };
+		2C703E0D23D9B29200A4CCC3 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C703E0C23D9B29200A4CCC3 /* String+.swift */; };
 		2C83370F239CF317008B3EF7 /* CurrencyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */; };
 		2C842D1923AB5FA6005381C5 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C842D1823AB5FA6005381C5 /* WeatherCell.swift */; };
 		2C842D1B23ABA603005381C5 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C842D1A23ABA603005381C5 /* HeaderCell.swift */; };
@@ -98,6 +99,7 @@
 		2C60F0512387CD1E00E4DE33 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		2C60F0522387CD1E00E4DE33 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		2C60F0532387CD1E00E4DE33 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		2C703E0C23D9B29200A4CCC3 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2C83370E239CF317008B3EF7 /* CurrencyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPI.swift; sourceTree = "<group>"; };
 		2C842D1823AB5FA6005381C5 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		2C842D1A23ABA603005381C5 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				2C451B92238D343B008E64B8 /* UIView+.swift */,
 				2CE7C13323B38298003E4281 /* URL+.swift */,
 				2CBD544E23C4735F00ADCD64 /* Double+.swift */,
+				2C703E0C23D9B29200A4CCC3 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				2C0B993E239112F100F98BD1 /* Currency.swift in Sources */,
 				2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */,
 				2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */,
+				2C703E0D23D9B29200A4CCC3 /* String+.swift in Sources */,
 				2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */,
 				2CD489D323426B4A00329697 /* SceneDelegate.swift in Sources */,
 				2C9B260823A2245F001C8A10 /* Translate.swift in Sources */,

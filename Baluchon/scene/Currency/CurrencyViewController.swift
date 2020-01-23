@@ -36,9 +36,9 @@ class CurrencyViewController: UIViewController {
         currencyInputTextField.resignFirstResponder()
         if currencyInputTextField.text != "" {
             guard let text = currencyInputTextField.text else { return }
-            guard let amount = Double(text) else { return }
-            let result = amount * activeCurrency
-            resultLabel.text = String(format: "%.2f", result)
+            let calculation = text.doubleValue * activeCurrency
+            let result = String(format: "%.2f", calculation)
+            resultLabel.text = result.replacingOccurrences(of: ".", with: ",")
         } else {
             resultLabel.text = ""
         }
