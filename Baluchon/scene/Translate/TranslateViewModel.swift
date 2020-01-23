@@ -12,6 +12,7 @@ import UIKit
 class TranslateViewModel {
     private let translateClient: TranslateClient
     var translatedTextHandler: (_ translatedText: String?) -> Void = { _  in }
+    var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
 
     init(translateClient: TranslateClient = .init()) {
         self.translateClient = translateClient
@@ -19,9 +20,10 @@ class TranslateViewModel {
 
     func doTranslation(translationBody: Translate) {
         translateClient.getTranslatedText(translationBody) { (translatedText, error) in
-            self.translatedTextHandler(translatedText)
-            if let error = error {
-                print(error)
+            if error != nil {
+                self.errorHandler("Erreur", "Malheureusement une erreur c'est produite")
+            } else {
+                self.translatedTextHandler(translatedText)
             }
         }
     }

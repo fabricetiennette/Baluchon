@@ -11,6 +11,7 @@ import UIKit
 
 class CurrencyViewModel {
     private let currencyClient: CurrencyClient
+    var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
     var myCurrency: [String] = []
     var myValues: [Double] = []
 
@@ -24,8 +25,8 @@ class CurrencyViewModel {
             me.myCurrency = myCurrency
             me.myValues = myValues
             callback()
-            if let error = error {
-                print(error)
+            if error != nil {
+                me.errorHandler("Erreur", "Taux de change indisponible pour le moment...")
             }
         }
     }

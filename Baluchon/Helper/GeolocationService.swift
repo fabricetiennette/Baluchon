@@ -31,15 +31,12 @@ class GeolocationService: NSObject {
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {}
 
     func reverseGeocodeLocation(_ locations: CLLocation?, completionHandler: @escaping (_ placemark: [CLPlacemark]?, _ error: Error?) -> Void) {
         guard let location = locations else { return }
         CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
             if error != nil {
-                print("Some errors: \(String(describing: error?.localizedDescription))")
                 completionHandler(nil, error)
             } else {
                 guard let currentLocality = placemark?.first?.locality else { return }
@@ -52,7 +49,6 @@ class GeolocationService: NSObject {
     func updateWeatherForLocation(_ location: String, completionHandler: @escaping (_ placemark: [CLPlacemark]?, _ error: Error?) -> Void) {
         CLGeocoder().geocodeAddressString(location) { (placemark: [CLPlacemark]?, error: Error?) in
             if error != nil {
-                print("Some errors: \(String(describing: error?.localizedDescription))")
                 completionHandler(nil, error)
             } else {
                 completionHandler(placemark, nil)
@@ -68,6 +64,5 @@ extension GeolocationService: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
 
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
 }

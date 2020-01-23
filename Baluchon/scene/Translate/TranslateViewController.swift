@@ -62,6 +62,10 @@ private extension TranslateViewController {
     }
 
     func configureViewModel() {
+        viewModel.errorHandler = { [weak self] titleText, messageText in
+            guard let me = self else { return }
+            me.showAlert(title: titleText, message: messageText)
+        }
         viewModel.translatedTextHandler = { [weak self] translatedText in
             guard let me = self else { return }
             me.translateResultLabel.text = translatedText

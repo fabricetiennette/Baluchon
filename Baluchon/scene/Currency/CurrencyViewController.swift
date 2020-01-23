@@ -30,6 +30,10 @@ class CurrencyViewController: UIViewController {
         configureRate()
         currencyPickerView.delegate = self
         currencyPickerView.dataSource = self
+        viewModel.errorHandler = { [weak self] titleText, messageText in
+            guard let me = self else { return }
+            me.showAlert(title: titleText, message: messageText)
+        }
     }
 
     @IBAction func action(_ sender: AnyObject) {

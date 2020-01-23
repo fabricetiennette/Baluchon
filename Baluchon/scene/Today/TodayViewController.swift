@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import CoreLocation
+import NVActivityIndicatorView
 
-class TodayTableViewController: UITableViewController {
+class TodayTableViewController: UITableViewController, NVActivityIndicatorViewable {
 
     private let viewModel = TodayViewModel()
 
@@ -33,6 +33,10 @@ class TodayTableViewController: UITableViewController {
         configureDateLabelsWithCurrentDate()
         showRate()
         configureViewModel()
+        viewModel.errorHandler = { [weak self] titleText, messageText in
+            guard let me = self else { return }
+            me.showAlert(title: titleText, message: messageText)
+        }
     }
 
     @objc private func checkNotificationStatus() {
@@ -60,10 +64,10 @@ private extension TodayTableViewController {
     }
 
     func showRate() {
-        viewModel.rateHandler = { [weak self] dollarLabelText, poundLabelText in
+        viewModel.rateHandler = { [weak self] poundLabelText, dollarLabelText in
             guard let me = self else { return }
-            me.dollarLabel.text = dollarLabelText
             me.poundLabel.text = poundLabelText
+            me.dollarLabel.text = dollarLabelText
         }
         viewModel.getRate()
     }
@@ -73,6 +77,8 @@ private extension TodayTableViewController {
     }
 
     func configureViewModel() {
+        let size = CGSize(width: 50, height: 50)
+        startAnimating(size, type: .lineScale, color: .white, fadeInAnimation: nil)
         viewModel.weatherHandler = { [weak self] weather in
             guard let me = self else { return }
             me.minTempLabel.text = weather.minTemperature
@@ -80,6 +86,7 @@ private extension TodayTableViewController {
             me.currentTempLabel.text = weather.temperature
             let summary = weather.iconSummary
             me.summaryLabel.text = summary?.replacingOccurrences(of: "-", with: " ")
+            me.stopAnimating()
         }
         viewModel.locationHandler = { [weak self] location in
             guard let me = self else { return }

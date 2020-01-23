@@ -8,12 +8,12 @@
 
 import Foundation
 import UIKit
-import CoreLocation
 
 class TodayViewModel {
     var currencyValues: [Double] = []
     var currentForcast: [Currently] = []
-    var rateHandler: (_ dollarLabelText: String?, _ poundLabelText: String?) -> Void = { _, _ in }
+    var rateHandler: (_ poundLabelText: String?, _ dollarLabelText: String?) -> Void = { _, _ in }
+    var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
     var weatherHandler: (_ weather: Weather) -> Void = { _  in }
     var locationHandler: (_ location: String?) -> Void = { _  in }
     private let todayDate = Date()
@@ -54,13 +54,13 @@ extension TodayViewModel {
         currencyClient.getExchangeRate { [weak self] ( _, currencyValues, error) in
             guard let me = self else { return }
             me.currencyValues = currencyValues
-            let dollar = currencyValues.first
-            let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
-            let pound = currencyValues.last
+            let pound = currencyValues.first
             let poundLabelText = pound?.roundToDecimalAndConvertToString(2)
-            me.rateHandler(dollarLabelText, poundLabelText)
-            if let error = error {
-                print(error)
+            let dollar = currencyValues.last
+            let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
+            me.rateHandler(poundLabelText, dollarLabelText)
+            if error != nil {
+                me.errorHandler("Erreur", "Taux de change indisponible pour le moment...")
             }
         }
     }
@@ -73,15 +73,16 @@ extension TodayViewModel {
                 let minTemp = forcastData.first?.temperatureMin,
                 let maxTemp = forcastData.first?.temperatureMax
                 else { return }
-
-            let temperature = "\(Int(tempForcast))°"
-            let iconSummary = currentForcast.first?.icon.capitalized
-            let minTemperature = "\(Int(minTemp))"
-            let maxTemperature = "\(Int(maxTemp))"
-            let weather = Weather(minTemperature: minTemperature, maxTemperature: maxTemperature, temperature: temperature, iconSummary: iconSummary)
-            me.weatherHandler(weather)
-            if let error = error {
-                print(error)
+            if error == nil {
+                let temperature = "\(Int(tempForcast))°"
+                let iconSummary = currentForcast.first?.icon.capitalized
+                let minTemperature = "\(Int(minTemp))"
+                let maxTemperature = "\(Int(maxTemp))"
+                let weather = Weather(minTemperature: minTemperature, maxTemperature: maxTemperature, temperature: temperature, iconSummary: iconSummary)
+                me.weatherHandler(weather)
+            } else {
+                print("11")
+                me.errorHandler("Erreur", "Météo indisponible pour le moment...")
             }
         }
     }

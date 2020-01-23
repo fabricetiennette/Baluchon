@@ -16,6 +16,7 @@ class WeatherViewModel {
 
     var currentPlace = ""
     var backgroundViewHandler: (_ currentIcon: String) -> Void = {_ in }
+    var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
     var forcastData: [DayData] = []
     var currentForcast: [Currently] = [] {
         didSet {
@@ -47,6 +48,8 @@ extension WeatherViewModel {
                 if let location = placemark?.first?.location {
                     self.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, tableView: tableView)
                 }
+            } else {
+                self.errorHandler("Erreur", "Unknown location...")
             }
         }
     }
@@ -59,8 +62,8 @@ extension WeatherViewModel {
             DispatchQueue.main.async {
                 tableView.reloadData()
             }
-            if let error = error {
-                print(error)
+            if error != nil {
+                me.errorHandler("Erreur", "Météo indisponible pour le moment...")
             }
         }
     }
