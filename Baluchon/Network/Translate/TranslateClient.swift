@@ -30,6 +30,5 @@ class TranslateClient {
             callback(nil, error)
           }
         }
-
     }
 }

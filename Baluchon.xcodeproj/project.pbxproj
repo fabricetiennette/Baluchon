@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C03FE39239002250092B06D /* TranslateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C03FE38239002250092B06D /* TranslateData.swift */; };
+		2C0777F923DAF5EC000F582E /* TodayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0777F823DAF5EC000F582E /* TodayViewModelTests.swift */; };
+		2C0777FD23DB230E000F582E /* TranslateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0777FC23DB230E000F582E /* TranslateViewModelTests.swift */; };
 		2C09DF4B23B6951900F92774 /* TranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09DF4A23B6951900F92774 /* TranslateViewModel.swift */; };
 		2C0B993E239112F100F98BD1 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B993D239112F100F98BD1 /* Currency.swift */; };
 		2C0F8D2B23917ECC00AB33CE /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F8D2A23917ECC00AB33CE /* ApiKeys.plist */; };
@@ -81,6 +83,8 @@
 /* Begin PBXFileReference section */
 		15E492B9D397103A994E39ED /* Pods-BaluchonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaluchonTests.debug.xcconfig"; path = "Target Support Files/Pods-BaluchonTests/Pods-BaluchonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C03FE38239002250092B06D /* TranslateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateData.swift; sourceTree = "<group>"; };
+		2C0777F823DAF5EC000F582E /* TodayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelTests.swift; sourceTree = "<group>"; };
+		2C0777FC23DB230E000F582E /* TranslateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModelTests.swift; sourceTree = "<group>"; };
 		2C09DF4A23B6951900F92774 /* TranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModel.swift; sourceTree = "<group>"; };
 		2C0B993D239112F100F98BD1 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		2C0F8D2A23917ECC00AB33CE /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
@@ -304,6 +308,8 @@
 		2CD489E823426B4C00329697 /* BaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
+				2C0777FC23DB230E000F582E /* TranslateViewModelTests.swift */,
+				2C0777F823DAF5EC000F582E /* TodayViewModelTests.swift */,
 				2CD489E923426B4C00329697 /* BaluchonTests.swift */,
 				2CD489EB23426B4C00329697 /* Info.plist */,
 			);
@@ -782,6 +788,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0777F923DAF5EC000F582E /* TodayViewModelTests.swift in Sources */,
+				2C0777FD23DB230E000F582E /* TranslateViewModelTests.swift in Sources */,
 				2CD489EA23426B4C00329697 /* BaluchonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
