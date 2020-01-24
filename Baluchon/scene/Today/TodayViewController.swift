@@ -36,6 +36,7 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
         viewModel.errorHandler = { [weak self] titleText, messageText in
             guard let me = self else { return }
             me.showAlert(title: titleText, message: messageText)
+            me.stopAnimating()
         }
     }
 

@@ -21,13 +21,16 @@ class GeolocationService: NSObject {
     override init() {
         super.init()
         locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
         center.requestAuthorization(options: [.alert, .sound]) { granted, error in
             if error != nil, granted == true {
                 print("permission given")
             }
+        }
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
         }
     }
 
