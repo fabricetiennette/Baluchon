@@ -33,11 +33,7 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
         configureDateLabelsWithCurrentDate()
         showRate()
         configureViewModel()
-        viewModel.errorHandler = { [weak self] titleText, messageText in
-            guard let me = self else { return }
-            me.showAlert(title: titleText, message: messageText)
-            me.stopAnimating()
-        }
+        errorConfiguration()
     }
 
     @objc private func checkNotificationStatus() {
@@ -75,6 +71,14 @@ private extension TodayTableViewController {
 
     func showCurrentWeather() {
         viewModel.updateweather()
+    }
+
+    func errorConfiguration() {
+        viewModel.errorHandler = { [weak self] titleText, messageText in
+            guard let me = self else { return }
+            me.showAlert(title: titleText, message: messageText)
+            me.stopAnimating()
+        }
     }
 
     func configureViewModel() {

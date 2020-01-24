@@ -102,6 +102,12 @@ private extension WeatherTableViewController {
         case clearNight = "clear-night"
         case rain = "rain"
         case wind = "wind"
+        case snow = "snow"
+        case sleet = "sleet"
+        case fog = "fog"
+        case hail = "hail"
+        case thunderstorm = "thunderstorm"
+        case tornado = "tornado"
         var imageView: UIImageView {
             switch self {
             case .clearDay:
@@ -118,6 +124,18 @@ private extension WeatherTableViewController {
                 return UIImageView(image: Asset.wind.image)
             case .partlyCloudyNight:
                 return UIImageView(image: Asset.partlyCloudyN.image)
+            case .snow:
+                return UIImageView(image: Asset.snowing.image)
+            case .sleet:
+                return UIImageView(image: Asset.hailling.image)
+            case .fog:
+                return UIImageView(image: Asset.foggy.image)
+            case .hail:
+                return UIImageView(image: Asset.hailling.image)
+            case .thunderstorm:
+                return UIImageView(image: Asset.thunder.image)
+            case .tornado:
+                return UIImageView(image: Asset.tornadoo.image)
             }
         }
     }

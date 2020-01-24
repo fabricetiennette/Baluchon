@@ -81,7 +81,6 @@ extension TodayViewModel {
                 let weather = Weather(minTemperature: minTemperature, maxTemperature: maxTemperature, temperature: temperature, iconSummary: iconSummary)
                 me.weatherHandler(weather)
             } else {
-                print("11")
                 me.errorHandler("Erreur", "Météo indisponible pour le moment...")
             }
         }
