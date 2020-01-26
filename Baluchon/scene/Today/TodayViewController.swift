@@ -30,10 +30,10 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
+        errorConfiguration()
         configureDateLabelsWithCurrentDate()
         showRate()
         configureViewModel()
-        errorConfiguration()
     }
 
     @objc private func checkNotificationStatus() {
