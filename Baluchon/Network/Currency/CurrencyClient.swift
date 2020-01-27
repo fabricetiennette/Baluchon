@@ -11,7 +11,11 @@ import Moya
 
 class CurrencyClient {
 
-    private let provider = MoyaProvider<CurrencyAPI>()
+    let provider: MoyaProvider<CurrencyAPI>
+
+    init(provider: MoyaProvider<CurrencyAPI> = .init()) {
+        self.provider = provider
+    }
 
     func getExchangeRate(callback: @escaping ( _ myCurrency: [String], _ myValues: [Double], _ error: Error?) -> Void) {
         provider.request(.getRattes) { result in

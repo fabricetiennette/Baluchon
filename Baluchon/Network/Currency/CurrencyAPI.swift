@@ -35,7 +35,26 @@ extension CurrencyAPI: TargetType {
     }
 
     var sampleData: Data {
-        return Data()
+        var encodable: String!
+        switch self {
+        case .getRattes:
+            encodable = """
+            {
+            "success": true,
+            "timestamp": 1580134925,
+            "base": "EUR",
+            "date": "2020-01-27",
+            "rates": {
+            "GBP": 0.843862,
+            "USD": 1.102475
+            }
+            }
+            """
+        }
+        guard let data = encodable.data(using: .utf8) else {
+            fatalError("Please set a valide exemple")
+        }
+        return data
     }
 
     var task: Task {

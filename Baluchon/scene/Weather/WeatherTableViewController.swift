@@ -78,12 +78,14 @@ extension WeatherTableViewController: UISearchBarDelegate, UISearchResultsUpdati
         definesPresentationContext = true
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
+        searchController.searchBar.showsCancelButton = false
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let locationString = searchBar.text, !locationString.isEmpty {
             getWeatherFromLocation(location: locationString)
         }
+       searchBar.resignFirstResponder()
     }
 }
 

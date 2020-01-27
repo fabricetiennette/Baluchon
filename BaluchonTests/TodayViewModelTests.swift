@@ -1,4 +1,3 @@
-//swiftlint:disable file_length
 //
 //  TodayViewModelTests.swift
 //  BaluchonTests
@@ -13,10 +12,11 @@ import CoreLocation
 @testable import Baluchon
 
 class TodayViewModelTests: XCTestCase {
-    var todayViewModel: TodayViewModel!
     private lazy var stubProvider: MoyaProvider<WeatherAPI> = {
         return .init(stubClosure: MoyaProvider.immediatelyStub)
     }()
+
+    var todayViewModel: TodayViewModel!
     var weatherClient: WeatherClient!
     var geolocationService: GeolocationService!
 
@@ -48,33 +48,14 @@ class TodayViewModelTests: XCTestCase {
         XCTAssertEqual(currentLongFormatDay, currentLongFormatDayResult)
     }
 
-    func testProvider() {
-        let latitude = 33.8688
-        let longitude = 151.2093
-        let weatherPro = Weather(latitude: latitude, longitude: longitude)
-        XCTAssertNotNil(weatherPro)
-    }
-
-    func testWeatherModel() {
+    func testWeatherClient() {
         //Given:
         let latitude = 37.8267
         let longitude = -122.4233
+
         //When:
         weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (daily, currently, error) in
             let currentWeather = currently.first
-
-//            {
-//                "summary": "Ciel Dégagé",
-//                "icon": "clear-night",
-//                "temperature": 10.78,
-//                "humidity": 0.79,
-//                "windSpeed": 2.34,
-//                "uvIndex": 0,
-//                "visibility": 16.093,
-//            }
-            let moyaError: MoyaError? = error as? MoyaError
-            let response : Response? = moyaError?.response
-            let statusCode = response?.statusCode
 
             // Then:
             XCTAssertEqual(currentWeather?.summary, "Ciel Dégagé")
@@ -98,4 +79,69 @@ class TodayViewModelTests: XCTestCase {
             XCTAssertEqual(error?.localizedDescription, nil)
         }
     }
+
+    func testWeatherClientWhenCaseFailure() {
+        // Given:
+        let customEndpointClosure = { (target: WeatherAPI) -> Endpoint in
+            return Endpoint(
+                url: URL(target: target).absoluteString,
+                sampleResponseClosure: { .networkResponse(401, target.sampleData) },
+                method: target.method,
+                task: target.task,
+                httpHeaderFields: target.headers
+            )
+        }
+        let stubbingProvider = MoyaProvider<WeatherAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+        let latitude = 37.8267
+        let longitude = -122.4233
+        weatherClient = WeatherClient(provider: stubbingProvider)
+
+        // When:
+        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (_, _, error) in
+            let moyaError: MoyaError? = error as? MoyaError
+            let response: Response? = moyaError?.response
+            let statusCode = response?.statusCode
+
+            // Then:
+            XCTAssertEqual(statusCode, 401)
+            XCTAssertNotNil(error)
+        }
+    }
+
+    func testWeatherClientWhenCaseSuccessButEndpointEmpty() {
+        // Given:
+        let customEndpointClosure = { (target: WeatherAPI) -> Endpoint in
+            return Endpoint(
+                url: URL(target: target).absoluteString,
+                sampleResponseClosure: { .networkResponse(200, Data()) },
+                method: target.method,
+                task: target.task,
+                httpHeaderFields: target.headers
+            )
+        }
+        let stubbingProvider = MoyaProvider<WeatherAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+        let latitude = 37.8267
+        let longitude = -122.4233
+        weatherClient = WeatherClient(provider: stubbingProvider)
+
+        // When:
+        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (daily, currently, error) in
+            let moyaError: MoyaError? = error as? MoyaError
+            let response: Response? = moyaError?.response
+            let statusCode = response?.statusCode
+
+            // Then:
+            XCTAssertNil(currently.first?.icon)
+            XCTAssertNil(daily.first?.summary)
+            XCTAssertEqual(statusCode, 200)
+            XCTAssertNotNil(error)
+        }
+    }
+
+    func testWeatherThanks() {
+            //Given:
+//            let latitude = 37.8267
+//            let longitude = -122.4233
+            //When:
+        }
 }

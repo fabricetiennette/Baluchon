@@ -11,7 +11,11 @@ import Moya
 
 class TranslateClient {
 
-    private let provider = MoyaProvider<TranslateAPI>()
+    let provider: MoyaProvider<TranslateAPI>
+
+    init(provider: MoyaProvider<TranslateAPI> = .init()) {
+        self.provider = provider
+    }
 
     func getTranslatedText(_ translationBody: Translate, callback: @escaping ( _ translatedText: String?, _ error: Error?) -> Void) {
         provider.request(.translate(translationBody)) { result in
