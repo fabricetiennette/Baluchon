@@ -13,17 +13,12 @@ import NVActivityIndicatorView
 class WeatherTableViewController: UITableViewController, NVActivityIndicatorViewable {
 
     private let viewModel = WeatherViewModel()
-    private let weatherRest = WeatherClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewModel()
         setupSearchBar()
         getWeatherFromLocation(location: viewModel.location)
-        viewModel.errorHandler = { [weak self] titleText, messageText in
-            guard let me = self else { return }
-            me.showAlert(title: titleText, message: messageText)
-            me.stopAnimating()
-        }
     }
 
     // MARK: - Table view data source
@@ -149,9 +144,23 @@ private extension WeatherTableViewController {
 
     func getWeatherFromLocation(location: String) {
         let size = CGSize(width: 50, height: 50)
-        startAnimating(size, type: .lineScale, color: .white, fadeInAnimation: nil)
-        viewModel.updateWeather(location, self.tableView)
-        self.viewModel.backgroundViewHandler = { [weak self] currentIcon in
+        startAnimating(size, type: .ballSpinFadeLoader, color: .white, fadeInAnimation: nil)
+        viewModel.updateWeather(location)
+    }
+
+    func configureViewModel() {
+        viewModel.reloadHandler = { [weak self] in
+            guard let me = self else { return }
+            me.tableView.reloadData()
+        }
+
+        viewModel.errorHandler = { [weak self] titleText, messageText in
+            guard let me = self else { return }
+            me.showAlert(title: titleText, message: messageText)
+            me.stopAnimating()
+        }
+
+        viewModel.backgroundViewHandler = { [weak self] currentIcon in
             guard let me = self else { return }
             let backgroundView = me.backgroundView(currentIcon: currentIcon, icon: Icon(rawValue: currentIcon))
             me.tableView.backgroundView = backgroundView

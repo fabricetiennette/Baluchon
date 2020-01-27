@@ -83,7 +83,7 @@ private extension TodayTableViewController {
 
     func configureViewModel() {
         let size = CGSize(width: 50, height: 50)
-        startAnimating(size, type: .lineScale, color: .white, fadeInAnimation: nil)
+        startAnimating(size, type: .ballSpinFadeLoader, color: .white, fadeInAnimation: nil)
         viewModel.weatherHandler = { [weak self] weather in
             guard let me = self else { return }
             me.minTempLabel.text = weather.minTemperature

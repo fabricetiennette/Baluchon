@@ -1,3 +1,4 @@
+//swiftlint:disable file_length
 //
 //  TodayViewModelTests.swift
 //  BaluchonTests
@@ -13,19 +14,19 @@ import CoreLocation
 
 class TodayViewModelTests: XCTestCase {
     var todayViewModel: TodayViewModel!
-    var provider = MoyaProvider<WeatherAPI>()
+    private lazy var stubProvider: MoyaProvider<WeatherAPI> = {
+        return .init(stubClosure: MoyaProvider.immediatelyStub)
+    }()
     var weatherClient: WeatherClient!
     var geolocationService: GeolocationService!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        weatherClient = WeatherClient(provider: stubProvider)
         todayViewModel = TodayViewModel()
-        weatherClient = WeatherClient()
         geolocationService =  GeolocationService()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         todayViewModel = nil
         weatherClient = nil
         geolocationService = nil
@@ -33,13 +34,16 @@ class TodayViewModelTests: XCTestCase {
     }
 
     func testDate() {
+        // Given:
         let todayDate = Date()
         let shortDateFormat = "EEEE"
         let longDateFormat = "EEEE dd MMMM"
+        // When:
         let currentDay = todayViewModel.todayDayLabelText
         let currentDayResult = todayDate.formatted(dateFormat: shortDateFormat).capitalized
         let currentLongFormatDay = todayViewModel.dateUILabelText
         let currentLongFormatDayResult = todayDate.formatted(dateFormat: longDateFormat).capitalized
+        // Then:
         XCTAssertEqual(currentDay, currentDayResult)
         XCTAssertEqual(currentLongFormatDay, currentLongFormatDayResult)
     }
@@ -49,5 +53,49 @@ class TodayViewModelTests: XCTestCase {
         let longitude = 151.2093
         let weatherPro = Weather(latitude: latitude, longitude: longitude)
         XCTAssertNotNil(weatherPro)
+    }
+
+    func testWeatherModel() {
+        //Given:
+        let latitude = 37.8267
+        let longitude = -122.4233
+        //When:
+        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (daily, currently, error) in
+            let currentWeather = currently.first
+
+//            {
+//                "summary": "Ciel Dégagé",
+//                "icon": "clear-night",
+//                "temperature": 10.78,
+//                "humidity": 0.79,
+//                "windSpeed": 2.34,
+//                "uvIndex": 0,
+//                "visibility": 16.093,
+//            }
+            let moyaError: MoyaError? = error as? MoyaError
+            let response : Response? = moyaError?.response
+            let statusCode = response?.statusCode
+
+            // Then:
+            XCTAssertEqual(currentWeather?.summary, "Ciel Dégagé")
+            XCTAssertEqual(currentWeather?.icon, "clear-night")
+            XCTAssertEqual(currentWeather?.temperature, 10.78)
+            XCTAssertEqual(currentWeather?.humidity, 0.79)
+            XCTAssertEqual(currentWeather?.windSpeed, 2.34)
+            XCTAssertEqual(currentWeather?.uvIndex, 0)
+            XCTAssertEqual(currentWeather?.visibility, 16.093)
+
+            XCTAssertEqual(daily[0].summary, "Pluie faible dans la matinée.")
+            XCTAssertEqual(daily[1].icon, "partly-cloudy-day")
+            XCTAssertEqual(daily[2].time, 1580198400)
+            XCTAssertEqual(daily[2].summary, "Ciel couvert toute la journée.")
+            XCTAssertEqual(daily[3].temperatureMin, 7.75)
+            XCTAssertEqual(daily[4].uvIndex, 3)
+            XCTAssertEqual(daily[5].sunriseTime, 1580483760)
+            XCTAssertEqual(daily[6].dewPoint, 10.32)
+            XCTAssertEqual(daily[7].temperatureMax, 14.56)
+
+            XCTAssertEqual(error?.localizedDescription, nil)
+        }
     }
 }

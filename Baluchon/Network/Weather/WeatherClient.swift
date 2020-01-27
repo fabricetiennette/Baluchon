@@ -10,7 +10,12 @@ import Foundation
 import Moya
 
 class WeatherClient {
-    var provider = MoyaProvider<WeatherAPI>()
+    private let provider: MoyaProvider<WeatherAPI>
+
+    init(provider: MoyaProvider<WeatherAPI> = .init()) {
+        self.provider = provider
+    }
+
     func getCurrentWeather(latitude: Double, longitude: Double, callback: @escaping (_ forecastArray: [DayData], _ currentArray: [Currently], _ error: Error?) -> Void) {
         provider.request(.weather(Weather(latitude: latitude, longitude: longitude))) { result in
             switch result {
