@@ -6,7 +6,7 @@
 //  Copyright © 2019 Fabrice Etiennette. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class WeatherViewModel {
 

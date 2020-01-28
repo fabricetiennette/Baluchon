@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class CurrencyViewModel {
     private let currencyClient: CurrencyClient

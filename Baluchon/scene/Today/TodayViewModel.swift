@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 class TodayViewModel {
     var currencyValues: [Double] = []
