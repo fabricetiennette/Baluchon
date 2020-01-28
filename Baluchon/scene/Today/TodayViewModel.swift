@@ -10,7 +10,6 @@ import Foundation
 
 class TodayViewModel {
     var currencyValues: [Double] = []
-    var currentForcast: [Currently] = []
     var rateHandler: (_ poundLabelText: String?, _ dollarLabelText: String?) -> Void = { _, _ in }
     var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
     var weatherHandler: (_ weather: Weather) -> Void = { _  in }

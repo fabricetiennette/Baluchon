@@ -32,7 +32,7 @@ class TranslateViewModelTests: XCTestCase {
     func testTranslationFr() {
         let sourceLanguage: Language = .fr
         let text = "Bonjour"
-        let expect = expectation(description: "Hello")
+        let expect = expectation(description: "Fetching...")
         var answer: String?
         let translationBody = Translate(source: sourceLanguage, text: text)
         translateViewModel.doTranslation(translationBody: translationBody)
@@ -50,7 +50,7 @@ class TranslateViewModelTests: XCTestCase {
     func testTranslationEn() {
         let sourceLanguage: Language = .en
         let text = "Hello"
-        let expect = expectation(description: "Bonjour")
+        let expect = expectation(description: "Fetching...")
         var answer: String?
         let translationBody = Translate(source: sourceLanguage, text: text)
         translateViewModel.doTranslation(translationBody: translationBody)
@@ -66,7 +66,7 @@ class TranslateViewModelTests: XCTestCase {
     }
 
     func testTextHandler() {
-        let expect = expectation(description: "Bonjour")
+        let expect = expectation(description: "Fetching...")
         let text = "Bonjour"
         var answer: String?
 
@@ -97,7 +97,7 @@ class TranslateViewModelTests: XCTestCase {
         translateClient = TranslateClient(provider: stubbingProvider)
         let sourceLanguage: Language = .en
         let text = "Hello"
-        let expect = expectation(description: "Bonjour")
+        let expect = expectation(description: "Fetching...")
         var answer: String?
         let translationBody = Translate(source: sourceLanguage, text: text)
 

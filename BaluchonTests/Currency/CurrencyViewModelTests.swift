@@ -89,10 +89,11 @@ class CurrencyViewModelTests: XCTestCase {
             let moyaError: MoyaError? = error as? MoyaError
             let response: Response? = moyaError?.response
             let statusCode = response?.statusCode
-
+            self.currencyViewModel.errorHandler("Erreur", "Taux de change indisponible pour le moment...")
             // Then:
             XCTAssertEqual(currencyName, [])
             XCTAssertEqual(currencyRate, [])
+            XCTAssertEqual(currencyName, [])
             XCTAssertEqual(statusCode, 401)
             XCTAssertNotNil(error)
         }

@@ -139,9 +139,10 @@ class TodayViewModelTests: XCTestCase {
     }
 
     func testWeatherThanks() {
-            //Given:
-//            let latitude = 37.8267
-//            let longitude = -122.4233
-            //When:
-        }
+        //Given:
+        let latitude = 37.8267
+        let longitude = -122.4233
+        //When:
+        todayViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
+    }
 }
