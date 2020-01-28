@@ -143,4 +143,16 @@ class TranslateViewModelTests: XCTestCase {
             XCTAssertNotNil(error)
         }
     }
+
+    func testErrorHandler() {
+           let expect = expectation(description: "wait for it")
+           let title = "Erreur"
+
+           translateViewModel.errorHandler = { titleText, messageText in
+               XCTAssertEqual(titleText, title)
+               expect.fulfill()
+           }
+           translateViewModel.errorHandler("Erreur", "Unknown location...")
+           wait(for: [expect], timeout: 5)
+       }
 }

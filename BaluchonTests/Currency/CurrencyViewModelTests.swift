@@ -17,15 +17,18 @@ class CurrencyViewModelTests: XCTestCase {
 
     var currencyViewModel: CurrencyViewModel!
     var currencyClient: CurrencyClient!
+    var todayViewModel: TodayViewModel!
 
     override func setUp() {
         currencyClient = CurrencyClient(provider: stubProvider)
         currencyViewModel = CurrencyViewModel()
+        todayViewModel = TodayViewModel()
     }
 
     override func tearDown() {
         currencyClient = nil
         currencyViewModel = nil
+        todayViewModel = nil
         super.tearDown()
     }
 
@@ -38,6 +41,7 @@ class CurrencyViewModelTests: XCTestCase {
         currencyClient.getExchangeRate { (currencyName, currencyRate, error) in
 
             // Then:
+            XCTAssertTrue(self.todayViewModel.currencyValues.isEmpty)
             XCTAssertEqual(GBP, currencyRate.first)
             XCTAssertEqual(USD, currencyRate.last)
             XCTAssertEqual(currencyName.first, "GBP")
@@ -89,7 +93,7 @@ class CurrencyViewModelTests: XCTestCase {
             let moyaError: MoyaError? = error as? MoyaError
             let response: Response? = moyaError?.response
             let statusCode = response?.statusCode
-            self.currencyViewModel.errorHandler("Erreur", "Taux de change indisponible pour le moment...")
+
             // Then:
             XCTAssertEqual(currencyName, [])
             XCTAssertEqual(currencyRate, [])
@@ -97,5 +101,20 @@ class CurrencyViewModelTests: XCTestCase {
             XCTAssertEqual(statusCode, 401)
             XCTAssertNotNil(error)
         }
+    }
+
+    func testGetRateFromViewModel() {
+        var currencyInArray: Int!
+        var namesInArray: Int!
+        let expectation = XCTestExpectation(description: "Getting currencies for me...")
+        currencyViewModel.getRate { [weak self] in
+            guard let me = self else { return }
+            currencyInArray = me.currencyViewModel.myCurrency.count
+            namesInArray = me.currencyViewModel.myValues.count
+            XCTAssertEqual(currencyInArray, 2)
+            XCTAssertEqual(namesInArray, 2)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5)
     }
 }

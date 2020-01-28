@@ -37,12 +37,11 @@ class WeatherViewModel {
 
 extension WeatherViewModel {
     var location: String {
-        if currentPlace.isEmpty {
+        while currentPlace.isEmpty {
             let currentLocation = GeolocationService.currentLocation
             return currentLocation
-        } else {
-            return currentPlace
         }
+        return currentPlace
     }
 
     func updateWeather(_ location: String) {
