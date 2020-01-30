@@ -20,7 +20,7 @@ class TranslateViewModel {
     func doTranslation(translationBody: Translate) {
         translateClient.getTranslatedText(translationBody) { (translatedText, error) in
             if error != nil {
-                self.errorHandler("Erreur", "Malheureusement une erreur c'est produite")
+                self.errorHandler(L10n.Localizable.error, L10n.Localizable.errorfound)
             } else {
                 self.translatedTextHandler(translatedText)
             }

@@ -66,7 +66,7 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         activeCurrency = viewModel.myValues[row]
         let choice = viewModel.myCurrency[row]
-        convertButton.setTitle("Convert to \(choice)", for: .normal)
+        convertButton.setTitle("\(L10n.Localizable.convert) \(choice)", for: .normal)
     }
 }
 

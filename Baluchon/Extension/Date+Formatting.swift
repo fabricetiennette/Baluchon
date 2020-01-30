@@ -1,5 +1,5 @@
 //
-//  DateFormatter.swift
+//  Date+Formatter.swift
 //  Baluchon
 //
 //  Created by Lilian on 30/12/2019.

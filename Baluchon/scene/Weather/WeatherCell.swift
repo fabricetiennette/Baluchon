@@ -24,7 +24,7 @@ class WeatherCell: UITableViewCell {
         if let date = Calendar.current.date(byAdding: .day, value: indexPath.item, to: Date()) {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEEE"
-            dayLabel.text = dateFormatter.string(from: date)
+            dayLabel.text = dateFormatter.string(from: date).capitalized
         }
         weatherImageView.image = UIImage(named: dayData.icon)
         temperatureMaxLabel.text = String(Int(dayData.temperatureMax))

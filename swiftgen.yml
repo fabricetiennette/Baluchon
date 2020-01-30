@@ -11,7 +11,7 @@ xcassets:
     templateName: swift4
     output: Baluchon/Generated/Assets.swift
 strings:
-  inputs: Baluchon/Resources
+  inputs: Baluchon
   outputs:
     templateName: structured-swift4
     output: Baluchon/Generated/Strings.swift

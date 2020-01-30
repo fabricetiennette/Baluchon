@@ -48,11 +48,11 @@ class WeatherTableViewController: UITableViewController, NVActivityIndicatorView
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dayData = viewModel.forcastData[indexPath.item]
         if indexPath.section == 0, let currentData = viewModel.currentForcast.first {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: L10n.Localizable.headercell, for: indexPath) as! HeaderCell
             headerCell.configureHeader(current: currentData, dayData: dayData, cityText: viewModel.location.capitalized)
             return headerCell
         } else if indexPath.section > 0 {
-            let weatherCell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
+            let weatherCell = tableView.dequeueReusableCell(withIdentifier: L10n.Localizable.weathercell, for: indexPath) as! WeatherCell
             weatherCell.configureCell(dayData: dayData, indexPath: indexPath)
             return weatherCell
         } else {
@@ -63,7 +63,7 @@ class WeatherTableViewController: UITableViewController, NVActivityIndicatorView
 
 extension WeatherTableViewController: UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        searchController.searchBar.placeholder = "Recherche..."
+        searchController.searchBar.placeholder = L10n.Localizable.search
     }
 
     func setupSearchBar() {
@@ -72,7 +72,7 @@ extension WeatherTableViewController: UISearchBarDelegate, UISearchResultsUpdati
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
-        searchController.searchBar.placeholder = "Recherche..."
+        searchController.searchBar.placeholder = L10n.Localizable.search
         searchController.searchBar.searchTextField.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
         definesPresentationContext = true

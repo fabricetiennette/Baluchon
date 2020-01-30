@@ -25,7 +25,7 @@ class CurrencyViewModel {
             me.myValues = myValues
             callback()
             if error != nil {
-                me.errorHandler("Erreur", "Taux de change indisponible pour le moment...")
+                me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
             }
         }
     }

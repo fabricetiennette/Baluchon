@@ -56,7 +56,7 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
 
 private extension TodayTableViewController {
     func configureDateLabelsWithCurrentDate() {
-        dayLabel.text = "\(viewModel.todayDayLabelText)  Today"
+        dayLabel.text = viewModel.todayDayLabelText
         dateUILabel.text = viewModel.dateUILabelText
     }
 

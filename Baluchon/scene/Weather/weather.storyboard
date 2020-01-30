@@ -186,7 +186,7 @@
                     <tabBarItem key="tabBarItem" title="Weather" image="cloud.sun.fill" catalog="system" id="OeB-Od-vma">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Weather" id="olW-AK-wQk"/>
+                    <navigationItem key="navigationItem" title="Météo" id="olW-AK-wQk"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CkF-eO-qRe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

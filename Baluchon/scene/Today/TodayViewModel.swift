@@ -58,7 +58,7 @@ extension TodayViewModel {
             let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
             me.rateHandler(poundLabelText, dollarLabelText)
             if error != nil {
-                me.errorHandler("Erreur", "Taux de change indisponible pour le moment...")
+                me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
             }
         }
     }
@@ -79,7 +79,7 @@ extension TodayViewModel {
                 let weather = Weather(minTemperature: minTemperature, maxTemperature: maxTemperature, temperature: temperature, iconSummary: iconSummary)
                 me.weatherHandler(weather)
             } else {
-                me.errorHandler("Erreur", "Météo indisponible pour le moment...")
+                me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)
             }
         }
     }

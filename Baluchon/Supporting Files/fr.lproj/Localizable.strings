@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  Baluchon
+
+  Created by Fabrice Etiennette on 07/01/2020.
+  Copyright © 2020 Fabrice Etiennette. All rights reserved.
+*/
+
+"error" = "Erreur";
+"unknownlocation" = "Localisation inconnue...";
+"weatherunknown" = "Météo indisponible pour le moment...";
+"rateunknown" = "Taux de change indisponible pour le moment...";
+"errorfound" = "Malheureusement une erreur c'est produite";
+"missingtext" = "Le texte à traduire est manquant.";
+"convert" = "Conversions en";
+"today" = "Aujourd'hui";
+"search" = "Recherche...";
+"headercell" = "HeaderCell";
+"weathercell" = "WeatherCell";
+"clearday" = "clear-day";
+"cloudy" = "cloudy";
+"partlycloudyday" = "partly-cloudy-day";
+"partlycloudynight" = "partly-cloudy-night";
+"clearnight" = "clear-night";
+"rain" = "rain";
+"wind" = "wind";
+"snow" = "snow";
+"sleet" = "sleet";
+"fog" = "fog";
+"hail" = "hail";
+"thunderstorm" = "thunderstorm";
+"tornado" = "tornado";
