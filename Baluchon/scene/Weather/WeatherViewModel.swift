@@ -17,8 +17,8 @@ class WeatherViewModel {
     var backgroundViewHandler: (_ currentIcon: String) -> Void = {_ in }
     var reloadHandler: () -> Void = {}
     var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
-    private(set) var forcastData: [DayData] = []
-    private(set) var currentForcast: [Currently] = [] {
+    var forcastData: [DayData] = []
+    var currentForcast: [Currently] = [] {
         didSet {
             if let currentIcon = currentForcast.first?.icon {
                 backgroundViewHandler(currentIcon)
@@ -49,19 +49,17 @@ extension WeatherViewModel {
     }
 
     func numberOfRowsInSection(in section: Int) -> Int {
-        if section == 0 {
+        while section == 0 {
             return currentForcast.count
-        } else {
-            return forcastData.count
         }
+        return forcastData.count
     }
 
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        while indexPath.section == 0 {
             return 220
-        } else {
-            return 50
         }
+        return 50
     }
 
     func updateWeather(_ location: String) {

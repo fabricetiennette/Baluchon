@@ -38,7 +38,6 @@ class CurrencyViewModelTests: XCTestCase {
         currencyClient.getExchangeRate { (currencyName, currencyRate, error) in
 
             // Then:
-//            XCTAssertTrue(self.todayViewModel.currencyValues.isEmpty)
             XCTAssertEqual(GBP, currencyRate.first)
             XCTAssertEqual(USD, currencyRate.last)
             XCTAssertEqual(currencyName.first, "GBP")

@@ -26,7 +26,7 @@ class HeaderCell: UITableViewCell {
         self.current = current
         self.dayData = dayData
         today.dateFormat = "EEEE"
-        daylabel.text = "\(today.string(from: Date()).capitalized)  \(L10n.Localizable.today)"
+        daylabel.text = "\(today.string(from: Date()))  \(L10n.Localizable.today)".capitalized
         currentTemperatureLabel.text = "\(Int(current.temperature))°"
         cityLabel.text = cityText
         temperatureMaxLabel.text = "\(Int(dayData.temperatureMax))"
