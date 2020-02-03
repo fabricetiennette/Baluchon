@@ -17,18 +17,15 @@ class CurrencyViewModelTests: XCTestCase {
 
     var currencyViewModel: CurrencyViewModel!
     var currencyClient: CurrencyClient!
-    var todayViewModel: TodayViewModel!
 
     override func setUp() {
         currencyClient = CurrencyClient(provider: stubProvider)
         currencyViewModel = CurrencyViewModel()
-        todayViewModel = TodayViewModel()
     }
 
     override func tearDown() {
         currencyClient = nil
         currencyViewModel = nil
-        todayViewModel = nil
         super.tearDown()
     }
 
@@ -41,7 +38,7 @@ class CurrencyViewModelTests: XCTestCase {
         currencyClient.getExchangeRate { (currencyName, currencyRate, error) in
 
             // Then:
-            XCTAssertTrue(self.todayViewModel.currencyValues.isEmpty)
+//            XCTAssertTrue(self.todayViewModel.currencyValues.isEmpty)
             XCTAssertEqual(GBP, currencyRate.first)
             XCTAssertEqual(USD, currencyRate.last)
             XCTAssertEqual(currencyName.first, "GBP")

@@ -17,32 +17,22 @@ class WeatherTableViewController: UITableViewController, NVActivityIndicatorView
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewModel()
-        setupSearchBar()
+        configureSearchBar()
         getWeatherFromLocation(location: viewModel.location)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
+        return viewModel.numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return viewModel.currentForcast.count
-        } else {
-            return viewModel.forcastData.count
-        }
+        return viewModel.numberOfRowsInSection(in: section)
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 220
-        } else {
-            return 50
-        }
+        return viewModel.heightForRowAt(at: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,7 +56,7 @@ extension WeatherTableViewController: UISearchBarDelegate, UISearchResultsUpdati
         searchController.searchBar.placeholder = L10n.Localizable.search
     }
 
-    func setupSearchBar() {
+    func configureSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         let appearance = UINavigationBarAppearance()
         searchController.searchResultsUpdater = self
@@ -156,9 +146,9 @@ private extension WeatherTableViewController {
             me.tableView.reloadData()
         }
 
-        viewModel.errorHandler = { [weak self] titleText, messageText in
+        viewModel.errorHandler = { [weak self] title, message in
             guard let me = self else { return }
-            me.showAlert(title: titleText, message: messageText)
+            me.showAlert(title: title, message: message)
             me.stopAnimating()
         }
 

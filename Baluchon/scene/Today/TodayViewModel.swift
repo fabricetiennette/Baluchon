@@ -18,9 +18,17 @@ class TodayViewModel {
     private let shortDateFormat = "EEEE"
     private let longDateFormat = "EEEE dd MMMM"
     private let geolocationService: GeolocationService
+    private let currencyClient: CurrencyClient
+    private let weatherClient: WeatherClient
 
-    init(geolocationService: GeolocationService = .init()) {
+    init(
+        geolocationService: GeolocationService,
+        currencyClient: CurrencyClient,
+        weatherClient: WeatherClient = .init()
+    ) {
         self.geolocationService = geolocationService
+        self.currencyClient = currencyClient
+        self.weatherClient = weatherClient
     }
 }
 
@@ -48,7 +56,6 @@ extension TodayViewModel {
     }
 
     func getRate() {
-        let currencyClient = CurrencyClient()
         currencyClient.getExchangeRate { [weak self] (_, currencyValues, error) in
             guard let me = self else { return }
             me.currencyValues = currencyValues
@@ -64,7 +71,6 @@ extension TodayViewModel {
     }
 
     func getCurrentWeather(latitude: Double, longitude: Double) {
-        let weatherClient = WeatherClient()
         weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self] (forcastData, currentForcast, error) in
             guard let me = self,
                 let tempForcast = currentForcast.first?.temperature,

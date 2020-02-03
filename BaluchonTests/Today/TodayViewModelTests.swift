@@ -16,20 +16,18 @@ class TodayViewModelTests: XCTestCase {
         return .init(stubClosure: MoyaProvider.immediatelyStub)
     }()
 
-    var todayViewModel: TodayViewModel!
     var weatherClient: WeatherClient!
-    var geolocationService: GeolocationService!
+    var todayViewModel: TodayViewModel!
 
     override func setUp() {
+        let currencyClient = CurrencyClient()
+        let geolocationService = GeolocationService()
         weatherClient = WeatherClient(provider: stubProvider)
-        todayViewModel = TodayViewModel()
-        geolocationService =  GeolocationService()
+        todayViewModel = TodayViewModel(geolocationService: geolocationService, currencyClient: currencyClient, weatherClient: weatherClient)
     }
 
     override func tearDown() {
         todayViewModel = nil
-        weatherClient = nil
-        geolocationService = nil
         super.tearDown()
     }
 

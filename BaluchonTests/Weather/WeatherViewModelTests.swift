@@ -40,23 +40,23 @@ class WeatherViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testLocationUpdate() {
-        // Given:
-        let newLocation = "Los Angeles"
-        let secondLocation = ""
-        let currentLocation = GeolocationService.currentLocation
-
-        // When:
-        weatherViewModel.currentPlace = newLocation
-        let location = weatherViewModel.location.capitalized
-
-        weatherViewModel.currentPlace = secondLocation
-        let locationTwo = weatherViewModel.location.capitalized
-
-        // Then:
-        XCTAssertEqual(location, "Los Angeles")
-        XCTAssertEqual(locationTwo, currentLocation)
-    }
+//    func testLocationUpdate() {
+//        // Given:
+//        let newLocation = "Los Angeles"
+//        let secondLocation = ""
+//        let currentLocation = GeolocationService.currentLocation
+//
+//        // When:
+//        weatherViewModel.currentPlace = newLocation
+//        let location = weatherViewModel.location.capitalized
+//
+//        weatherViewModel.currentPlace = secondLocation
+//        let locationTwo = weatherViewModel.location.capitalized
+//
+//        // Then:
+//        XCTAssertEqual(location, "Los Angeles")
+//        XCTAssertEqual(locationTwo, currentLocation)
+//    }
 
     func testErrorHandler() {
         let expect = expectation(description: "wait for it")

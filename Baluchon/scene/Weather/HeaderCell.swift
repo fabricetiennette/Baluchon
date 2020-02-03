@@ -12,15 +12,15 @@ private let today = DateFormatter()
 
 class HeaderCell: UITableViewCell {
 
-    private var current: Currently!
-    private var dayData: DayData!
-
     @IBOutlet private weak var currentTemperatureLabel: UILabel!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var summaryLabel: UILabel!
     @IBOutlet private weak var daylabel: UILabel!
     @IBOutlet private weak var temperatureMaxLabel: UILabel!
     @IBOutlet private weak var temperatureMinLabel: UILabel!
+
+    private var current: Currently!
+    private var dayData: DayData!
 
     func configureHeader(current: Currently, dayData: DayData, cityText: String) {
         self.current = current

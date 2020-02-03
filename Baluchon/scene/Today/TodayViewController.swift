@@ -11,8 +11,6 @@ import NVActivityIndicatorView
 
 class TodayTableViewController: UITableViewController, NVActivityIndicatorViewable {
 
-    private let viewModel = TodayViewModel()
-
     @IBOutlet private weak var dateUILabel: UILabel!
 
     @IBOutlet private weak var weatherView: UIView!
@@ -26,6 +24,8 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
     @IBOutlet private weak var forexView: UIView!
     @IBOutlet private weak var dollarLabel: UILabel!
     @IBOutlet private weak var poundLabel: UILabel!
+
+    private let viewModel = TodayViewModel(geolocationService: GeolocationService(), currencyClient: CurrencyClient())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +74,9 @@ private extension TodayTableViewController {
     }
 
     func errorConfiguration() {
-        viewModel.errorHandler = { [weak self] titleText, messageText in
+        viewModel.errorHandler = { [weak self] title, message in
             guard let me = self else { return }
-            me.showAlert(title: titleText, message: messageText)
+            me.showAlert(title: title, message: message)
             me.stopAnimating()
         }
     }

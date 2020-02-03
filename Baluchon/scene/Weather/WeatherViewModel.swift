@@ -6,19 +6,19 @@
 //  Copyright © 2019 Fabrice Etiennette. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class WeatherViewModel {
 
     private let weatherClient: WeatherClient
     private let geolocationService: GeolocationService
 
-    var currentPlace = ""
+    private var currentPlace = ""
     var backgroundViewHandler: (_ currentIcon: String) -> Void = {_ in }
     var reloadHandler: () -> Void = {}
     var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
-    var forcastData: [DayData] = []
-    var currentForcast: [Currently] = [] {
+    private(set) var forcastData: [DayData] = []
+    private(set) var currentForcast: [Currently] = [] {
         didSet {
             if let currentIcon = currentForcast.first?.icon {
                 backgroundViewHandler(currentIcon)
@@ -36,12 +36,32 @@ class WeatherViewModel {
 }
 
 extension WeatherViewModel {
+    var numberOfSections: Int {
+        2
+    }
+
     var location: String {
         while currentPlace.isEmpty {
             let currentLocation = GeolocationService.currentLocation
             return currentLocation
         }
         return currentPlace
+    }
+
+    func numberOfRowsInSection(in section: Int) -> Int {
+        if section == 0 {
+            return currentForcast.count
+        } else {
+            return forcastData.count
+        }
+    }
+
+    func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 220
+        } else {
+            return 50
+        }
     }
 
     func updateWeather(_ location: String) {

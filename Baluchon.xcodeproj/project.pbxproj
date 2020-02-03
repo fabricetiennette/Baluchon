@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C02ABB223E40B61003B69F5 /* TranslateTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02ABB123E40B61003B69F5 /* TranslateTextView.swift */; };
+		2C02ABB423E42BB3003B69F5 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02ABB323E42BB3003B69F5 /* BarView.swift */; };
+		2C02ABB623E42CBD003B69F5 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02ABB523E42CBD003B69F5 /* LabelView.swift */; };
 		2C03FE39239002250092B06D /* TranslateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C03FE38239002250092B06D /* TranslateData.swift */; };
 		2C0777F923DAF5EC000F582E /* TodayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0777F823DAF5EC000F582E /* TodayViewModelTests.swift */; };
 		2C0777FD23DB230E000F582E /* TranslateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0777FC23DB230E000F582E /* TranslateViewModelTests.swift */; };
@@ -84,6 +87,9 @@
 
 /* Begin PBXFileReference section */
 		15E492B9D397103A994E39ED /* Pods-BaluchonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaluchonTests.debug.xcconfig"; path = "Target Support Files/Pods-BaluchonTests/Pods-BaluchonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C02ABB123E40B61003B69F5 /* TranslateTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTextView.swift; sourceTree = "<group>"; };
+		2C02ABB323E42BB3003B69F5 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
+		2C02ABB523E42CBD003B69F5 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		2C03FE38239002250092B06D /* TranslateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateData.swift; sourceTree = "<group>"; };
 		2C0777F823DAF5EC000F582E /* TodayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModelTests.swift; sourceTree = "<group>"; };
 		2C0777FC23DB230E000F582E /* TranslateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewModelTests.swift; sourceTree = "<group>"; };
@@ -380,6 +386,9 @@
 			isa = PBXGroup;
 			children = (
 				2CE4FE1A23BA319B00ECCFEC /* ShadowCardView.swift */,
+				2C02ABB123E40B61003B69F5 /* TranslateTextView.swift */,
+				2C02ABB323E42BB3003B69F5 /* BarView.swift */,
+				2C02ABB523E42CBD003B69F5 /* LabelView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -783,6 +792,7 @@
 			files = (
 				2CE7C13423B38298003E4281 /* URL+.swift in Sources */,
 				2CC8737223B5CEFE006F7BC8 /* CurrencyViewModel.swift in Sources */,
+				2C02ABB223E40B61003B69F5 /* TranslateTextView.swift in Sources */,
 				2C451B98238D4160008E64B8 /* UIViewController+UIAlertController.swift in Sources */,
 				2CE7C13223B38230003E4281 /* WeatherAPI.swift in Sources */,
 				2C451B93238D343B008E64B8 /* UIView+.swift in Sources */,
@@ -804,6 +814,7 @@
 				2C1E029923A5009D00F23E5F /* WeatherData.swift in Sources */,
 				2C0B993E239112F100F98BD1 /* Currency.swift in Sources */,
 				2CBCF3CD238F2B5C008B4206 /* ApiKeys.swift in Sources */,
+				2C02ABB423E42BB3003B69F5 /* BarView.swift in Sources */,
 				2C3ED7E9238464DF001554BC /* TabBarViewController.swift in Sources */,
 				2C703E0D23D9B29200A4CCC3 /* String+.swift in Sources */,
 				2C60F0552387CD1E00E4DE33 /* StoryboardSegues.swift in Sources */,
@@ -814,6 +825,7 @@
 				2C60F0562387CD1E00E4DE33 /* Assets.swift in Sources */,
 				2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */,
 				2CE4FE1B23BA319B00ECCFEC /* ShadowCardView.swift in Sources */,
+				2C02ABB623E42CBD003B69F5 /* LabelView.swift in Sources */,
 				2C842D1923AB5FA6005381C5 /* WeatherCell.swift in Sources */,
 				2CC8737023B5CCF2006F7BC8 /* TodayViewModel.swift in Sources */,
 				2C83370F239CF317008B3EF7 /* CurrencyAPI.swift in Sources */,

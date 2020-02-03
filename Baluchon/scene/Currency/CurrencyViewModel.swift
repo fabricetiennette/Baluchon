@@ -13,6 +13,7 @@ class CurrencyViewModel {
     var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
     var myCurrency: [String] = []
     var myValues: [Double] = []
+    var activeCurrency: Double = 0
 
     init(currencyClient: CurrencyClient = .init()) {
         self.currencyClient = currencyClient
