@@ -49,4 +49,17 @@ class TodayViewModelTests: XCTestCase {
         XCTAssertEqual(currentDay, currentDayResult)
         XCTAssertEqual(currentLongFormatDay, currentLongFormatDayResult)
     }
+
+    func testExample() {
+        // Given:
+        let latitude = 37.8267
+        let longitude = -122.4233
+
+        // When:
+        todayViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
+    }
+
+    func testUpdateWeather() {
+        todayViewModel.updateweather()
+    }
 }
