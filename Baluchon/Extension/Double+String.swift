@@ -1,5 +1,5 @@
 //
-//  Double+.swift
+//  Double+String.swift
 //  Baluchon
 //
 //  Created by Fabrice Etiennette on 07/01/2020.
@@ -13,5 +13,13 @@ extension Double {
         let multiplier = pow(10, Double(fractionDigits))
         let roundedDecimal = Darwin.round(self * multiplier) / multiplier
         return String(roundedDecimal)
+    }
+
+    var toTemperatureWithDegreeUnit: String {
+        return "\(Int(self))°"
+    }
+
+    var toTemperatureWithoutDegreeUnit: String {
+        return "\(Int(self))"
     }
 }

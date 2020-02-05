@@ -18,7 +18,7 @@ class TranslateViewController: UIViewController {
     @IBOutlet private weak var frLanguage: UILabel!
     @IBOutlet private weak var enLanguage: UILabel!
 
-    private let viewModel = TranslateViewModel()
+    var viewModel: TranslateViewModel!
     private var sourceLanguage: Language = .fr
 
     // Called when the user click on the view (outside the UITextField).

@@ -22,8 +22,8 @@ class TodayViewModel {
     private let weatherClient: WeatherClient
 
     init(
-        geolocationService: GeolocationService,
-        currencyClient: CurrencyClient,
+        geolocationService: GeolocationService = .init(),
+        currencyClient: CurrencyClient = .init(),
         weatherClient: WeatherClient = .init()
     ) {
         self.geolocationService = geolocationService
@@ -34,11 +34,15 @@ class TodayViewModel {
 
 extension TodayViewModel {
     var todayDayLabelText: String {
-        return todayDate.formatted(dateFormat: shortDateFormat).capitalized
+        return todayDate
+            .formatted(dateFormat: shortDateFormat)
+            .capitalized
     }
 
     var dateUILabelText: String {
-        return todayDate.formatted(dateFormat: longDateFormat).capitalized
+        return todayDate
+            .formatted(dateFormat: longDateFormat)
+            .capitalized
     }
 
     func updateweather() {
@@ -78,11 +82,17 @@ extension TodayViewModel {
                 let maxTemp = forcastData.first?.temperatureMax
                 else { return }
             if error == nil {
-                let temperature = "\(Int(tempForcast))°"
+                let temperature = tempForcast.toTemperatureWithDegreeUnit
                 let iconSummary = currentForcast.first?.icon.capitalized
-                let minTemperature = "\(Int(minTemp))"
-                let maxTemperature = "\(Int(maxTemp))"
-                let weather = Weather(minTemperature: minTemperature, maxTemperature: maxTemperature, temperature: temperature, iconSummary: iconSummary)
+                let minTemperature = minTemp.toTemperatureWithoutDegreeUnit
+                let maxTemperature = maxTemp.toTemperatureWithoutDegreeUnit
+                let weather = Weather(
+                    minTemperature: minTemperature,
+                    maxTemperature: maxTemperature,
+                    temperature: temperature,
+                    iconSummary: iconSummary
+                )
+
                 me.weatherHandler(weather)
             } else {
                 me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)

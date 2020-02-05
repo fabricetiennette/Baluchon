@@ -1,5 +1,5 @@
 //
-//  String+.swift
+//  String+Double.swift
 //  Baluchon
 //
 //  Created by Fabrice Etiennette on 23/01/2020.

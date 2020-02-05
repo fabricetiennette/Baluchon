@@ -12,7 +12,7 @@ import NVActivityIndicatorView
 
 class WeatherTableViewController: UITableViewController, NVActivityIndicatorViewable {
 
-    private let viewModel = WeatherViewModel()
+    var viewModel: WeatherViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

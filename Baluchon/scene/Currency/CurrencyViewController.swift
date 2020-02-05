@@ -16,7 +16,7 @@ class CurrencyViewController: UIViewController {
     @IBOutlet private weak var resultLabel: UILabel!
     @IBOutlet private weak var convertButton: UIButton!
 
-    private let viewModel = CurrencyViewModel()
+    var viewModel: CurrencyViewModel!
 
     // Called when the user click on the view (outside the UITextField).
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

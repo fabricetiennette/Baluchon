@@ -25,12 +25,11 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
     @IBOutlet private weak var dollarLabel: UILabel!
     @IBOutlet private weak var poundLabel: UILabel!
 
-    private let viewModel = TodayViewModel(geolocationService: GeolocationService(), currencyClient: CurrencyClient())
+    var viewModel: TodayViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
-        errorConfiguration()
+        configureGeoLocation()
         configureDateLabelsWithCurrentDate()
         showRate()
         configureViewModel()
@@ -55,6 +54,10 @@ class TodayTableViewController: UITableViewController, NVActivityIndicatorViewab
 }
 
 private extension TodayTableViewController {
+    func configureGeoLocation() {
+        NotificationCenter.default.addObserver(self, selector: #selector(checkNotificationStatus), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
     func configureDateLabelsWithCurrentDate() {
         dayLabel.text = viewModel.todayDayLabelText
         dateUILabel.text = viewModel.dateUILabelText
@@ -73,14 +76,6 @@ private extension TodayTableViewController {
         viewModel.updateweather()
     }
 
-    func errorConfiguration() {
-        viewModel.errorHandler = { [weak self] title, message in
-            guard let me = self else { return }
-            me.showAlert(title: title, message: message)
-            me.stopAnimating()
-        }
-    }
-
     func configureViewModel() {
         let size = CGSize(width: 50, height: 50)
         startAnimating(size, type: .ballSpinFadeLoader, color: .white, fadeInAnimation: nil)
@@ -96,6 +91,11 @@ private extension TodayTableViewController {
         viewModel.locationHandler = { [weak self] location in
             guard let me = self else { return }
             me.currentCityLabel.text = location
+        }
+        viewModel.errorHandler = { [weak self] title, message in
+            guard let me = self else { return }
+            me.showAlert(title: title, message: message)
+            me.stopAnimating()
         }
     }
 }
