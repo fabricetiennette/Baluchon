@@ -13,6 +13,21 @@ class TranslateViewModelTests: XCTestCase {
 
     var translateViewModel: TranslateViewModel!
 
+    enum ResponseError: Error {
+        case unknownError
+    }
+
+    class TranslationStub: TranslateClient {
+
+        override func getTranslatedText(
+            _ translationBody: Translate,
+            callback: @escaping (String?, Error?) -> Void
+        ) {
+            let error = ResponseError.unknownError
+            callback(nil, error)
+        }
+    }
+
     override func setUp() {
         super.setUp()
         translateViewModel = TranslateViewModel()
@@ -24,67 +39,59 @@ class TranslateViewModelTests: XCTestCase {
     }
 
     func testTranslationFr() {
+        // Given:
         let sourceLanguage: Language = .fr
         let text = "Bonjour"
-        let expect = expectation(description: "Fetching...")
-        var answer: String?
         let translationBody = Translate(source: sourceLanguage, text: text)
+        let expect = expectation(description: "Translating...")
+
+        // When:
         translateViewModel.doTranslation(translationBody: translationBody)
         translateViewModel.translatedTextHandler = { translatedText in
-                answer = translatedText
-                expect.fulfill()
+            XCTAssertEqual(translatedText, "Hello")
+            expect.fulfill()
         }
-        waitForExpectations(timeout: 5) { (error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(answer)
-            XCTAssertEqual(answer, "Hello")
-        }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 
     func testTranslationEn() {
+        // Given:
         let sourceLanguage: Language = .en
         let text = "Hello"
-        let expect = expectation(description: "Fetching...")
-        var answer: String?
+        let expect = expectation(description: "Translating in french...")
         let translationBody = Translate(source: sourceLanguage, text: text)
+
+        // When:
         translateViewModel.doTranslation(translationBody: translationBody)
         translateViewModel.translatedTextHandler = { translatedText in
-                answer = translatedText
-                expect.fulfill()
+            XCTAssertEqual(translatedText, "Bonjour")
+            expect.fulfill()
         }
-        waitForExpectations(timeout: 5) { (error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(answer)
-            XCTAssertEqual(answer, "Bonjour")
-        }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 
-    func testTextHandler() {
-        let expect = expectation(description: "Fetching...")
-        let text = "Bonjour"
-        var answer: String?
+    func testErrorHandlerInDoTranslation() {
+        // Given:
+        let translateStub = TranslationStub()
+        let viewModel = TranslateViewModel(translateClient: translateStub)
+        let sourceLanguage: Language = .en
+        let text = "Hello"
+        let translationBody = Translate(source: sourceLanguage, text: text)
+        let expect = expectation(description: "wait for error")
 
-        translateViewModel.translatedTextHandler = { translatedText in
-                answer = translatedText
-                expect.fulfill()
+        // When:
+        viewModel.errorHandler = { title, message in
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Malheureusement une erreur c'est produite")
+            expect.fulfill()
         }
-        translateViewModel.translatedTextHandler(text)
-        waitForExpectations(timeout: 2) { (error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(answer)
-            XCTAssertEqual(answer, "Bonjour")
-        }
+        viewModel.doTranslation(translationBody: translationBody)
+
+        // Then:
+        wait(for: [expect], timeout: 5)
     }
-
-    func testErrorHandler() {
-           let expect = expectation(description: "wait for it")
-           let title = "Erreur"
-
-           translateViewModel.errorHandler = { titleText, messageText in
-               XCTAssertEqual(titleText, title)
-               expect.fulfill()
-           }
-           translateViewModel.errorHandler("Erreur", "Unknown location...")
-           wait(for: [expect], timeout: 5)
-       }
 }

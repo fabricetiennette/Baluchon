@@ -52,9 +52,14 @@ extension TodayViewModel {
                 self.locationHandler(location)
                 self.geolocationService.updateWeatherForLocation(location) { (placemark, error) in
                     if error == nil, let location = placemark?.first?.location {
-                        self.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                        self.getCurrentWeather(
+                            latitude: location.coordinate.latitude,
+                            longitude: location.coordinate.longitude
+                        )
                     }
                 }
+            } else {
+                self.errorHandler(L10n.Localizable.error, L10n.Localizable.geolocationerror)
             }
         }
     }
@@ -81,20 +86,19 @@ extension TodayViewModel {
                 let minTemp = forcastData.first?.temperatureMin,
                 let maxTemp = forcastData.first?.temperatureMax
                 else { return }
-            if error == nil {
-                let temperature = tempForcast.toTemperatureWithDegreeUnit
-                let iconSummary = currentForcast.first?.icon.capitalized
-                let minTemperature = minTemp.toTemperatureWithoutDegreeUnit
-                let maxTemperature = maxTemp.toTemperatureWithoutDegreeUnit
-                let weather = Weather(
-                    minTemperature: minTemperature,
-                    maxTemperature: maxTemperature,
-                    temperature: temperature,
-                    iconSummary: iconSummary
-                )
+            let temperature = tempForcast.toTemperatureWithDegreeUnit
+            let iconSummary = currentForcast.first?.icon.capitalized
+            let minTemperature = minTemp.toTemperatureWithoutDegreeUnit
+            let maxTemperature = maxTemp.toTemperatureWithoutDegreeUnit
+            let weather = Weather(
+                minTemperature: minTemperature,
+                maxTemperature: maxTemperature,
+                temperature: temperature,
+                iconSummary: iconSummary
+            )
 
-                me.weatherHandler(weather)
-            } else {
+            me.weatherHandler(weather)
+            if error != nil {
                 me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)
             }
         }

@@ -22,11 +22,12 @@ class CurrencyViewModel {
     func getRate(callback: @escaping () -> Void) {
         currencyClient.getExchangeRate { [weak self] (myCurrency, myValues, error) in
             guard let me = self else { return }
-            me.myCurrency = myCurrency
-            me.myValues = myValues
-            callback()
             if error != nil {
                 me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
+            } else {
+                me.myCurrency = myCurrency
+                me.myValues = myValues
+                callback()
             }
         }
     }

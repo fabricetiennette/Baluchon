@@ -39,12 +39,11 @@ class GeolocationService: NSObject {
     func reverseGeocodeLocation(_ locations: CLLocation?, completionHandler: @escaping (_ placemark: [CLPlacemark]?, _ error: Error?) -> Void) {
         guard let location = locations else { return }
         CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
-            if error != nil {
-                completionHandler(nil, error)
-            } else {
-                guard let currentLocality = placemark?.first?.locality else { return }
+            if let currentLocality = placemark?.first?.locality {
                 GeolocationService.currentLocation = currentLocality
                 completionHandler(placemark, nil)
+            } else {
+                completionHandler(nil, error)
             }
         }
     }

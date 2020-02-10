@@ -17,10 +17,6 @@ struct Currently: Decodable {
     let summary: String
     let icon: String
     let temperature: Double
-    let uvIndex: Double
-    let humidity: Double
-    let windSpeed: Double
-    let visibility: Double
 }
 
 struct Daily: Decodable {
@@ -34,9 +30,5 @@ struct DayData: Decodable {
     let temperatureHigh: Double
     let temperatureLow: Double
     let time: Double
-    let precipIntensity: Double
-    let precipProbability: Double
-    let dewPoint, humidity, pressure, windSpeed: Double
     let sunriseTime, sunsetTime: Double
-    let windGust, windBearing, cloudCover, uvIndex, visibility: Double
 }

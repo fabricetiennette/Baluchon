@@ -41,35 +41,37 @@ extension WeatherViewModel {
     }
 
     var location: String {
-        while currentPlace.isEmpty {
+        if currentPlace.isEmpty {
             let currentLocation = GeolocationService.currentLocation
             return currentLocation
+        } else {
+            return currentPlace
         }
-        return currentPlace
     }
 
     func numberOfRowsInSection(in section: Int) -> Int {
-        while section == 0 {
+        if section == 0 {
             return currentForcast.count
+        } else {
+            return forcastData.count
         }
-        return forcastData.count
     }
 
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
-        while indexPath.section == 0 {
+        if indexPath.section == 0 {
             return 220
+        } else {
+            return 50
         }
-        return 50
     }
 
     func updateWeather(_ location: String) {
         geolocationService.updateWeatherForLocation(location) { (placemark, error) in
             self.currentPlace = location
-            if error == nil {
-                if let location = placemark?.first?.location {
-                    self.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                }
-            } else {
+            if let location = placemark?.first?.location {
+                self.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            }
+            if error != nil {
                 self.errorHandler(L10n.Localizable.error, L10n.Localizable.unknownlocation)
             }
         }
