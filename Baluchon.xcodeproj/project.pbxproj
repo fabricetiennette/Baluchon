@@ -53,7 +53,6 @@
 		2CD489DC23426B4B00329697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489DB23426B4B00329697 /* Assets.xcassets */; };
 		2CD489DF23426B4B00329697 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */; };
 		2CD489EA23426B4C00329697 /* BaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489E923426B4C00329697 /* BaluchonTests.swift */; };
-		2CD489F523426B4C00329697 /* BaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD489F423426B4C00329697 /* BaluchonUITests.swift */; };
 		2CD48A082342723A00329697 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD48A072342723A00329697 /* TranslateViewController.swift */; };
 		2CD5F7CD23B4A19900DC831B /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */; };
 		2CDD127323EB370F00D9192D /* TranslateClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD127223EB370F00D9192D /* TranslateClientTests.swift */; };
@@ -144,8 +143,6 @@
 		2CD489E923426B4C00329697 /* BaluchonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaluchonTests.swift; sourceTree = "<group>"; };
 		2CD489EB23426B4C00329697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD489F023426B4C00329697 /* BaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaluchonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CD489F423426B4C00329697 /* BaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaluchonUITests.swift; sourceTree = "<group>"; };
-		2CD489F623426B4C00329697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD48A072342723A00329697 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		2CDD127223EB370F00D9192D /* TranslateClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateClientTests.swift; sourceTree = "<group>"; };
@@ -332,7 +329,6 @@
 			children = (
 				2CD489CF23426B4A00329697 /* Baluchon */,
 				2CD489E823426B4C00329697 /* BaluchonTests */,
-				2CD489F323426B4C00329697 /* BaluchonUITests */,
 				2CD489CE23426B4A00329697 /* Products */,
 				B3DC3F37A9F5E4DB0E09DDF5 /* Pods */,
 				0AA01BEF33AE25878E6BCFC6 /* Frameworks */,
@@ -379,22 +375,13 @@
 			path = BaluchonTests;
 			sourceTree = "<group>";
 		};
-		2CD489F323426B4C00329697 /* BaluchonUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2CD489F423426B4C00329697 /* BaluchonUITests.swift */,
-				2CD489F623426B4C00329697 /* Info.plist */,
-			);
-			path = BaluchonUITests;
-			sourceTree = "<group>";
-		};
 		2CD48A042342706B00329697 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
 				2CEB170723F02A7E00D9796B /* Localizable.strings */,
 				2CD489D023426B4A00329697 /* AppDelegate.swift */,
 				2CD489D223426B4A00329697 /* SceneDelegate.swift */,
-				2CD489DD23426B4B00329697 /* LaunchScreen.storyboard */,
 				2CBCF3CC238F2B5C008B4206 /* ApiKeys.swift */,
 				2C0F8D2A23917ECC00AB33CE /* ApiKeys.plist */,
 			);
@@ -862,7 +849,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD489F523426B4C00329697 /* BaluchonUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

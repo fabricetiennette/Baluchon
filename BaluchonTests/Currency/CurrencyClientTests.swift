@@ -31,17 +31,21 @@ class CurrencyClientTests: XCTestCase {
         // Given:
         let GBP = 0.843862
         let USD = 1.102475
+        let expect = expectation(description: "Fetching...")
 
         // When:
         currencyClient.getExchangeRate { (currencyName, currencyRate, error) in
 
-            // Then:
             XCTAssertEqual(GBP, currencyRate.first)
             XCTAssertEqual(USD, currencyRate.last)
             XCTAssertEqual(currencyName.first, "GBP")
             XCTAssertEqual(currencyName.last, "USD")
             XCTAssertNil(error)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 
     func testCurrencyClientSuccessButNil() {
@@ -57,15 +61,18 @@ class CurrencyClientTests: XCTestCase {
         }
         let stubbingProvider = MoyaProvider<CurrencyAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         currencyClient = CurrencyClient(provider: stubbingProvider)
+        let expect = expectation(description: "Fetching...")
 
         // When:
         currencyClient.getExchangeRate { (currencyName, currencyRate, error) in
-
-            // Then:
             XCTAssertEqual(currencyName, [])
             XCTAssertEqual(currencyRate, [])
             XCTAssertNotNil(error)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 
     func testCurrencyClientFailure() {
@@ -81,19 +88,18 @@ class CurrencyClientTests: XCTestCase {
         }
         let stubbingProvider = MoyaProvider<CurrencyAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         currencyClient = CurrencyClient(provider: stubbingProvider)
+        let expect = expectation(description: "Fetching...")
 
         // When:
         currencyClient.getExchangeRate { (currencyName, currencyRate, error) in
-            let moyaError: MoyaError? = error as? MoyaError
-            let response: Response? = moyaError?.response
-            let statusCode = response?.statusCode
-
-            // Then:
             XCTAssertEqual(currencyName, [])
             XCTAssertEqual(currencyRate, [])
             XCTAssertEqual(currencyName, [])
-            XCTAssertEqual(statusCode, 401)
             XCTAssertNotNil(error)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 }

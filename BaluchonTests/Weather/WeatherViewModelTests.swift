@@ -11,6 +11,17 @@ import Moya
 import CoreLocation
 @testable import Baluchon
 
+class WeatherStub: WeatherClient {
+
+    override func getCurrentWeather(
+        latitude: Double, longitude: Double,
+        callback: @escaping ([DayData], [Currently], Error?) -> Void
+    ) {
+        let error = ResponseError.unknownError
+        callback([], [], error)
+    }
+}
+
 class WeatherViewModelTests: XCTestCase {
     private lazy var stubProvider: MoyaProvider<WeatherAPI> = {
            return .init(stubClosure: MoyaProvider.immediatelyStub)

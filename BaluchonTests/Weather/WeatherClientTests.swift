@@ -31,12 +31,12 @@ class WeatherClientTests: XCTestCase {
         //Given:
         let latitude = 37.8267
         let longitude = -122.4233
+        let expect = expectation(description: "Gettin weather")
 
         //When:
         weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (daily, currently, error) in
             let currentWeather = currently.first
 
-            // Then:
             XCTAssertEqual(currentWeather?.summary, "Ciel Dégagé")
             XCTAssertEqual(currentWeather?.icon, "clear-night")
             XCTAssertEqual(currentWeather?.temperature, 10.78)
@@ -50,7 +50,11 @@ class WeatherClientTests: XCTestCase {
             XCTAssertEqual(daily[7].temperatureMax, 14.56)
 
             XCTAssertEqual(error?.localizedDescription, nil)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 
     func testWeatherClientWhenCaseFailure() {
@@ -65,20 +69,17 @@ class WeatherClientTests: XCTestCase {
             )
         }
         let stubbingProvider = MoyaProvider<WeatherAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
-        let latitude = 37.8267
-        let longitude = -122.4233
         weatherClient = WeatherClient(provider: stubbingProvider)
+        let expect = expectation(description: "Gettin weather")
 
         // When:
-        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (_, _, error) in
-            let moyaError: MoyaError? = error as? MoyaError
-            let response: Response? = moyaError?.response
-            let statusCode = response?.statusCode
-
-            // Then:
-            XCTAssertEqual(statusCode, 401)
+        weatherClient.getCurrentWeather(latitude: 37.8267, longitude: -122.4233) { (_, _, error) in
             XCTAssertNotNil(error)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 
     func testWeatherClientWhenCaseSuccessButEndpointEmpty() {
@@ -93,21 +94,18 @@ class WeatherClientTests: XCTestCase {
             )
         }
         let stubbingProvider = MoyaProvider<WeatherAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
-        let latitude = 37.8267
-        let longitude = -122.4233
         weatherClient = WeatherClient(provider: stubbingProvider)
+        let expect = expectation(description: "Gettin weather")
 
         // When:
-        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { (daily, currently, error) in
-            let moyaError: MoyaError? = error as? MoyaError
-            let response: Response? = moyaError?.response
-            let statusCode = response?.statusCode
-
-            // Then:
+        weatherClient.getCurrentWeather(latitude: 37.8267, longitude: -122.4233) { (daily, currently, error) in
             XCTAssertNil(currently.first?.icon)
             XCTAssertNil(daily.first?.summary)
-            XCTAssertEqual(statusCode, 200)
             XCTAssertNotNil(error)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 }

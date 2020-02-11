@@ -11,6 +11,10 @@ import Moya
 import CoreLocation
 @testable import Baluchon
 
+enum ResponseError: Error {
+    case unknownError
+}
+
 class LocationStub: GeolocationService {
 
        override var location: [CLLocation]? {
@@ -18,21 +22,6 @@ class LocationStub: GeolocationService {
            set { super.location = newValue }
        }
    }
-
-enum ResponseError: Error {
-    case unknownError
-}
-
-class WeatherStub: WeatherClient {
-
-    override func getCurrentWeather(
-        latitude: Double, longitude: Double,
-        callback: @escaping ([DayData], [Currently], Error?) -> Void
-    ) {
-        let error = ResponseError.unknownError
-        callback([], [], error)
-    }
-}
 
 class GeolocationServiceStub: GeolocationService {
 

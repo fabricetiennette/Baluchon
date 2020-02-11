@@ -40,24 +40,17 @@ class TranslateClientTests: XCTestCase {
         }
         let stubbingProvider = MoyaProvider<TranslateAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         translateClient = TranslateClient(provider: stubbingProvider)
-        let sourceLanguage: Language = .en
-        let text = "Hello"
+        let translationBody = Translate(source: .en, text: "Hello")
         let expect = expectation(description: "Fetching...")
-        var answer: String?
-        let translationBody = Translate(source: sourceLanguage, text: text)
 
         // When:
         translateClient.getTranslatedText(translationBody) { (translatedText, _) in
-            answer = translatedText
+            XCTAssertNil(translatedText)
             expect.fulfill()
         }
 
         // Then:
-        waitForExpectations(timeout: 4) { (error) in
-            if error == nil {
-                XCTAssertNil(answer)
-            }
-        }
+        wait(for: [expect], timeout: 3)
     }
 
     func testTranslateClientWhenFailure() {
@@ -73,19 +66,16 @@ class TranslateClientTests: XCTestCase {
         }
         let stubbingProvider = MoyaProvider<TranslateAPI>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         translateClient = TranslateClient(provider: stubbingProvider)
-        let sourceLanguage: Language = .en
-        let text = "Hello"
-        let translationBody = Translate(source: sourceLanguage, text: text)
+        let translationBody = Translate(source: .en, text: "Hello")
+        let expect = expectation(description: "Fetching...")
 
         // When:
         translateClient.getTranslatedText(translationBody) { (_, error) in
-            let moyaError: MoyaError? = error as? MoyaError
-            let response: Response? = moyaError?.response
-            let statusCode = response?.statusCode
-
-            // Then:
-            XCTAssertEqual(statusCode, 401)
             XCTAssertNotNil(error)
+            expect.fulfill()
         }
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 }
