@@ -136,4 +136,62 @@ class WeatherViewModelTests: XCTestCase {
         // Then:
         wait(for: [expect], timeout: 5)
     }
+
+    func testNumberOfRowInSectionWhenSectionIsZero() {
+        // Given:
+        let sectionZero = 0
+        var newNumberOfSection: Int = 0
+        let expect = expectation(description: "wait for it")
+
+        // When:
+        weatherViewModel.getCurrentWeather(latitude: 37.8267, longitude: -122.4233)
+        newNumberOfSection = weatherViewModel.numberOfRowsInSection(in: sectionZero)
+        XCTAssertEqual(newNumberOfSection, 1)
+        expect.fulfill()
+
+        // Then:
+        wait(for: [expect], timeout: 2)
+    }
+
+    func testNumberOfRowInSectionWhenSectionIsTwo() {
+        // Given:
+        let sectionTwo = 1
+        var newNumberOfSection: Int = 0
+        let expect = expectation(description: "wait for it")
+
+        // When:
+        weatherViewModel.getCurrentWeather(latitude: 37.8267, longitude: -122.4233)
+        newNumberOfSection = weatherViewModel.numberOfRowsInSection(in: sectionTwo)
+        XCTAssertEqual(newNumberOfSection, 8)
+        expect.fulfill()
+
+        // Then:
+        wait(for: [expect], timeout: 2)
+    }
+
+    func testHightForRowWithIndexpathSectionZero() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        var hightForRow: CGFloat = 0
+        let expect = expectation(description: "wait for it")
+
+        weatherViewModel.getCurrentWeather(latitude: 37.8267, longitude: -122.4233)
+        hightForRow = weatherViewModel.heightForRowAt(at: indexPath)
+        XCTAssertEqual(hightForRow, 220)
+        expect.fulfill()
+
+        wait(for: [expect], timeout: 3)
+    }
+
+    func testHightForRowWithIndexpathSectionNotZero() {
+        let indexPath = IndexPath(row: 1, section: 1)
+        var hightForRow: CGFloat = 0
+        let expect = expectation(description: "wait for it")
+
+        weatherViewModel.getCurrentWeather(latitude: 37.8267, longitude: -122.4233)
+        hightForRow = weatherViewModel.heightForRowAt(at: indexPath)
+        XCTAssertEqual(hightForRow, 50)
+        expect.fulfill()
+
+        wait(for: [expect], timeout: 3)
+    }
 }

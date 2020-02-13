@@ -25,9 +25,7 @@ class GeolocationService: NSObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         center.requestAuthorization(options: [.alert, .sound]) { granted, error in
-            if error != nil, granted == true {
-                print("permission given")
-            }
+            if error != nil, granted == true {}
         }
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()

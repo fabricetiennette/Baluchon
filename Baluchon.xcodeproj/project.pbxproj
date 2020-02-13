@@ -67,18 +67,10 @@
 		2CEB170523F02A7E00D9796B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CEB170723F02A7E00D9796B /* Localizable.strings */; };
 		2CFA7DA323833234002BB0B6 /* Today.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CFA7DA223833234002BB0B6 /* Today.storyboard */; };
 		43EBBB6E5FD8CFC980501B95 /* Pods_BaluchonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3FBDF49E002C2369DD79D9 /* Pods_BaluchonTests.framework */; };
-		5C65191A8FD68426EC525A68 /* Pods_Baluchon_BaluchonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F317EBCC8C7AB35A1B948F6F /* Pods_Baluchon_BaluchonUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		2CD489E623426B4C00329697 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2CD489C523426B4A00329697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CD489CC23426B4A00329697;
-			remoteInfo = Baluchon;
-		};
-		2CD489F123426B4C00329697 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2CD489C523426B4A00329697 /* Project object */;
 			proxyType = 1;
@@ -142,7 +134,6 @@
 		2CD489E523426B4C00329697 /* BaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaluchonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD489E923426B4C00329697 /* BaluchonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaluchonTests.swift; sourceTree = "<group>"; };
 		2CD489EB23426B4C00329697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CD489F023426B4C00329697 /* BaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaluchonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD48A072342723A00329697 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		2CD5F7CC23B4A19900DC831B /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		2CDD127223EB370F00D9192D /* TranslateClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateClientTests.swift; sourceTree = "<group>"; };
@@ -178,14 +169,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43EBBB6E5FD8CFC980501B95 /* Pods_BaluchonTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CD489ED23426B4C00329697 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C65191A8FD68426EC525A68 /* Pods_Baluchon_BaluchonUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +323,6 @@
 			children = (
 				2CD489CD23426B4A00329697 /* Baluchon.app */,
 				2CD489E523426B4C00329697 /* BaluchonTests.xctest */,
-				2CD489F023426B4C00329697 /* BaluchonUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -545,26 +527,6 @@
 			productReference = 2CD489E523426B4C00329697 /* BaluchonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2CD489EF23426B4C00329697 /* BaluchonUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2CD489FF23426B4C00329697 /* Build configuration list for PBXNativeTarget "BaluchonUITests" */;
-			buildPhases = (
-				424F1972CC06753F1CD5FAFA /* [CP] Check Pods Manifest.lock */,
-				2CD489EC23426B4C00329697 /* Sources */,
-				2CD489ED23426B4C00329697 /* Frameworks */,
-				2CD489EE23426B4C00329697 /* Resources */,
-				4920DBD889DFC2ACC1B41F1C /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2CD489F223426B4C00329697 /* PBXTargetDependency */,
-			);
-			name = BaluchonUITests;
-			productName = BaluchonUITests;
-			productReference = 2CD489F023426B4C00329697 /* BaluchonUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -579,10 +541,6 @@
 						CreatedOnToolsVersion = 11.0;
 					};
 					2CD489E423426B4C00329697 = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = 2CD489CC23426B4A00329697;
-					};
-					2CD489EF23426B4C00329697 = {
 						CreatedOnToolsVersion = 11.0;
 						TestTargetID = 2CD489CC23426B4A00329697;
 					};
@@ -604,7 +562,6 @@
 			targets = (
 				2CD489CC23426B4A00329697 /* Baluchon */,
 				2CD489E423426B4C00329697 /* BaluchonTests */,
-				2CD489EF23426B4C00329697 /* BaluchonUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -627,13 +584,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2CD489E323426B4C00329697 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CD489EE23426B4C00329697 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -694,45 +644,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Baluchon/Pods-Baluchon-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		424F1972CC06753F1CD5FAFA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Baluchon-BaluchonUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4920DBD889DFC2ACC1B41F1C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Baluchon-BaluchonUITests/Pods-Baluchon-BaluchonUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		640BA5126ADA177B29CA0A09 /* [CP] Check Pods Manifest.lock */ = {
@@ -845,13 +756,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CD489EC23426B4C00329697 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -859,11 +763,6 @@
 			isa = PBXTargetDependency;
 			target = 2CD489CC23426B4A00329697 /* Baluchon */;
 			targetProxy = 2CD489E623426B4C00329697 /* PBXContainerItemProxy */;
-		};
-		2CD489F223426B4C00329697 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2CD489CC23426B4A00329697 /* Baluchon */;
-			targetProxy = 2CD489F123426B4C00329697 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1097,48 +996,6 @@
 			};
 			name = Release;
 		};
-		2CD48A0023426B4C00329697 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0354F4D790EB49D0ABE061AE /* Pods-Baluchon-BaluchonUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B27HT7JX8Q;
-				INFOPLIST_FILE = BaluchonUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.fabricetiennette.BaluchonUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Baluchon;
-			};
-			name = Debug;
-		};
-		2CD48A0123426B4C00329697 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20D01A2BC4CB80522FE9A06D /* Pods-Baluchon-BaluchonUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B27HT7JX8Q;
-				INFOPLIST_FILE = BaluchonUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.fabricetiennette.BaluchonUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Baluchon;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1165,15 +1022,6 @@
 			buildConfigurations = (
 				2CD489FD23426B4C00329697 /* Debug */,
 				2CD489FE23426B4C00329697 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2CD489FF23426B4C00329697 /* Build configuration list for PBXNativeTarget "BaluchonUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2CD48A0023426B4C00329697 /* Debug */,
-				2CD48A0123426B4C00329697 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
