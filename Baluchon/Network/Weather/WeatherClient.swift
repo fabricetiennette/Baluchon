@@ -7,28 +7,49 @@
 //
 
 import Foundation
-import Moya
 
 class WeatherClient {
-    private let provider: MoyaProvider<WeatherAPI>
 
-    init(provider: MoyaProvider<WeatherAPI> = .init()) {
-        self.provider = provider
+    private var task: URLSessionDataTask?
+    private var weatherSession: URLSession
+    private let weatherKey = valueForAPIKey(named: "openWeatherApiKey")
+
+    init(weatherSession: URLSession = URLSession(configuration: .default)) {
+        self.weatherSession = weatherSession
     }
 
-    func getCurrentWeather(latitude: Double, longitude: Double, callback: @escaping (_ forecastArray: [DayData], _ currentArray: [Currently], _ error: Error?) -> Void) {
-        provider.request(.weather(Weather(latitude: latitude, longitude: longitude))) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let weather = try response.map(WeatherResponse.self)
-                    callback(weather.daily.data, [weather.currently], nil)
-                } catch {
-                    callback([], [], error)
+    func getWeather(
+        latitude: Double,
+        longitude: Double,
+        callback: @escaping (Result <WeatherData, Error>) -> Void
+    ) {
+
+        let path = "http://api.openweathermap.org/data/2.5/find?"
+        let param = "lat=\(latitude)&lon=\(longitude)&cnt=1&units=metric&lang=fr&appid="
+        guard let weatherUrl = URL(string: "\(path)\(param)\(weatherKey)") else { return }
+
+        task?.cancel()
+        task = weatherSession.dataTask(with: weatherUrl) { (data, response, error) in
+            DispatchQueue.main.async {
+
+                guard let data = data, error == nil else {
+                    callback(.failure(NetWorkError.noData))
+                    return
                 }
-            case .failure(let error):
-                callback([], [], error)
+
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    callback(.failure(NetWorkError.badUrl))
+                    return
+                }
+
+                do {
+                    let weather = try JSONDecoder().decode(WeatherData.self, from: data)
+                    callback(.success(weather))
+                } catch {
+                    callback(.failure(NetWorkError.jsonError))
+                }
             }
         }
+        task?.resume()
     }
 }

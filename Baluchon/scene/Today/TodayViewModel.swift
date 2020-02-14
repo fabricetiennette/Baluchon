@@ -12,7 +12,7 @@ class TodayViewModel {
     var currencyValues: [Double] = []
     var rateHandler: (_ poundLabelText: String?, _ dollarLabelText: String?) -> Void = { _, _ in }
     var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
-    var weatherHandler: (_ weather: Weather) -> Void = { _  in }
+    var weatherHandler: (_ weather: WeatherDetails) -> Void = { _  in }
     var locationHandler: (_ location: String?) -> Void = { _  in }
     private let todayDate = Date()
     private let shortDateFormat = "EEEE"
@@ -65,51 +65,45 @@ extension TodayViewModel {
     }
 
     func getRate() {
-        currencyClient.getExchangeRate { [weak self] (_, currencyValues, error) in
+        currencyClient.getExchangeRate { [weak self] result in
             guard let me = self else { return }
-            me.currencyValues = currencyValues
-            let pound = currencyValues.first
-            let poundLabelText = pound?.roundToDecimalAndConvertToString(2)
-            let dollar = currencyValues.last
-            let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
-            me.rateHandler(poundLabelText, dollarLabelText)
-            if error != nil {
+            switch result {
+            case .success(let currency):
+                for (_, value) in Array(currency.rates.sorted(by: {$0.0 < $1.0})) {
+                    me.currencyValues.append(value)
+                }
+                let pound = me.currencyValues.first
+                let poundLabelText = pound?.roundToDecimalAndConvertToString(2)
+                let dollar = me.currencyValues.last
+                let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
+                me.rateHandler(poundLabelText, dollarLabelText)
+            case .failure:
                 me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
             }
         }
     }
 
     func getCurrentWeather(latitude: Double, longitude: Double) {
-        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self] (forcastData, currentForcast, error) in
-            guard let me = self,
-                let tempForcast = currentForcast.first?.temperature,
-                let minTemp = forcastData.first?.temperatureMin,
-                let maxTemp = forcastData.first?.temperatureMax
-                else { return }
-            let temperature = tempForcast.toTemperatureWithDegreeUnit
-            let iconSummary = currentForcast.first?.icon.capitalized
-            let minTemperature = minTemp.toTemperatureWithoutDegreeUnit
-            let maxTemperature = maxTemp.toTemperatureWithoutDegreeUnit
-            let weather = Weather(
-                minTemperature: minTemperature,
-                maxTemperature: maxTemperature,
-                temperature: temperature,
-                iconSummary: iconSummary
-            )
-
-            me.weatherHandler(weather)
-            if error != nil {
+        weatherClient.getWeather(latitude: latitude, longitude: longitude) { [weak self] result in
+            guard let me = self else { return }
+            switch result {
+            case .success(let weatherRest):
+                let first = weatherRest.list.first
+                guard let temperature = first?.main.temp.toTemperatureWithDegreeUnit,
+                    let summary = first?.weather.first?.weatherDescription?.capitalized,
+                    let minTemperature = first?.main.tempMin.toTemperatureWithoutDegreeUnit,
+                    let maxTemperature = first?.main.tempMax.toTemperatureWithoutDegreeUnit
+                    else { return }
+                let weatherDetails = WeatherDetails(
+                    minTemperature: minTemperature,
+                    maxTemperature: maxTemperature,
+                    temperature: temperature,
+                    iconSummary: summary
+                )
+                me.weatherHandler(weatherDetails)
+            case .failure:
                 me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)
             }
         }
-    }
-}
-
-extension TodayViewModel {
-    struct Weather {
-        let minTemperature: String
-        let maxTemperature: String
-        let temperature: String
-        let iconSummary: String?
     }
 }

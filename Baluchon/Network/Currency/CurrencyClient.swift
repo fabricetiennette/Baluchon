@@ -7,35 +7,46 @@
 //
 
 import Foundation
-import Moya
 
 class CurrencyClient {
 
-    let provider: MoyaProvider<CurrencyAPI>
+    private var task: URLSessionDataTask?
+    private var currencySession: URLSession
+    private let currencyKey = valueForAPIKey(named: "fixerApiKey")
 
-    init(provider: MoyaProvider<CurrencyAPI> = .init()) {
-        self.provider = provider
+    init(currencySession: URLSession = URLSession(configuration: .default)) {
+        self.currencySession = currencySession
     }
 
-    func getExchangeRate(callback: @escaping ( _ myCurrency: [String], _ myValues: [Double], _ error: Error?) -> Void) {
-        provider.request(.getRattes) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let rateResponse = try response.map(Currency.self)
-                    var myCurrency = [String]()
-                    var myValues = [Double]()
-                    for (key, value) in Array(rateResponse.rates.sorted(by: { $0.0 < $1.0})) {
-                        myCurrency.append(key)
-                        myValues.append(value)
-                    }
-                    callback(myCurrency, myValues, nil)
-                } catch {
-                    callback([], [], error)
+    func getExchangeRate(callback: @escaping (Result<Currency, Error>) -> Void) {
+
+        let baseURL = "http://data.fixer.io"
+        let path = "/api/latest?"
+        let param = "access_key=\(currencyKey)&base=EUR&symbols=GBP,USD"
+        guard let currencyURL = URL(string: "\(baseURL)\(path)\(param)") else { return }
+
+        task?.cancel()
+        task = currencySession.dataTask(with: currencyURL) { (data, response, error) in
+            DispatchQueue.main.async {
+
+                guard let data = data, error == nil else {
+                    callback(.failure(NetWorkError.noData))
+                    return
                 }
-            case .failure(let error):
-                callback([], [], error)
+
+                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                    callback(.failure(NetWorkError.badUrl))
+                    return
+                }
+
+                do {
+                    let currencyResponse = try JSONDecoder().decode(Currency.self, from: data)
+                    callback(.success(currencyResponse))
+                } catch {
+                    callback(.failure(NetWorkError.jsonError))
+                }
             }
         }
+        task?.resume()
     }
 }

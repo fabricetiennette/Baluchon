@@ -6,7 +6,7 @@
 //  Copyright © 2019 Fabrice Etiennette. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class WeatherViewModel {
 
@@ -14,17 +14,8 @@ class WeatherViewModel {
     private let geolocationService: GeolocationService
 
     private var currentPlace = ""
-    var backgroundViewHandler: (_ currentIcon: String) -> Void = {_ in }
-    var reloadHandler: () -> Void = {}
     var errorHandler: (_ title: String, _ message: String) -> Void = { _, _ in }
-    var forcastData: [DayData] = []
-    var currentForcast: [Currently] = [] {
-        didSet {
-            if let currentIcon = currentForcast.first?.icon {
-                backgroundViewHandler(currentIcon)
-            }
-        }
-    }
+    var weatherHandler: (_ weather: WeatherDetails) -> Void = { _  in }
 
     init(
         geolocationService: GeolocationService = .init(),
@@ -36,31 +27,12 @@ class WeatherViewModel {
 }
 
 extension WeatherViewModel {
-    var numberOfSections: Int {
-        2
-    }
-
     var location: String {
         if currentPlace.isEmpty {
             let currentLocation = GeolocationService.currentLocation
             return currentLocation
-        } else {
-            return currentPlace
         }
-    }
-
-    func numberOfRowsInSection(in section: Int) -> Int {
-        while section == 0 {
-            return currentForcast.count
-        }
-        return forcastData.count
-    }
-
-    func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
-        while indexPath.section == 0 {
-            return 220
-        }
-        return 50
+        return currentPlace
     }
 
     func updateWeather(_ location: String) {
@@ -76,14 +48,24 @@ extension WeatherViewModel {
     }
 
     func getCurrentWeather(latitude: Double, longitude: Double) {
-        weatherClient.getCurrentWeather(latitude: latitude, longitude: longitude) { [weak self] (forcastData, currentForcast, error) in
+        weatherClient.getWeather(latitude: latitude, longitude: longitude) { [weak self] result in
             guard let me = self else { return }
-            me.forcastData = forcastData
-            me.currentForcast = currentForcast
-            DispatchQueue.main.async {
-                me.reloadHandler()
-            }
-            if error != nil {
+            switch result {
+            case .success(let weatherRest):
+               let first = weatherRest.list.first
+               guard let temperature = first?.main.temp.toTemperatureWithDegreeUnit,
+                   let summary = first?.weather.first?.weatherDescription?.capitalized,
+                   let minTemperature = first?.main.tempMin.toTemperatureWithoutDegreeUnit,
+                   let maxTemperature = first?.main.tempMax.toTemperatureWithoutDegreeUnit
+                   else { return }
+               let weatherDetails = WeatherDetails(
+                   minTemperature: minTemperature,
+                   maxTemperature: maxTemperature,
+                   temperature: temperature,
+                   iconSummary: summary
+               )
+               me.weatherHandler(weatherDetails)
+            case .failure:
                 me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)
             }
         }

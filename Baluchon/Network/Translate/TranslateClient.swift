@@ -7,32 +7,57 @@
 //
 
 import Foundation
-import Moya
 
 class TranslateClient {
 
-    let provider: MoyaProvider<TranslateAPI>
+    private var task: URLSessionDataTask?
+    private var translateSession: URLSession
+    private let translateKey = valueForAPIKey(named: "googleApiKey")
 
-    init(provider: MoyaProvider<TranslateAPI> = .init()) {
-        self.provider = provider
+    init(translateSession: URLSession = URLSession(configuration: .default)) {
+        self.translateSession = translateSession
     }
 
-    func getTranslatedText(_ translationBody: Translate, callback: @escaping ( _ translatedText: String?, _ error: Error?) -> Void) {
-        provider.request(.translate(translationBody)) { result in
+    func getTranslatedText(
+        _ translationBody: Translate,
+        callback: @escaping (Result <TranslationText, Error>) -> Void
+    ) {
 
-          switch result {
-          case .success(let response):
-            do {
-                let translateResponse = try response.map(TranslateResponse.self)
-                let translateData = translateResponse.data
-                let translationText = translateData.translations[0]
-                callback(translationText.translatedText, nil)
-            } catch {
-                callback(nil, error)
+        guard let text = translationBody.text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        let baseURL = "https://translation.googleapis.com"
+        let path = "/language/translate/v2?"
+        let format = "&format=\(translationBody.format)"
+        let key = "&key=\(translateKey)"
+        let target = "&target=\(translationBody.target.rawValue)"
+        let source = "&source=\(translationBody.source.rawValue)"
+        let param = "q=\(text)\(source)\(target)\(format)\(key)"
+        guard let translateURL = URL(string: "\(baseURL)\(path)\(param)") else { return }
+
+        task?.cancel()
+        task = translateSession.dataTask(with: translateURL) { (data, response, error) in
+            DispatchQueue.main.async {
+
+                guard let data = data, error == nil else {
+                    callback(.failure(NetWorkError.noData))
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                    callback(.failure(NetWorkError.badUrl))
+                    return
+                }
+
+                do {
+                    let translateRest = try JSONDecoder().decode(TranslateResponse.self, from: data)
+                    let translateData = translateRest.data
+                    let translationText = translateData.translations[0]
+                    callback(.success(translationText))
+                } catch {
+                    callback(.failure(NetWorkError.jsonError))
+                }
             }
-          case .failure (let error):
-            callback(nil, error)
-          }
         }
+        task?.resume()
     }
 }

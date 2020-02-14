@@ -19,7 +19,7 @@ class TabBarController: UITabBarController {
             if let todayVC = firstVC as? TodayTableViewController {
                 todayVC.viewModel = TodayViewModel()
             } else if let translateVC = firstVC as? TranslateViewController {                 translateVC.viewModel = TranslateViewModel()
-            } else if let weatherTVC = firstVC as? WeatherTableViewController {
+            } else if let weatherTVC = firstVC as? WeatherViewController {
                 weatherTVC.viewModel = WeatherViewModel()
             } else if let currencyVC = firstVC as? CurrencyViewController {
                 currencyVC.viewModel = CurrencyViewModel()

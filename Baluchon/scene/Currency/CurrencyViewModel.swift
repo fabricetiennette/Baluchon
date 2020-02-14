@@ -20,14 +20,17 @@ class CurrencyViewModel {
     }
 
     func getRate(callback: @escaping () -> Void) {
-        currencyClient.getExchangeRate { [weak self] (myCurrency, myValues, error) in
+        currencyClient.getExchangeRate { [weak self] result in
             guard let me = self else { return }
-            if error != nil {
-                me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
-            } else {
-                me.myCurrency = myCurrency
-                me.myValues = myValues
+            switch result {
+            case .success(let currency):
+                for (key, value) in Array(currency.rates.sorted(by: {$0.0 < $1.0})) {
+                    me.myCurrency.append(key)
+                    me.myValues.append(value)
+                }
                 callback()
+            case .failure:
+                me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
             }
         }
     }

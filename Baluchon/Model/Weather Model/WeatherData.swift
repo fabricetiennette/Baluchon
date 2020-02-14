@@ -8,27 +8,30 @@
 
 import Foundation
 
-struct WeatherResponse: Decodable {
-    let currently: Currently
-    let daily: Daily
+struct WeatherData: Decodable {
+    let list: [List]
 }
 
-struct Currently: Decodable {
-    let summary: String
-    let icon: String
-    let temperature: Double
+struct List: Decodable {
+    let weather: [Weather]
+    let main: Main
 }
 
-struct Daily: Decodable {
-    let data: [DayData]
+struct Main: Decodable {
+    let temp, tempMin, tempMax: Double
+
+    enum CodingKeys: String, CodingKey {
+        case tempMin = "temp_min"
+        case tempMax = "temp_max"
+        case temp
+    }
 }
 
-struct DayData: Decodable {
-    let icon: String
-    let summary: String
-    let temperatureMax, temperatureMin: Double
-    let temperatureHigh: Double
-    let temperatureLow: Double
-    let time: Double
-    let sunriseTime, sunsetTime: Double
+struct Weather: Decodable {
+    let weatherDescription, icon: String?
+
+    enum CodingKeys: String, CodingKey {
+        case weatherDescription = "description"
+        case icon
+    }
 }

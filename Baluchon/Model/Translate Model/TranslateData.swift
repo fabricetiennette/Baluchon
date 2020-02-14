@@ -17,5 +17,5 @@ struct TranslationData: Decodable {
 }
 
 struct TranslationText: Decodable {
-    let translatedText: String?
+    let translatedText: String
 }

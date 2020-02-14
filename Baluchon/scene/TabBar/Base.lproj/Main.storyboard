@@ -14,7 +14,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbj-pV-X96" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="532" y="553"/>
+            <point key="canvasLocation" x="284" y="551"/>
         </scene>
         <!--weather-->
         <scene sceneID="Ehz-QH-jox">
@@ -24,7 +24,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXy-hB-Qf6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="552"/>
+            <point key="canvasLocation" x="514" y="551"/>
         </scene>
         <!--Currency-->
         <scene sceneID="Oly-pE-AZb">
@@ -34,7 +34,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IpQ-eF-Ktd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="283" y="551"/>
+            <point key="canvasLocation" x="733" y="551"/>
         </scene>
         <!--Today-->
         <scene sceneID="7xD-jg-Y6h">

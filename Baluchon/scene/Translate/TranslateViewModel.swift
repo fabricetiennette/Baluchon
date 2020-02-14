@@ -18,13 +18,13 @@ class TranslateViewModel {
     }
 
     func doTranslation(translationBody: Translate) {
-        translateClient.getTranslatedText(translationBody) { (translatedText, error) in
-            if error != nil {
+        translateClient.getTranslatedText(translationBody) { result in
+            switch result {
+            case .success(let text):
+                self.translatedTextHandler(text.translatedText)
+            case .failure:
                 self.errorHandler(L10n.Localizable.error, L10n.Localizable.errorfound)
-            } else {
-                self.translatedTextHandler(translatedText)
             }
         }
     }
-
 }
