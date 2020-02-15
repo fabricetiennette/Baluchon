@@ -17,17 +17,6 @@ class TranslateViewModelTests: XCTestCase {
         case unknownError
     }
 
-    class TranslationStub: TranslateClient {
-
-        override func getTranslatedText(
-            _ translationBody: Translate,
-            callback: @escaping (String?, Error?) -> Void
-        ) {
-            let error = ResponseError.unknownError
-            callback(nil, error)
-        }
-    }
-
     override func setUp() {
         super.setUp()
         translateViewModel = TranslateViewModel()
@@ -72,26 +61,5 @@ class TranslateViewModelTests: XCTestCase {
 
         // Then:
         wait(for: [expect], timeout: 3)
-    }
-
-    func testErrorHandlerInDoTranslation() {
-        // Given:
-        let translateStub = TranslationStub()
-        let viewModel = TranslateViewModel(translateClient: translateStub)
-        let sourceLanguage: Language = .en
-        let text = "Hello"
-        let translationBody = Translate(source: sourceLanguage, text: text)
-        let expect = expectation(description: "wait for error")
-
-        // When:
-        viewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, "Erreur")
-            XCTAssertEqual(message, "Malheureusement une erreur c'est produite")
-            expect.fulfill()
-        }
-        viewModel.doTranslation(translationBody: translationBody)
-
-        // Then:
-        wait(for: [expect], timeout: 5)
     }
 }

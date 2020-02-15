@@ -9,14 +9,6 @@
 import XCTest
 @testable import Baluchon
 
-class CurrencyClientStub: CurrencyClient {
-
-    override func getExchangeRate(callback: @escaping ([String], [Double], Error?) -> Void) {
-        let error = ResponseError.unknownError
-        callback([], [], error)
-    }
-}
-
 class CurrencyViewModelTests: XCTestCase {
 
     var currencyViewModel: CurrencyViewModel!
@@ -53,8 +45,7 @@ class CurrencyViewModelTests: XCTestCase {
 
     func testErrorHandler() {
         // Given:
-        let currencyStub = CurrencyClientStub()
-        let currencyViewModel = CurrencyViewModel(currencyClient: currencyStub)
+        let currencyViewModel = CurrencyViewModel()
         let expect = expectation(description: "waiting for error...")
 
         // When:
