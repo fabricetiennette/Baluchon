@@ -1,4 +1,4 @@
-// swiftlint:disable closure_parameter_position type_body_length
+// swiftlint:disable closure_parameter_position
 //
 //  BaluchonUITests.swift
 //  BaluchonUITests
@@ -40,19 +40,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testTabBar() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Translate"].tap()
         app.tabBars.buttons["Today"].tap()
         app.tabBars.buttons["Weather"].tap()
@@ -60,38 +47,12 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testTranslateError() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Translate"].tap()
         app.buttons["Traduire"].tap()
         app.alerts["Erreur"].buttons["OK"].tap()
     }
 
     func testTranslateFrToEn() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Translate"].tap()
         let toTranslate = app.textViews["ToTranslate"]
         toTranslate.tap()
@@ -101,19 +62,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testTranslateEnToFr() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Translate"].tap()
         let exchangeButton = app.buttons["repeat"]
         exchangeButton.tap()
@@ -125,19 +73,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testWeatherSearch() {
-       addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Weather"].tap()
         let searchBar = app.searchFields["Recherche..."]
         sleep(1)
@@ -147,19 +82,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testTranslateTouchBegan() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Translate"].tap()
         let toTranslate = app.textViews["ToTranslate"]
         toTranslate.tap()
@@ -170,19 +92,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testCurrencyTouchesBegan() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Currency"].tap()
         let textField = app.textFields["EUR"]
         sleep(1)
@@ -194,19 +103,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testCurrencyForEurToGBP() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Currency"].tap()
         app.pickerWheels["GBP"].swipeUp()
         app.pickerWheels["USD"].swipeDown()
@@ -220,37 +116,11 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testCurrencyConvertWithMissingText() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Currency"].tap()
         app.buttons["Conversions"].tap()
     }
 
     func testCurrencyDecimal() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Currency"].tap()
         app.pickerWheels["GBP"].swipeUp()
         let textField = app.textFields["EUR"]
@@ -261,19 +131,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testCurrencyDecimalPoint() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Currency"].tap()
         app.pickerWheels["GBP"].swipeUp()
         let textField = app.textFields["EUR"]
@@ -284,19 +141,6 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testAppBackground() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.tap()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.tap()
-            }
-            return true
-        }
         app.tabBars.buttons["Currency"].tap()
         app.pickerWheels["GBP"].swipeUp()
         let textField = app.textFields["EUR"]
@@ -306,7 +150,7 @@ class BaluchonUITests: XCTestCase {
         app.buttons["Conversions en USD"].tap()
         app.tabBars.buttons["Weather"].tap()
         XCUIDevice.shared.press(XCUIDevice.Button.home)
-        sleep(10)
+        sleep(3)
         app.launch()
         app.tabBars.buttons["Currency"].tap()
     }
