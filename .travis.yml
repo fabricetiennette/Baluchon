@@ -1,10 +1,6 @@
 language: swift
-osx_image: xcode11.2
-xcode_workspace: Baluchon.xcworkspace
-xcode_scheme: Baluchon
-xcode_destination: platform=iOS Simulator,OS=13.2.2,name=iPhone 8
-before_install:
-  - xcrun simctl list 
-  - pod repo update
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -J 'Baluchon'
+osx_image: xcode11.3
+
+jobs:
+  include:
+    - script: xcodebuild clean build test -workspace Baluchon.xcworkspace -scheme Baluchon -destination "platform=iOS Simulator,name=iPhone 11,OS=13.3" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
