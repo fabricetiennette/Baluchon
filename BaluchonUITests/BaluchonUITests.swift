@@ -18,7 +18,7 @@ class BaluchonUITests: XCTestCase {
         XCUIApplication().launch()
         addUIInterruptionMonitor(withDescription: "System Dialog") { (alert) -> Bool in
           // Tap "Allow" button
-          alert.buttons["Allow"].tap()
+          alert.buttons["Allow While Using App"].tap()
           return true
         }
         // Need to interact with App
