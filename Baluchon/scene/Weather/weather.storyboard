@@ -94,7 +94,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" placeholder="Recherche..." translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-dc-eQb">
+                            <searchBar contentMode="redraw" text="" placeholder="Recherche..." translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-dc-eQb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes"/>

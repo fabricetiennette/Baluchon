@@ -1,4 +1,3 @@
-// swiftlint:disable closure_parameter_position
 //
 //  BaluchonUITests.swift
 //  BaluchonUITests
@@ -17,26 +16,17 @@ class BaluchonUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         XCUIApplication().launch()
+        addUIInterruptionMonitor(withDescription: "System Dialog") { (alert) -> Bool in
+          // Tap "Allow" button
+          alert.buttons["Allow"].tap()
+          return true
+        }
+        // Need to interact with App
+        app.tap()
     }
 
     override func tearDown() {
         super.tearDown()
-    }
-
-    func testRequestGeoLocationAndNotification() {
-        addUIInterruptionMonitor(withDescription: "System Dialog") {
-            (alert) -> Bool in
-            let button = alert.buttons["Allow Once"]
-            if button.exists {
-                button.forceTapElement()
-            }
-
-            let okButton = alert.buttons["OK"]
-            if okButton.exists {
-                okButton.forceTapElement()
-            }
-            return true
-        }
     }
 
     func testTabBar() {
@@ -48,7 +38,8 @@ class BaluchonUITests: XCTestCase {
 
     func testTranslateError() {
         app.tabBars.buttons["Translate"].forceTapElement()
-        app.buttons["Traduire"].forceTapElement()
+        let button = app.buttons.element(matching: .button, identifier: "Traduire")
+        button.forceTapElement()
         app.alerts["Erreur"].buttons["OK"].forceTapElement()
     }
 
@@ -57,24 +48,26 @@ class BaluchonUITests: XCTestCase {
         let toTranslate = app.textViews["ToTranslate"]
         toTranslate.forceTapElement()
         toTranslate.typeText("Bonjour")
-        app.buttons["Traduire"].forceTapElement()
-        XCTAssertEqual(app.staticTexts.element(matching: .any, identifier: "TextResultLabel").label, "Hello")
+        let button = app.buttons.element(matching: .button, identifier: "Traduire")
+        button.forceTapElement()
+        XCTAssertEqual(app.staticTexts["TextResultLabel"].label, "Hello")
     }
 
     func testTranslateEnToFr() {
         app.tabBars.buttons["Translate"].forceTapElement()
-        let exchangeButton = app.buttons["repeat"]
-        exchangeButton.forceTapElement()
+        let button = app.buttons.element(matching: .button, identifier: "exchangeLang")
+        button.forceTapElement()
         let toTranslate = app.textViews["ToTranslate"]
         toTranslate.forceTapElement()
         toTranslate.typeText("Hello")
-        app.buttons["Traduire"].forceTapElement()
-        XCTAssertEqual(app.staticTexts.element(matching: .any, identifier: "TextResultLabel").label, "Bonjour")
+        let buttonT = app.buttons.element(matching: .button, identifier: "Traduire")
+        buttonT.forceTapElement()
+        XCTAssertEqual(app.staticTexts["TextResultLabel"].label, "Bonjour")
     }
 
     func testWeatherSearch() {
         app.tabBars.buttons["Weather"].forceTapElement()
-        let searchBar = app.searchFields["Recherche..."]
+        let searchBar = app.searchFields["Recherche..."].firstMatch
         sleep(1)
         searchBar.forceTapElement()
         searchBar.typeText("Paris")
@@ -94,7 +87,6 @@ class BaluchonUITests: XCTestCase {
     func testCurrencyTouchesBegan() {
         app.tabBars.buttons["Currency"].forceTapElement()
         let textField = app.textFields["EUR"]
-        sleep(1)
         textField.forceTapElement()
         textField.typeText("100")
         app.forceTapElement()
@@ -102,57 +94,32 @@ class BaluchonUITests: XCTestCase {
         XCTAssertTrue(exists)
     }
 
-    func testCurrencyForEurToGBP() {
-        app.tabBars.buttons["Currency"].forceTapElement()
-        app.pickerWheels["GBP"].swipeUp()
-        app.pickerWheels["USD"].swipeDown()
-        let textField = app.textFields["EUR"]
-        sleep(1)
-        textField.forceTapElement()
-        textField.typeText("100")
-        app.buttons["Conversions en GBP"].forceTapElement()
-        let exists = app.buttons["Conversions en GBP"].exists
-        XCTAssertTrue(exists)
-    }
-
     func testCurrencyConvertWithMissingText() {
         app.tabBars.buttons["Currency"].forceTapElement()
-        app.buttons["Conversions"].forceTapElement()
+        let button = app.buttons.element(matching: .button, identifier: "Conversions")
+        button.forceTapElement()
     }
 
     func testCurrencyDecimal() {
         app.tabBars.buttons["Currency"].forceTapElement()
-        app.pickerWheels["GBP"].swipeUp()
+        app.pickerWheels.element.adjust(toPickerWheelValue: "GBP")
+        app.pickerWheels.element.adjust(toPickerWheelValue: "USD")
         let textField = app.textFields["EUR"]
-        sleep(1)
         textField.forceTapElement()
         textField.typeText("10.54")
-        app.buttons["Conversions en USD"].forceTapElement()
+        let button = app.buttons.element(matching: .button, identifier: "Conversions en USD")
+        button.forceTapElement()
     }
 
     func testCurrencyDecimalPoint() {
         app.tabBars.buttons["Currency"].forceTapElement()
-        app.pickerWheels["GBP"].swipeUp()
+        app.pickerWheels.element.adjust(toPickerWheelValue: "USD")
+        app.pickerWheels.element.adjust(toPickerWheelValue: "GBP")
         let textField = app.textFields["EUR"]
-        sleep(1)
         textField.forceTapElement()
         textField.typeText("10,54")
-        app.buttons["Conversions en USD"].forceTapElement()
-    }
-
-    func testAppBackground() {
-        app.tabBars.buttons["Currency"].forceTapElement()
-        app.pickerWheels["GBP"].swipeUp()
-        let textField = app.textFields["EUR"]
-        sleep(1)
-        textField.forceTapElement()
-        textField.typeText("10,54")
-        app.buttons["Conversions en USD"].forceTapElement()
-        app.tabBars.buttons["Weather"].forceTapElement()
-        XCUIDevice.shared.press(XCUIDevice.Button.home)
-        sleep(3)
-        app.launch()
-        app.tabBars.buttons["Currency"].forceTapElement()
+        let button = app.buttons.element(matching: .button, identifier: "Conversions en GBP")
+        button.forceTapElement()
     }
 }
 
