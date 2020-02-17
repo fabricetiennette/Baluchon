@@ -8,11 +8,6 @@
 
 import Foundation
 
-func getEnvironmentVar(_ name: String) -> String? {
-    guard let rawValue = getenv(name) else { return nil }
-    return String(utf8String: rawValue)
-}
-
 func valueForAPIKey(named keyname: String) -> String {
     guard let filePath = Bundle.main.path(forResource: "ApiKeys", ofType: "plist") else {
         fatalError("Fatal Error : ApiKeys.plist missing.")

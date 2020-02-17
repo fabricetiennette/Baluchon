@@ -12,7 +12,7 @@ class WeatherClient {
 
     private var task: URLSessionDataTask?
     private var weatherSession: URLSession
-//        valueForAPIKey(named: "openWeatherApiKey")
+    private let weatherKey = valueForAPIKey(named: "openWeatherApiKey")
 
     init(weatherSession: URLSession = URLSession(configuration: .default)) {
         self.weatherSession = weatherSession
@@ -26,7 +26,6 @@ class WeatherClient {
 
         let path = "http://api.openweathermap.org/data/2.5/find?"
         let param = "lat=\(latitude)&lon=\(longitude)&cnt=1&units=metric&lang=fr&appid="
-        guard let weatherKey = getEnvironmentVar("openWeatherApiKey") else { return }
         guard let weatherUrl = URL(string: "\(path)\(param)\(weatherKey)") else { return }
 
         task?.cancel()

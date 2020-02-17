@@ -12,7 +12,7 @@ class TranslateClient {
 
     private var task: URLSessionDataTask?
     private var translateSession: URLSession
-//    private let translateKey = valueForAPIKey(named: "googleApiKey")
+    private let translateKey = valueForAPIKey(named: "googleApiKey")
 
     init(translateSession: URLSession = URLSession(configuration: .default)) {
         self.translateSession = translateSession
@@ -24,7 +24,6 @@ class TranslateClient {
     ) {
 
         guard let text = translationBody.text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        guard let translateKey = getEnvironmentVar("googleApiKey") else { return }
         let baseURL = "https://translation.googleapis.com"
         let path = "/language/translate/v2?"
         let format = "&format=\(translationBody.format)"

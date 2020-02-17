@@ -12,7 +12,7 @@ class CurrencyClient {
 
     private var task: URLSessionDataTask?
     private var currencySession: URLSession
-//    private let currencyKey = valueForAPIKey(named: "fixerApiKey")
+    private let currencyKey = valueForAPIKey(named: "fixerApiKey")
 
     init(currencySession: URLSession = URLSession(configuration: .default)) {
         self.currencySession = currencySession
@@ -20,7 +20,6 @@ class CurrencyClient {
 
     func getExchangeRate(callback: @escaping (Result<Currency, Error>) -> Void) {
 
-        guard let currencyKey = getEnvironmentVar("fixerApiKey") else { return }
         let baseURL = "http://data.fixer.io"
         let path = "/api/latest?"
         let param = "access_key=\(currencyKey)&base=EUR&symbols=GBP,USD"
