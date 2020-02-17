@@ -23,8 +23,8 @@ class WeatherViewModelTests: XCTestCase {
 
         // When:
         weatherViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.weatherunknown)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Météo indisponible pour le moment…")
             expect.fulfill()
         }
         weatherViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
@@ -44,8 +44,8 @@ class WeatherViewModelTests: XCTestCase {
         // When:
         weatherViewModel.errorHandler = { title, message in
             newLocation = weatherViewModel.location
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.unknownlocation)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Localisation inconnue…")
             XCTAssertEqual(newLocation, "Paris")
             expect.fulfill()
         }

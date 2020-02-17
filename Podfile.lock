@@ -2,25 +2,21 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - SwiftGen (6.1.0)
   - SwiftLint (0.37.0)
 
 DEPENDENCIES:
   - NVActivityIndicatorView
-  - SwiftGen (~> 6.0)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
     - NVActivityIndicatorView
-    - SwiftGen
     - SwiftLint
 
 SPEC CHECKSUMS:
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
 
-PODFILE CHECKSUM: acc882b5632e934e894b6c755ed87d8694578270
+PODFILE CHECKSUM: 63e56f3daca1e1dff87d32a3b17c2b49168c79a8
 
 COCOAPODS: 1.8.4

@@ -51,8 +51,8 @@ class CurrencyViewModelTests: XCTestCase {
 
         // When:
         currencyViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.rateunknown)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Taux de change indisponible pour le moment…")
             expect.fulfill()
         }
         currencyViewModel.getRate {}

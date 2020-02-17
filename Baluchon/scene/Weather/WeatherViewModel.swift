@@ -42,7 +42,7 @@ extension WeatherViewModel {
                 self.getCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             }
             if error != nil {
-                self.errorHandler(L10n.Localizable.error, L10n.Localizable.unknownlocation)
+                self.errorHandler("Erreur", "Localisation inconnue…")
             }
         }
     }
@@ -66,7 +66,7 @@ extension WeatherViewModel {
                )
                me.weatherHandler(weatherDetails)
             case .failure:
-                me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)
+                me.errorHandler("Erreur", "Météo indisponible pour le moment…")
             }
         }
     }

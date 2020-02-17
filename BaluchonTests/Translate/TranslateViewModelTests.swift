@@ -36,8 +36,8 @@ class TranslateViewModelTests: XCTestCase {
 
         // When:
         translateViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.errorfound)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Malheureusement une erreur c’est produite")
             expect.fulfill()
         }
         translateViewModel.doTranslation(translationBody: translationBody)

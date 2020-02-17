@@ -62,7 +62,7 @@ private extension TranslateViewController {
            toTranslateTextView.resignFirstResponder()
            let text = toTranslateTextView.text.trimmingCharacters(in: .whitespaces)
            guard !text.isEmpty else {
-               showAlert(title: L10n.Localizable.error, message: L10n.Localizable.missingtext)
+               showAlert(title: "Erreur", message: "Le texte à traduire est manquant.")
                return
            }
 

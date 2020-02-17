@@ -93,8 +93,8 @@ class TodayViewModelTests: XCTestCase {
 
         // When:
         todayViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.geolocationerror)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Geolocalisation indisponible…")
             expect.fulfill()
         }
         todayViewModel.updateweather()
@@ -153,8 +153,8 @@ class TodayViewModelTests: XCTestCase {
 
         // When:
         todayViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.rateunknown)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Taux de change indisponible pour le moment…")
             expect.fulfill()
         }
         todayViewModel.getRate()
@@ -215,8 +215,8 @@ class TodayViewModelTests: XCTestCase {
 
         // When:
         todayViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, L10n.Localizable.error)
-            XCTAssertEqual(message, L10n.Localizable.weatherunknown)
+            XCTAssertEqual(title, "Erreur")
+            XCTAssertEqual(message, "Météo indisponible pour le moment…")
             expect.fulfill()
         }
         todayViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)

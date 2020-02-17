@@ -69,7 +69,7 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     ) {
         viewModel.activeCurrency = viewModel.myValues[row]
         let choice = viewModel.myCurrency[row]
-        convertButton.setTitle("\(L10n.Localizable.convert) \(choice)", for: .normal)
+        convertButton.setTitle("Conversions en \(choice)", for: .normal)
     }
 }
 

@@ -30,7 +30,7 @@ class CurrencyViewModel {
                 }
                 callback()
             case .failure:
-                me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
+                me.errorHandler("Erreur", "Taux de change indisponible pour le moment…")
             }
         }
     }

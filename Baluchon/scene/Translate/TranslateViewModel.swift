@@ -23,7 +23,7 @@ class TranslateViewModel {
             case .success(let text):
                 self.translatedTextHandler(text.translatedText)
             case .failure:
-                self.errorHandler(L10n.Localizable.error, L10n.Localizable.errorfound)
+                self.errorHandler("Erreur", "Malheureusement une erreur c’est produite")
             }
         }
     }

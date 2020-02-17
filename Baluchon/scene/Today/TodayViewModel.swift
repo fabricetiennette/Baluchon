@@ -59,7 +59,7 @@ extension TodayViewModel {
                     }
                 }
             } else {
-                self.errorHandler(L10n.Localizable.error, L10n.Localizable.geolocationerror)
+                self.errorHandler("Erreur", "Geolocalisation indisponible…")
             }
         }
     }
@@ -78,7 +78,7 @@ extension TodayViewModel {
                 let dollarLabelText = dollar?.roundToDecimalAndConvertToString(2)
                 me.rateHandler(poundLabelText, dollarLabelText)
             case .failure:
-                me.errorHandler(L10n.Localizable.error, L10n.Localizable.rateunknown)
+                me.errorHandler("Erreur", "Taux de change indisponible pour le moment…")
             }
         }
     }
@@ -102,7 +102,7 @@ extension TodayViewModel {
                 )
                 me.weatherHandler(weatherDetails)
             case .failure:
-                me.errorHandler(L10n.Localizable.error, L10n.Localizable.weatherunknown)
+                me.errorHandler("Erreur", "Météo indisponible pour le moment…")
             }
         }
     }

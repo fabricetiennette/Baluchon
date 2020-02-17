@@ -75,7 +75,7 @@ class BaluchonUITests: XCTestCase {
         }
         app.tabBars.buttons["Translate"].tap()
         app.buttons["Traduire"].tap()
-        app.alerts["error"].buttons["OK"].tap()
+        app.alerts["Erreur"].buttons["OK"].tap()
     }
 
     func testTranslateFrToEn() {
@@ -214,8 +214,8 @@ class BaluchonUITests: XCTestCase {
         sleep(1)
         textField.tap()
         textField.typeText("100")
-        app.buttons["convert GBP"].tap()
-        let exists = app.buttons["convert GBP"].exists
+        app.buttons["Conversions en GBP"].tap()
+        let exists = app.buttons["Conversions en GBP"].exists
         XCTAssertTrue(exists)
     }
 
@@ -257,7 +257,7 @@ class BaluchonUITests: XCTestCase {
         sleep(1)
         textField.tap()
         textField.typeText("10.54")
-        app.buttons["convert USD"].tap()
+        app.buttons["Conversions en USD"].tap()
     }
 
     func testCurrencyDecimalPoint() {
@@ -280,7 +280,7 @@ class BaluchonUITests: XCTestCase {
         sleep(1)
         textField.tap()
         textField.typeText("10,54")
-        app.buttons["convert USD"].tap()
+        app.buttons["Conversions en USD"].tap()
     }
 
     func testAppBackground() {
@@ -303,7 +303,7 @@ class BaluchonUITests: XCTestCase {
         sleep(1)
         textField.tap()
         textField.typeText("10,54")
-        app.buttons["convert USD"].tap()
+        app.buttons["Conversions en USD"].tap()
         app.tabBars.buttons["Weather"].tap()
         XCUIDevice.shared.press(XCUIDevice.Button.home)
         sleep(10)
