@@ -1,9 +1,15 @@
 language: swift
 osx_image: xcode11.3
-
 jobs:
   include:
-    - script: xcodebuild clean build test -workspace Baluchon.xcworkspace -scheme Baluchon -destination "platform=iOS Simulator,name=iPhone 11,OS=13.3" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -enableCodeCoverage YES
-      before_install: pod repo update
-      after_script: bash <(curl -s https://codecov.io/bash) -t 21f2d66f-ba6d-4707-86f8-f2f4e1fea2ed
-    - script: swiftlint
+  - script: xcodebuild clean build test -workspace Baluchon.xcworkspace -scheme Baluchon
+      -destination "platform=iOS Simulator,name=iPhone 11,OS=13.3" CODE_SIGN_IDENTITY=""
+      CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -enableCodeCoverage YES
+    before_install: pod repo update
+    after_script: bash <(curl -s https://codecov.io/bash) -t 21f2d66f-ba6d-4707-86f8-f2f4e1fea2ed
+  - script: swiftlint
+env:
+  global:
+  - secure: Txr8rGhhlOiKrVyNwxbVRU0xsO7B8lNiowxvof3ukQo5YmXA/Vgt/nTT1LPlkZouGo24XWq76eqqIvXLYYSMvIXDnBX8iejD1TLr/xP1nLokXlaXQ0IXRPyR5JrW3wmBj6O1lQ6P2tg8rvawSKafxyLk6Fhe71Bg9ElBYZCvIiLYLCOITeUnup3RHekO41CyKTn9HqU/BTAyK3bynuHHcZDfUNbO5CL59Qccnkv0HboykMzzrSTDPZISrh7fN2SzmUoIEAeg2mhVko6COtiZJmEIfZXWk2Eq8jg+HlVrqXIyr3/DmtUT5u5tcz9WLtSMkrUU6Mkj4Xm5XML9+IMvR33kAXOh5cJqGUfQ2AfmViIh79rlApjZ8CrkfurQGR76n1cFE2gdoj/X65renZxMsyuBXeSxKIdTfcu6wnTy2UmUjTWVsBSkngFVAYLVFoEajM4hJjGDGZTOIia6CCinajB6GmYF39bl5VE+KD+B4iG0Dxa9uQ/uSi0dx9WSgHgfI5dkX/0WiMUlj8Tqx4iQDLf/2iicCIpw/ngIPjUeMPNxrtULodxwWOGhN3nhSqQs36MzH/0BP3q/EnOGRar6N7OWofTDPNnloA2nHB0yJARAaTlfPGckuN5l5D35yyZlfnqx25QbaXQ8ooywiis8B0zRYDjNzxYKoQsjSpw9EN0=
+  - secure: Vdm7zTqW4HzhdM9YbX0ASfuV//TlqmNZNa2K2OqTLmpUvgi6IO4Mlhl/sETZ3zAPP8yZkVOWao1hG7OOR5tokBG259gfHdN6QyKr7IpFOIWQTLCAL6ooeiC1QyxcYp3ldqF8R6dl8R3t1J6espqeKRskcF77fCr1PK/VlN17KpdIOcM+DuFFui9+E/ujEc1ep3H+EZPyL3thwfTcpXgGQXgbB4mM//jHdKu9f5/LCwhb2xlFn0X+e5MFd3PLB6FSqoxojjjbRsmCKkNyC8IBlMhDW8y8QWL0voJEJ/pxPGqcYoP5b8ZK8SRrVISx4SX4FzbKkDmDess2bqgjGNcBG3qJt2D2lb89g8sp4tioW/1P2uALujqsGYJq43USe/UHCvp51VODA2+VHwkPg7TS7dGMJeWLhkdejhfKSqQFWnztPqV7htW3Fmfb6WZcejBj8omuWtA9R6HyCaGEpUh1L4TMWJ/eXP5AaWT10CWcqLW4UEc33BY8bJkI/lrJCsyhO2l1obWAM0T/v5Zoz8FLkprbkOOrtndRk2Yt4cDuSe/rmcYu2gsxWki2K8W7okCVr3BJiVjiNKFpYe7FHO/cadG3EhnVgC9XUclphp226lz77t3zute4AsuP7Pg3G7HHjxJe9HUMInhzZgWhHAMuT8+0zQ/9/dZ+jIiIECcxv80=
+  - secure: pqO65gk5VL7F+C1YHdTR9Br3c7z2lqAMVOHoG7nQ1cy0g8+IXMhC6+K2bjo5Z3YFX8pf/cD5U1AX4vL+omha8q7GhNovIv/WiyYlfd7j91hiTY/Molr4CQICHP2IV19k4zcqXVOw7ILftbegOc6N5F5uXKQDoZVQw0o8nmhsRcr4wOexrk7w9RuoI0ouR5ngzUBZzmJB4Bm1PGiS/xPeNZClJ/v7WYOZWUCyYPQqztrVO3b2s3bFzUtgO+s4RUDwRZSBl3rhvCVG/Yas6ww+3NDVyqTKczy8ZKcp0S/yjn2k86b4MVZs8Ymr+HeK1aq/NJf0Mcq88l8vQ5gssx8L3Pl21GEK3VDCHYjvdm9B336vqdjo+bk0rVrEZJDFMJEqX84UqHS5VdvoPkzad1U85yNaE8JvHbMuS84kWFCdmo7hr/la+cywJ2DAEWQX56C6+6ZmLd7nApyo1uUf/48pIlma6sPiZVHCR5k+t33hx2AyCCQsdtugVBDl45L/FySu0kOkvtzyV9bg6fRMiGl83pb08xV4ojk72lObkODGbPi+Wv0alya2b7R/INK1H3dX20yrzoGhAukrdAlGCpFcucaDG7zDtcXeKTdSyGTC7pIGlh9cml/4bH733+XJNMRHv6gJLYBzQW2Xn5N2cz1eNDZLLLNDHuH3u03wdxJtv80=
