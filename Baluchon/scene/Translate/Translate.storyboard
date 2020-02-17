@@ -93,6 +93,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pL-Gv-GJi">
                                 <rect key="frame" x="112.5" y="258" width="150" height="50"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="traduire"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="CMZ-51-hSo"/>
                                     <constraint firstAttribute="height" constant="50" id="vPL-Dc-41M"/>

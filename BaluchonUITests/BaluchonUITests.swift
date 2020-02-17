@@ -36,106 +36,95 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testTabBar() {
-        app.tabBars.buttons["Translate"].forceTapElement()
-        app.tabBars.buttons["Today"].forceTapElement()
-        app.tabBars.buttons["Weather"].forceTapElement()
-        app.tabBars.buttons["Currency"].forceTapElement()
+        app.tabBars.buttons["Translate"].tap()
+        app.tabBars.buttons["Today"].tap()
+        app.tabBars.buttons["Weather"].tap()
+        app.tabBars.buttons["Currency"].tap()
     }
 
     func testTranslateError() {
-        app.tabBars.buttons["Translate"].forceTapElement()
-        let button = app.buttons.element(matching: .button, identifier: "Traduire")
-        button.forceTapElement()
-        app.alerts["Erreur"].buttons["OK"].forceTapElement()
+        app.tabBars.buttons["Translate"].tap()
+        let button = app.buttons.element(matching: .button, identifier: "traduire")
+        button.tap()
+        app.alerts["Erreur"].buttons["OK"].tap()
     }
 
     func testTranslateFrToEn() {
-        app.tabBars.buttons["Translate"].forceTapElement()
+        app.tabBars.buttons["Translate"].tap()
         let toTranslate = app.textViews["ToTranslate"]
-        toTranslate.forceTapElement()
+        toTranslate.tap()
         toTranslate.typeText("Bonjour")
-        let button = app.buttons.element(matching: .button, identifier: "Traduire")
-        button.forceTapElement()
+        let button = app.buttons.element(matching: .button, identifier: "traduire")
+        button.tap()
         XCTAssertEqual(app.staticTexts["TextResultLabel"].label, "Hello")
     }
 
     func testTranslateEnToFr() {
-        app.tabBars.buttons["Translate"].forceTapElement()
+        app.tabBars.buttons["Translate"].tap()
         let button = app.buttons.element(matching: .button, identifier: "exchangeLang")
-        button.forceTapElement()
+        button.tap()
         let toTranslate = app.textViews["ToTranslate"]
-        toTranslate.forceTapElement()
+        toTranslate.tap()
         toTranslate.typeText("Hello")
-        let buttonT = app.buttons.element(matching: .button, identifier: "Traduire")
-        buttonT.forceTapElement()
+        let buttonT = app.buttons.element(matching: .button, identifier: "traduire")
+        buttonT.tap()
         XCTAssertEqual(app.staticTexts["TextResultLabel"].label, "Bonjour")
     }
 
     func testWeatherSearch() {
-        app.tabBars.buttons["Weather"].forceTapElement()
+        app.tabBars.buttons["Weather"].tap()
         let searchBar = app.searchFields["Recherche..."].firstMatch
         sleep(1)
-        searchBar.forceTapElement()
+        searchBar.tap()
         searchBar.typeText("Paris")
-        app.buttons["Search"].forceTapElement()
+        app.buttons["Search"].tap()
     }
 
     func testTranslateTouchBegan() {
-        app.tabBars.buttons["Translate"].forceTapElement()
+        app.tabBars.buttons["Translate"].tap()
         let toTranslate = app.textViews["ToTranslate"]
-        toTranslate.forceTapElement()
+        toTranslate.tap()
         toTranslate.typeText("Bonjour")
-        app.forceTapElement()
+        app.tap()
         let exists = app.textViews["Bonjour"].exists
         XCTAssertTrue(exists)
     }
 
     func testCurrencyTouchesBegan() {
-        app.tabBars.buttons["Currency"].forceTapElement()
+        app.tabBars.buttons["Currency"].tap()
         let textField = app.textFields["EUR"]
-        textField.forceTapElement()
+        textField.tap()
         textField.typeText("100")
-        app.forceTapElement()
+        app.tap()
         let exists = app.textFields["100"].exists
         XCTAssertTrue(exists)
     }
 
     func testCurrencyConvertWithMissingText() {
-        app.tabBars.buttons["Currency"].forceTapElement()
+        app.tabBars.buttons["Currency"].tap()
         let button = app.buttons.element(matching: .button, identifier: "convertButton")
-        button.forceTapElement()
+        button.tap()
     }
 
     func testCurrencyDecimal() {
-        app.tabBars.buttons["Currency"].forceTapElement()
+        app.tabBars.buttons["Currency"].tap()
         app.pickerWheels.element.adjust(toPickerWheelValue: "GBP")
         app.pickerWheels.element.adjust(toPickerWheelValue: "USD")
         let textField = app.textFields["EUR"]
-        textField.forceTapElement()
+        textField.tap()
         textField.typeText("10.54")
         let button = app.buttons.element(matching: .button, identifier: "convertButton")
-        button.forceTapElement()
+        button.tap()
     }
 
     func testCurrencyDecimalPoint() {
-        app.tabBars.buttons["Currency"].forceTapElement()
+        app.tabBars.buttons["Currency"].tap()
         app.pickerWheels.element.adjust(toPickerWheelValue: "USD")
         app.pickerWheels.element.adjust(toPickerWheelValue: "GBP")
         let textField = app.textFields["EUR"]
-        textField.forceTapElement()
+        textField.tap()
         textField.typeText("10,54")
         let button = app.buttons.element(matching: .button, identifier: "convertButton")
-        button.forceTapElement()
-    }
-}
-
-extension XCUIElement {
-    func forceTapElement() {
-        if self.isHittable {
-            self.tap()
-        } else {
-            let coordinate: XCUICoordinate = self.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
-            coordinate.tap()
-        }
+        button.tap()
     }
 }
