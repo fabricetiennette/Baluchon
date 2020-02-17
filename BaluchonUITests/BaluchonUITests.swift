@@ -102,7 +102,7 @@ class BaluchonUITests: XCTestCase {
 
     func testCurrencyConvertWithMissingText() {
         app.tabBars.buttons["Currency"].forceTapElement()
-        let button = app.buttons.element(matching: .button, identifier: "Conversions")
+        let button = app.buttons.element(matching: .button, identifier: "convertButton")
         button.forceTapElement()
     }
 
@@ -113,7 +113,7 @@ class BaluchonUITests: XCTestCase {
         let textField = app.textFields["EUR"]
         textField.forceTapElement()
         textField.typeText("10.54")
-        let button = app.buttons.element(matching: .button, identifier: "Conversions en USD")
+        let button = app.buttons.element(matching: .button, identifier: "convertButton")
         button.forceTapElement()
     }
 
@@ -124,7 +124,7 @@ class BaluchonUITests: XCTestCase {
         let textField = app.textFields["EUR"]
         textField.forceTapElement()
         textField.typeText("10,54")
-        let button = app.buttons.element(matching: .button, identifier: "Conversions en GBP")
+        let button = app.buttons.element(matching: .button, identifier: "convertButton")
         button.forceTapElement()
     }
 }
