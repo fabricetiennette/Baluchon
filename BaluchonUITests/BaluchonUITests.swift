@@ -17,12 +17,18 @@ class BaluchonUITests: XCTestCase {
         continueAfterFailure = false
         XCUIApplication().launch()
         addUIInterruptionMonitor(withDescription: "System Dialog") { (alert) -> Bool in
-          // Tap "Allow" button
-          alert.buttons["Allow While Using App"].tap()
-          return true
+            // Tap "Allow" button
+            let allowButton = alert.buttons["Allow"]
+            if allowButton.exists {
+                allowButton.tap()
+            }
+
+            let locationButton = alert.buttons["Allow While Using App"]
+            if locationButton.exists {
+                locationButton.tap()
+            }
+            return true
         }
-        // Need to interact with App
-        app.tap()
     }
 
     override func tearDown() {
