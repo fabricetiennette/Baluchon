@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/fabricetiennette/Baluchon.svg?branch=master)](https://travis-ci.com/fabricetiennette/Baluchon)
+[![Build Status](https://travis-ci.com/fabricetiennette/Baluchon.svg?branch=master)](https://travis-ci.com/fabricetiennette/Baluchon)       [![codecov](https://codecov.io/gh/fabricetiennette/Baluchon/branch/master/graph/badge.svg)](https://codecov.io/gh/fabricetiennette/Baluchon)
 
 # Baluchon
 🔥 The app that makes travelling USA much easier
