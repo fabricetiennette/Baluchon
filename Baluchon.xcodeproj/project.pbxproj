@@ -310,6 +310,13 @@
 			path = BaluchonUITests;
 			sourceTree = "<group>";
 		};
+		2C99BCAD23FACEB7001723C0 /* Pictures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pictures;
+			sourceTree = "<group>";
+		};
 		2CACB60A23E042A20072F140 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +358,7 @@
 		2CD489C423426B4A00329697 = {
 			isa = PBXGroup;
 			children = (
+				2C99BCAD23FACEB7001723C0 /* Pictures */,
 				2CD489CF23426B4A00329697 /* Baluchon */,
 				2CD489E823426B4C00329697 /* BaluchonTests */,
 				2C9656BD23F9E6A000424883 /* BaluchonUITests */,

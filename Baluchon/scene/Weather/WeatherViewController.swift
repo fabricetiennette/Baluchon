@@ -11,13 +11,14 @@ import NVActivityIndicatorView
 
 class WeatherViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var minTemperatureLabel: UILabel!
-    @IBOutlet weak var maxTemperatureLabel: UILabel!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var cityLabel: UILabel!
+    @IBOutlet private weak var summaryLabel: UILabel!
+    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var dayLabel: UILabel!
+    @IBOutlet private weak var minTemperatureLabel: UILabel!
+    @IBOutlet private weak var maxTemperatureLabel: UILabel!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tempLabel: UILabel!
 
     var viewModel: WeatherViewModel!
 
@@ -49,6 +50,7 @@ private extension WeatherViewController {
             let day = Date()
             me.dayLabel.text = day.formatted(dateFormat: "EEEE dd MMMM").capitalized
             me.temperatureLabel.text = weather.temperature
+            me.tempLabel.isHidden = false
             me.maxTemperatureLabel.text = weather.maxTemperature
             me.minTemperatureLabel.text = weather.minTemperature
             me.summaryLabel.text = weather.iconSummary
