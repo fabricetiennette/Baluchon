@@ -4,24 +4,24 @@
     "count": 1,
     "list": [
         {
-            "id": 5402535,
-            "name": "Tiburon",
+            "id": 5391959,
+            "name": "San Francisco",
             "coord": {
-                "lat": 37.87,
-                "lon": -122.46
+                "lat": 37.77,
+                "lon": -122.42
             },
             "main": {
-                "temp": 7.31,
-                "feels_like": 4.22,
-                "temp_min": 3.89,
-                "temp_max": 10.56,
-                "pressure": 1022,
+                "temp": 8.3,
+                "feels_like": 0.71,
+                "temp_min": 5,
+                "temp_max": 11.11,
+                "pressure": 1024,
                 "humidity": 81
             },
-            "dt": 1581761768,
+            "dt": 1581858970,
             "wind": {
-                "speed": 2.6,
-                "deg": 290
+                "speed": 9.3,
+                "deg": 270
             },
             "sys": {
                 "country": "US"
@@ -29,14 +29,14 @@
             "rain": null,
             "snow": null,
             "clouds": {
-                "all": 1
+                "all": 40
             },
             "weather": [
                 {
-                    "id": 800,
-                    "main": "Clear",
-                    "description": "ciel dégagé",
-                    "icon": "01n"
+                    "id": 802,
+                    "main": "Clouds",
+                    "description": "partiellement nuageux",
+                    "icon": "03n"
                 }
             ]
         }

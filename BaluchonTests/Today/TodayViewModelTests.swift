@@ -7,125 +7,145 @@
 //
 
 import XCTest
-import CoreLocation
 @testable import Baluchon
-
-enum ResponseError: Error {
-    case unknownError
-}
-
-class LocationStub: GeolocationService {
-
-       override var location: [CLLocation]? {
-           get { return [CLLocation(latitude: 37.8267, longitude: -122.4233)] }
-           set { super.location = newValue }
-       }
-   }
-
-class GeolocationServiceStub: GeolocationService {
-
-    override var location: [CLLocation]? {
-        get { return [CLLocation()] }
-        set { super.location = newValue }
-    }
-
-    override func reverseGeocodeLocation(
-        _ locations: CLLocation?,
-        completionHandler: @escaping ([CLPlacemark]?, Error?) -> Void
-    ) {
-        let error = ResponseError.unknownError
-        completionHandler(nil, error)
-    }
-}
 
 class TodayViewModelTests: XCTestCase {
 
-    var todayViewModel: TodayViewModel!
+    let latitude = 37.773972
+    let longitude = -122.431297
 
-    override func setUp() {
-        super.setUp()
+    func testDateInTodayViewModel() {
+        // Given:
         let currencyClient = CurrencyClient()
         let geolocationService = GeolocationService()
         let weatherClient = WeatherClient()
-        todayViewModel = TodayViewModel(
+        let todayViewModel = TodayViewModel(
             geolocationService: geolocationService,
             currencyClient: currencyClient,
             weatherClient: weatherClient
         )
-    }
 
-    override func tearDown() {
-        todayViewModel = nil
-        super.tearDown()
-    }
-
-    func testDate() {
-        // Given:
         let todayDate = Date()
         let shortDateFormat = "EEEE"
         let longDateFormat = "EEEE dd MMMM"
+
         // When:
-        let currentDay = todayViewModel.todayDayLabelText
-        let currentDayResult = todayDate.formatted(dateFormat: shortDateFormat).capitalized
-        let currentLongFormatDay = todayViewModel.dateUILabelText
-        let currentLongFormatDayResult = todayDate.formatted(dateFormat: longDateFormat).capitalized
+        let viewModelDay = todayViewModel.todayDayLabelText
+        let testDay = todayDate.formatted(dateFormat: shortDateFormat).capitalized
+
+        let viewModelLongFormatDay = todayViewModel.dateUILabelText
+        let testLongFormatDay = todayDate.formatted(dateFormat: longDateFormat).capitalized
+
         // Then:
-        XCTAssertEqual(currentDay, currentDayResult)
-        XCTAssertEqual(currentLongFormatDay, currentLongFormatDayResult)
+        XCTAssertEqual(viewModelDay, testDay)
+        XCTAssertEqual(viewModelLongFormatDay, testLongFormatDay)
     }
 
-    func testExample() {
+    func testUpdateWeatherFromTodayViewModel() {
         // Given:
-        let latitude = 37.8267
-        let longitude = -122.4233
-        let icon = "clear-night"
-        let temperature = "10°"
-        let temperatureMin = "10"
-        let temperatureMax = "14"
-        let expect = expectation(description: "getting data...")
+        let todayGeoLocationStub = TodayGeoLocationStub()
+        let currencyClient = CurrencyClient()
+        let weatherClient = WeatherClient(
+            weatherSession: URLSessionFake(
+                data: FakeResponseData.weatherCorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil
+            )
+        )
+        let todayViewModel = TodayViewModel(
+            geolocationService: todayGeoLocationStub,
+            currencyClient: currencyClient,
+            weatherClient: weatherClient
+        )
+        let expect = expectation(description: "Wait for errorHandler")
 
         // When:
         todayViewModel.weatherHandler = { weather in
-            XCTAssertEqual(icon.capitalized, weather.iconSummary)
-            XCTAssertEqual(temperature, weather.temperature)
-            XCTAssertEqual(temperatureMax, weather.maxTemperature)
-            XCTAssertEqual(temperatureMin, weather.minTemperature)
+            XCTAssertEqual(weather.temperature, 8.3.toTemperatureWithDegreeUnit)
+            XCTAssertEqual(weather.minTemperature, 5.toTemperatureWithoutDegreeUnit)
+            XCTAssertEqual(weather.maxTemperature, 11.11.toTemperatureWithoutDegreeUnit)
+            XCTAssertEqual(weather.iconSummary, "partiellement nuageux".capitalized)
             expect.fulfill()
         }
-        todayViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
+        todayViewModel.updateweather()
 
         // Then:
-        wait(for: [expect], timeout: 5)
+        wait(for: [expect], timeout: 3)
     }
 
-    func testUpdateWeather() {
+    func testErrorHandlerInUpdateLocationFromTodayViewModel() {
         // Given:
-        let weatherClient = WeatherClient()
-        let geolocationService = GeolocationService()
+        let geoLocationStub = GeoLocationStub()
+        let currencyClient = CurrencyClient()
+        let weatherClient = WeatherClient(
+            weatherSession: URLSessionFake(
+                data: FakeResponseData.weatherCorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil
+            )
+        )
         let todayViewModel = TodayViewModel(
-            geolocationService: geolocationService,
+            geolocationService: geoLocationStub,
+            currencyClient: currencyClient,
             weatherClient: weatherClient
         )
         let expect = expectation(description: "Wait for errorHandler")
 
         // When:
         todayViewModel.errorHandler = { title, message in
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.geolocationerror)
             expect.fulfill()
         }
+        todayViewModel.updateweather()
 
+        // Then:
+        wait(for: [expect], timeout: 3)
+    }
+
+    func testGetRateFromTodayViewModel() {
+        // Given:
+        let geolocationService = GeolocationService()
+        let weatherClient = WeatherClient()
+        let currencyClient = CurrencyClient(
+            currencySession: URLSessionFake(
+                data: FakeResponseData.CurrencyCorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil
+            )
+        )
+        let todayViewModel = TodayViewModel(
+            geolocationService: geolocationService,
+            currencyClient: currencyClient,
+            weatherClient: weatherClient
+        )
+        let expect = expectation(description: "Wait for errorHandler")
+
+        // When:
+        todayViewModel.rateHandler = { pound, dollar in
+            XCTAssertEqual(pound, 0.830135.roundToDecimalAndConvertToString(2))
+            XCTAssertEqual(dollar, 1.083085.roundToDecimalAndConvertToString(2))
+            expect.fulfill()
+        }
         todayViewModel.getRate()
 
         // Then:
         wait(for: [expect], timeout: 3)
     }
 
-    func testErrorLocation() {
+    func testErrorHandlerInGetRateFromTodayViewModel() {
         // Given:
-        let currencyClient = CurrencyClient()
+        let geolocationService = GeolocationService()
         let weatherClient = WeatherClient()
-        let geolocationServiceStub = GeolocationServiceStub()
+        let currencyClient = CurrencyClient(
+            currencySession: URLSessionFake(
+                data: FakeResponseData.incorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil
+            )
+        )
         let todayViewModel = TodayViewModel(
-            geolocationService: geolocationServiceStub,
+            geolocationService: geolocationService,
             currencyClient: currencyClient,
             weatherClient: weatherClient
         )
@@ -133,42 +153,73 @@ class TodayViewModelTests: XCTestCase {
 
         // When:
         todayViewModel.errorHandler = { title, message in
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.rateunknown)
             expect.fulfill()
         }
-        todayViewModel.updateweather()
+        todayViewModel.getRate()
 
         // Then:
         wait(for: [expect], timeout: 3)
     }
 
-    func testUpdateWeatherWhenLocationIsSanFrancisco() {
+    func testGetCurrentWeatherInTodayViewModel() {
         // Given:
-        let icon = "clear-night"
-        let temperature = "10°"
-        let temperatureMin = "10"
-        let temperatureMax = "14"
+        let geolocationService = GeolocationService()
         let currencyClient = CurrencyClient()
-        let weatherClient = WeatherClient()
-        let locationStub = LocationStub()
+        let weatherClient = WeatherClient(
+            weatherSession: URLSessionFake(
+                data: FakeResponseData.weatherCorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil
+            )
+        )
         let todayViewModel = TodayViewModel(
-            geolocationService: locationStub,
+            geolocationService: geolocationService,
             currencyClient: currencyClient,
             weatherClient: weatherClient
         )
         let expect = expectation(description: "Wait for errorHandler")
 
         // When:
-        todayViewModel.locationHandler = { location in
-            XCTAssertEqual(location, "San Francisco")
-        }
         todayViewModel.weatherHandler = { weather in
-            XCTAssertEqual(icon.capitalized, weather.iconSummary)
-            XCTAssertEqual(temperature, weather.temperature)
-            XCTAssertEqual(temperatureMax, weather.maxTemperature)
-            XCTAssertEqual(temperatureMin, weather.minTemperature)
+            XCTAssertEqual(weather.temperature, 8.3.toTemperatureWithDegreeUnit)
+            XCTAssertEqual(weather.minTemperature, 5.toTemperatureWithoutDegreeUnit)
+            XCTAssertEqual(weather.maxTemperature, 11.11.toTemperatureWithoutDegreeUnit)
+            XCTAssertEqual(weather.iconSummary, "partiellement nuageux".capitalized)
             expect.fulfill()
         }
-        todayViewModel.updateweather()
+        todayViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
+
+        // Then:
+        wait(for: [expect], timeout: 3)
+    }
+
+    func testErrorHandlerFromGetCurrentWeatherInTodayViewModel() {
+        // Given:
+        let geolocationService = GeolocationService()
+        let currencyClient = CurrencyClient()
+        let weatherClient = WeatherClient(
+            weatherSession: URLSessionFake(
+                data: FakeResponseData.incorrectData,
+                response: FakeResponseData.responseOK,
+                error: nil
+            )
+        )
+        let todayViewModel = TodayViewModel(
+            geolocationService: geolocationService,
+            currencyClient: currencyClient,
+            weatherClient: weatherClient
+        )
+        let expect = expectation(description: "Wait for errorHandler")
+
+        // When:
+        todayViewModel.errorHandler = { title, message in
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.weatherunknown)
+            expect.fulfill()
+        }
+        todayViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
 
         // Then:
         wait(for: [expect], timeout: 3)

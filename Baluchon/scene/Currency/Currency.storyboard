@@ -98,7 +98,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWF-Xn-85v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Exhange Rates" image="dollarsign.circle.fill" catalog="system" id="OsH-bt-CwC"/>
+                    <tabBarItem key="tabBarItem" title="Currency" image="dollarsign.circle.fill" catalog="system" id="OsH-bt-CwC"/>
                     <navigationItem key="navigationItem" title="Convertisseur de monnaie" id="RIe-FS-FrS"/>
                     <connections>
                         <outlet property="convertButton" destination="Jfy-Np-LQN" id="7My-zC-ue5"/>

@@ -12,42 +12,61 @@ class URLSessionFake: URLSession {
     var data: Data?
     var response: URLResponse?
     var error: Error?
-    
+
     init(data: Data?, response: URLResponse?, error: Error?) {
         self.data = data
         self.response = response
         self.error = error
     }
-    
-    override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let task = URLSessionDataTaskFake()
-        task.completionHandler = completionHandler
-        task.data = data
-        task.urlResponse = response
-        task.reponseError = error
+
+    override func dataTask(
+        with url: URL,
+        completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let task = URLSessionDataTaskFake(
+            data: data,
+            urlResponse: response,
+            responseError: error,
+            completionHandler: completionHandler
+        )
         return task
     }
-    
-    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let task = URLSessionDataTaskFake()
-        task.data = data
-        task.urlResponse = response
-        task.reponseError = error
-        task.completionHandler = completionHandler
+
+    override func dataTask(
+        with request: URLRequest,
+        completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let task = URLSessionDataTaskFake(
+            data: data,
+            urlResponse: response,
+            responseError: error,
+            completionHandler: completionHandler
+        )
         return task
     }
 }
 
 class URLSessionDataTaskFake: URLSessionDataTask {
+
     var completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
-    
+
     var data: Data?
     var urlResponse: URLResponse?
-    var reponseError: Error?
-    
-    override func resume() {
-        completionHandler?(data, urlResponse, reponseError)
+    var responseError: Error?
+
+    init(
+        data: Data?,
+        urlResponse: URLResponse?,
+        responseError: Error?,
+        completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
+    ) {
+        self.completionHandler = completionHandler
+        self.data = data
+        self.urlResponse = urlResponse
+        self.responseError = responseError
     }
-    
+
+    override func resume() {
+        completionHandler?(data, urlResponse, responseError)
+    }
+
     override func cancel() {}
 }

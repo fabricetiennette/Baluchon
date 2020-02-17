@@ -11,15 +11,79 @@ import XCTest
 
 class WeatherClientTests: XCTestCase {
 
-    var weatherClient: WeatherClient!
+    let latitude = 37.773972
+    let longitude = -122.431297
 
-    override func setUp() {
-        super.setUp()
-        weatherClient = WeatherClient()
+    func testWeatherDataError() {
+        // Given:
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: nil, response: nil, error: FakeResponseData.errorWeather))
+        let expect = expectation(description: "Wait for error to appear.")
+
+        // When:
+        weatherClient.getWeather(latitude: latitude, longitude: longitude) { result in
+            if case .failure(let error) = result {
+                XCTAssertNotNil(error)
+                expect.fulfill()
+            }
+        }
+
+        // Then:
+        wait(for: [expect], timeout: 2)
     }
 
-    override func tearDown() {
-        weatherClient = nil
-        super.tearDown()
+    func testWeatherResponseError() {
+        // Given:
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseKO, error: nil))
+        let expect = expectation(description: "Wait for error to appear.")
+
+        // When:
+        weatherClient.getWeather(latitude: latitude, longitude: longitude) { result in
+            if case .failure(let error) = result {
+                XCTAssertNotNil(error)
+                expect.fulfill()
+            }
+        }
+
+        // Then:
+        wait(for: [expect], timeout: 2)
+    }
+
+    func testWeatherInSanFrancisco() {
+        // Given:
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseOK, error: nil))
+        var city: String?
+        var cityTemperature: Double?
+        let expect = expectation(description: "Wait for weather in San Francisco")
+
+        // When:
+        weatherClient.getWeather(latitude: latitude, longitude: longitude) { result in
+            if case .success(let weather) = result {
+                city = weather.list.first?.name
+                cityTemperature = weather.list.first?.main.temp
+                XCTAssertEqual(city, "San Francisco")
+                XCTAssertEqual(cityTemperature, 8.3)
+                expect.fulfill()
+            }
+        }
+
+        // Then:
+        wait(for: [expect], timeout: 2)
+    }
+
+    func testWeatherJsonError() {
+        // Given:
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil))
+        let expect = expectation(description: "Wait for error to appear.")
+
+        // When:
+        weatherClient.getWeather(latitude: latitude, longitude: longitude) { result in
+            if case .failure(let error) = result {
+                XCTAssertNotNil(error)
+                expect.fulfill()
+            }
+        }
+
+        // Then:
+        wait(for: [expect], timeout: 2)
     }
 }

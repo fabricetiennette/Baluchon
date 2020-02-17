@@ -15,6 +15,7 @@ struct WeatherData: Decodable {
 struct List: Decodable {
     let weather: [Weather]
     let main: Main
+    let name: String
 }
 
 struct Main: Decodable {
@@ -28,7 +29,7 @@ struct Main: Decodable {
 }
 
 struct Weather: Decodable {
-    let weatherDescription, icon: String?
+    let weatherDescription, icon: String
 
     enum CodingKeys: String, CodingKey {
         case weatherDescription = "description"

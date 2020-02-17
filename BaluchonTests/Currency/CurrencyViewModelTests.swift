@@ -23,11 +23,11 @@ class CurrencyViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testGetRateFromViewModel() {
+    func testGetRateFromCurrencyViewModel() {
         // Given:
         var currencyInArray: Int!
         var namesInArray: Int!
-        let expectation = XCTestExpectation(description: "Getting currencies for me...")
+        let expect = expectation(description: "Getting currencies for me...")
 
         // When:
         currencyViewModel.getRate { [weak self] in
@@ -36,27 +36,28 @@ class CurrencyViewModelTests: XCTestCase {
             namesInArray = me.currencyViewModel.myValues.count
             XCTAssertEqual(currencyInArray, 2)
             XCTAssertEqual(namesInArray, 2)
-            expectation.fulfill()
+            expect.fulfill()
         }
 
         // Then:
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expect], timeout: 3)
     }
 
-    func testErrorHandler() {
+    func testCurrencyErrorHandler() {
         // Given:
-        let currencyViewModel = CurrencyViewModel()
-        let expect = expectation(description: "waiting for error...")
+        let currencyClient = CurrencyClient(currencySession: URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil))
+        let currencyViewModel = CurrencyViewModel(currencyClient: currencyClient)
+        let expect = expectation(description: "Waiting for error...")
 
         // When:
         currencyViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, "Erreur")
-            XCTAssertEqual(message, "Taux de change indisponible pour le moment...")
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.rateunknown)
             expect.fulfill()
         }
-        currencyViewModel.getRate {  }
+        currencyViewModel.getRate {}
 
         // Then:
-        wait(for: [expect], timeout: 5)
+        wait(for: [expect], timeout: 3)
     }
 }

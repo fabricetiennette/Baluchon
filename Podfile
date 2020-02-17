@@ -6,7 +6,6 @@ target 'Baluchon' do
   # Pods for Baluchon
   pod 'SwiftLint'
   pod 'SwiftGen', '~> 6.0'
-  pod 'Moya', '~> 13.0'
   pod 'NVActivityIndicatorView'
 
   target 'BaluchonTests' do

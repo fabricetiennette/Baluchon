@@ -27,11 +27,28 @@ class TranslateViewModelTests: XCTestCase {
         super.tearDown()
     }
 
+    func testTranslateErrorHandler() {
+        // Given:
+        let translateClient = TranslateClient(translateSession: URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil))
+        let translateViewModel = TranslateViewModel(translateClient: translateClient)
+        let translationBody = Translate(source: .fr, text: "Bonjour")
+        let expect = expectation(description: "Wait for error alert to appear.")
+
+        // When:
+        translateViewModel.errorHandler = { title, message in
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.errorfound)
+            expect.fulfill()
+        }
+        translateViewModel.doTranslation(translationBody: translationBody)
+
+        // Then:
+        wait(for: [expect], timeout: 3)
+    }
+
     func testTranslationFr() {
         // Given:
-        let sourceLanguage: Language = .fr
-        let text = "Bonjour"
-        let translationBody = Translate(source: sourceLanguage, text: text)
+        let translationBody = Translate(source: .fr, text: "Bonjour")
         let expect = expectation(description: "Translating...")
 
         // When:

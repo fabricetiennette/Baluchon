@@ -70,6 +70,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2e-Qy-ol5" userLabel="ToTranslate" customClass="TranslateTextView" customModule="Baluchon" customModuleProvider="target">
                                 <rect key="frame" x="16" y="128" width="343" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ToTranslate"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="bBA-PG-a4S"/>
                                 </constraints>
@@ -106,6 +107,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3o-E0-mg5" userLabel="TextResultLabel">
                                 <rect key="frame" x="16" y="338" width="343" height="100"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TextResultLabel"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="QWk-sG-bRe"/>
                                 </constraints>

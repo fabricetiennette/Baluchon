@@ -54,7 +54,7 @@ extension WeatherViewModel {
             case .success(let weatherRest):
                let first = weatherRest.list.first
                guard let temperature = first?.main.temp.toTemperatureWithDegreeUnit,
-                   let summary = first?.weather.first?.weatherDescription?.capitalized,
+                let summary = first?.weather.first?.weatherDescription.capitalized,
                    let minTemperature = first?.main.tempMin.toTemperatureWithoutDegreeUnit,
                    let maxTemperature = first?.main.tempMax.toTemperatureWithoutDegreeUnit
                    else { return }

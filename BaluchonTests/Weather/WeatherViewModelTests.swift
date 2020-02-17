@@ -7,93 +7,90 @@
 //
 
 import XCTest
-import CoreLocation
 @testable import Baluchon
-
 
 class WeatherViewModelTests: XCTestCase {
 
-    var weatherViewModel: WeatherViewModel!
+    let latitude = 37.773972
+    let longitude = -122.431297
 
-    override func setUp() {
-        super.setUp()
+    func testWeatherViewModelErrorHandlerWithGetCurrentWeather() {
+        // Given:
         let geolocationService = GeolocationService()
-        let weatherClient = WeatherClient()
-        weatherViewModel = WeatherViewModel(
-            geolocationService: geolocationService,
-            weatherClient: weatherClient
-        )
-    }
-
-    override func tearDown() {
-        weatherViewModel = nil
-        super.tearDown()
-    }
-
-    
-    func testCurrentLocationWhencCurrentPlaceIsNotEmpty() {
-        // Given:
-        let weatherClient = WeatherClient()
-        let weatherViewModel = WeatherViewModel(
-            weatherClient: weatherClient
-        )
-        var unKnowLocation: String?
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOK, error: nil))
+        let weatherViewModel = WeatherViewModel(geolocationService: geolocationService, weatherClient: weatherClient)
+        let expect = expectation(description: "Wait for error.")
 
         // When:
-        unKnowLocation = weatherViewModel.location
-
-        // Then:
-        XCTAssertEqual(unKnowLocation, "San Francisco")
-    }
-
-    func testWeatherForcastAndCurrentDataArrayIsEmpty() {
-        // Given:
-        let latitude = 37.8267
-        let longitude = -122.4233
-
-        // When:
+        weatherViewModel.errorHandler = { title, message in
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.weatherunknown)
+            expect.fulfill()
+        }
         weatherViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
 
         // Then:
-//        XCTAssertFalse(weatherViewModel.forcastData.isEmpty)
-//        XCTAssertFalse(weatherViewModel.currentForcast.isEmpty)
+        wait(for: [expect], timeout: 3)
     }
 
-    func testErrorhandlerInUpdateWeather() {
+    func testErrorHandlerAndLocationInUpdateWeather() {
         // Given:
-        let location = ""
-        let expect = expectation(description: "wait for it")
+        let weatherGeoLocationStub = WeatherGeoLocationStub()
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseOK, error: nil))
+        let weatherViewModel = WeatherViewModel(geolocationService: weatherGeoLocationStub, weatherClient: weatherClient)
+        var newLocation = ""
+        let expect = expectation(description: "Wait for error.")
 
         // When:
         weatherViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, "Erreur")
-            XCTAssertEqual(message, "Localisation inconnue...")
+            newLocation = weatherViewModel.location
+            XCTAssertEqual(title, L10n.Localizable.error)
+            XCTAssertEqual(message, L10n.Localizable.unknownlocation)
+            XCTAssertEqual(newLocation, "Paris")
             expect.fulfill()
         }
-        weatherViewModel.updateWeather(location)
+        weatherViewModel.updateWeather("Paris")
 
         // Then:
-        wait(for: [expect], timeout: 5)
+        wait(for: [expect], timeout: 3)
     }
 
-    func testUpdateWeatherWithAnErrorInWeatherClient() {
+    func testUpdateWeatherInWeatherViewModel() {
         // Given:
-        let location = "Paris"
         let geolocationService = GeolocationService()
-        let weatherViewModel = WeatherViewModel(
-            geolocationService: geolocationService
-        )
-        let expect = expectation(description: "wait for it")
+        let weatherClient = WeatherClient()
+        let weatherViewModel = WeatherViewModel(geolocationService: geolocationService, weatherClient: weatherClient)
+        let expect = expectation(description: "Wait for error.")
 
         // When:
-        weatherViewModel.errorHandler = { title, message in
-            XCTAssertEqual(title, "Erreur")
-            XCTAssertEqual(message, "Météo indisponible pour le moment...")
+        weatherViewModel.weatherHandler = { weather in
+            XCTAssertNotNil(weather)
             expect.fulfill()
         }
-        weatherViewModel.updateWeather(location)
+        weatherViewModel.updateWeather("Paris")
 
         // Then:
-        wait(for: [expect], timeout: 5)
+        wait(for: [expect], timeout: 3)
+    }
+
+    func testGetCurrentWeatherInWeatherViewModel() {
+        // Given:
+        let geolocationService = GeolocationService()
+        let weatherClient = WeatherClient(weatherSession: URLSessionFake(data: FakeResponseData.weatherCorrectData, response: FakeResponseData.responseOK, error: nil))
+        let weatherViewModel = WeatherViewModel(geolocationService: geolocationService, weatherClient: weatherClient)
+        let expect = expectation(description: "Wait for error.")
+
+        // When:
+        weatherViewModel.weatherHandler = { weather in
+            XCTAssertEqual(weather.temperature, 8.3.toTemperatureWithDegreeUnit)
+            XCTAssertEqual(weather.minTemperature, 5.toTemperatureWithoutDegreeUnit)
+            XCTAssertEqual(weather.maxTemperature, 11.11.toTemperatureWithoutDegreeUnit)
+            XCTAssertEqual(weather.iconSummary, "partiellement nuageux".capitalized)
+            expect.fulfill()
+        }
+        weatherViewModel.getCurrentWeather(latitude: latitude, longitude: longitude)
+
+        // Then:
+        wait(for: [expect], timeout: 3)
     }
 }
