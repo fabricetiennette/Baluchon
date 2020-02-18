@@ -38,19 +38,20 @@ class BaluchonUITests: XCTestCase {
     }
 
     func testTabBar() {
-        app.tabBars.buttons["Translate"].tap(wait: 10, test: self)
-        app.tabBars.buttons["Today"].tap(wait: 10, test: self)
-        app.tabBars.buttons["Weather"].tap(wait: 10, test: self)
-        app.tabBars.buttons["Currency"].tap(wait: 10, test: self)
+        app.tabBars.buttons["Translate"].forceTapElement()
+        app.tabBars.buttons["Today"].forceTapElement()
+        app.tabBars.buttons["Weather"].forceTapElement()
+        app.tabBars.buttons["Currency"].forceTapElement()
     }
 }
 
 extension XCUIElement {
-    func tap(wait: Int, test: XCTestCase) {
-        if !isHittable {
-            test.expectation(for: NSPredicate(format: "hittable == true"), evaluatedWith: self, handler: nil)
-            test.waitForExpectations(timeout: TimeInterval(wait), handler: nil)
+    func forceTapElement() {
+        if self.isHittable {
+            self.tap()
+        } else {
+            let coordinate: XCUICoordinate = self.coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0))
+            coordinate.tap()
         }
-        tap()
     }
 }
