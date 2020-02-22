@@ -3,7 +3,7 @@
 # Baluchon
 🔥 Travelling the USA has never been so easy
 
-<img src="./Pictures/Today.png" width="200" height="450">&nbsp; &nbsp; &nbsp; <img src="./Pictures/Translate.png" width="200" height="450">&nbsp; &nbsp; &nbsp; <img src="./Pictures/Weather.png" width="200" height="450">&nbsp; &nbsp; &nbsp; <img src="./Pictures/Currency.png" width="200" height="450">&nbsp; &nbsp; &nbsp; 
+<img src="./Pictures/Today.png" width="200" height="450">&nbsp; &nbsp; <img src="./Pictures/Translate.png" width="200" height="450">&nbsp; &nbsp; <img src="./Pictures/Weather.png" width="200" height="450">&nbsp; &nbsp; &nbsp; <img src="./Pictures/Currency.png" width="200" height="450"> 
 
 ## ☀️ About
 Baluchon is the app to travel in USA. It will let you know the weather at your location but also where you want. Translate texts from french to english and vice versa. Exchange rate from Euro to United States Dollar and Pound sterling.
@@ -32,3 +32,5 @@ Run `pod install`
 ### Workspace
 
 Open `Baluchon.xcworkspace`
+
+Build & Run 🔥
