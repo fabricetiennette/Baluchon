@@ -20,7 +20,6 @@ I decided to deal with this app with a [MVVM](https://medium.com/better-programm
 As activity indicator i use [NVActivityIndicatorView](https://github.com/ninjaprox/NVActivityIndicatorView) and for a better Swift Style [SwiftLint](https://github.com/realm/SwiftLint).
 I use [CocoaPods](https://cocoapods.org) as dependency manager.
 
-
 ## 🕵️‍♂️ How to test 
 ### Clone the project
 
